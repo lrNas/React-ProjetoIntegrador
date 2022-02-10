@@ -1,7 +1,6 @@
 body{
   /*Revisado e Sem defeitos conhecidos*/
   align-items: center;
-  height: fit-content;
   width: 100%;
   margin: 0;
   margin-top: 1vmin;
@@ -11,4 +10,5 @@ body{
   flex-wrap: nowrap;
   justify-content: space-between;
   overflow-x: hidden;
+  height: 100%;
 }

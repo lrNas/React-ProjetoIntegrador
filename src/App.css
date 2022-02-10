@@ -9,18 +9,4 @@ html{
     padding:0;
     margin: 0
 }
-      .section{
-    /*Revisado e sem defeitos conhecidos*/    
-    display: flex;
-    flex-direction: column;
-    color:#283477;
-    padding-top: 0;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: center;
-    margin: 0vh;
-    margin-top: 15vmin;
-    width: 100%;
-    padding-bottom: 0;
-    margin-bottom: 0;
-}
+

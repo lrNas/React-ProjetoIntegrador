@@ -3,8 +3,7 @@
     background-color: #5C6BC0;
     justify-content: space-between;
     flex-direction: row;
-    min-width: 100%;
-    max-width: 100%;
+    width:100%;
     display:flex;    
     padding-bottom: 1vmax;
     box-shadow: 1px 3px 3px #7987cb49;
@@ -45,6 +44,7 @@
     border-top-right-radius: 2vmax;
     height: fit-content; 
     margin-bottom: 0;
+    min-width: 100vw;
     bottom: 0pt;
     left: 0pt;
 }
@@ -103,7 +103,12 @@
     padding: 1vmin;
     
 }
-
+#ft{
+   padding-top: 0.7Vmin;
+}
+#ft1{
+    padding-top: 1.25Vmin;
+ }
 
 
 
@@ -154,7 +159,6 @@ p{
     font-weight: bolder;
 }
 
-
 .hli{
     color: white;
     text-decoration-line: none;
@@ -200,6 +204,7 @@ p{
     font-size: 2.5vmin;
     text-decoration: none;
 }
+
 .drop-content button{
     background-color: #7986CB;
     border-color: transparent;
