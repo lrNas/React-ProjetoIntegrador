@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route} from 'react-router-dom'
-import Contatos from './views/Contatos'
+import Contato from './views/Contato'
 import CadastroCliente from './views/CadastroCliente'
 import Duvidas from './views/Duvidas'
 
@@ -8,7 +8,8 @@ const AppRoutes = () => {
     return(
         <BrowserRouter>   
         <Routes>
-        <Route  path= "/Contatos"  element = {<Contatos />} />
+        {/* <Route  path= "/"  element = {<MainPage />} > */}
+        <Route  path= "/Contatos"  element = {<Contato />} />
         <Route  path= "/CadastroCliente"  element = {<CadastroCliente />} />
         <Route  path= "/Duvidas"  element = {<Duvidas />} />
         </Routes>  

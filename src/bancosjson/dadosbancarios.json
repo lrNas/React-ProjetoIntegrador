@@ -1,0 +1,9 @@
+[
+    {
+        "idUsuario":1,
+        "nomeCartao":"José C S",
+        "numeroCartao":6049203910293849,
+        "validadeCartao": "20/09/2044",
+        "cvc":460
+    }
+]

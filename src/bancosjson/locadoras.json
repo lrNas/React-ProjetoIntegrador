@@ -1,0 +1,26 @@
+[
+    {
+        "idLocadora":1,
+        "nomeLocadora":"AG. O1 SP",
+        "email":"emailficticio1@email.com", 
+        "cnpj":52313240000192,
+        "telefone":11902310029,
+        "cep":"02938992",
+        "rua":"AV. Casa de Pedras, 1023",
+        "complemento":null,
+        "cidade":"São Paulo",
+        "estado":"São Paulo"
+    },
+    {
+        "idLocadora":2,
+        "nomeLocadora":"AG. O1 RJ",
+        "email":"emailficticio2@email.com", 
+        "cnpj":52313240000148,
+        "telefone":11902317929,
+        "cep":"09293992",
+        "rua":"AV. Copacabana, 851",
+        "complemento":null,
+        "cidade":"Rio de Janeiro",
+        "estado":"Rio de Janeiro"
+    }
+]

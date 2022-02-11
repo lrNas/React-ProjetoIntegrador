@@ -1,0 +1,10 @@
+.content {
+    padding: 6vmin;
+    padding-top: 10vmax;
+    padding-right: 2vmax;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+    color: #283477;
+}

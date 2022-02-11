@@ -1,0 +1,14 @@
+[
+    {
+        "idMensagem":1,
+        "nomeCompleto":"Juliana Gomes Barbosa",
+        "email":"ju-li-a-na@me.com",
+        "mensagem":"Não consigo acessar minha conta, como posso resolver isso?"
+    },
+    {
+        "idMensagem":2,
+        "nomeCompleto":"Rafael Mendes",
+        "email":"raffffffffa@gmks.com",
+        "mensagem":"Estou tentando cadastrar e não vai, como fazer?"
+    }
+]

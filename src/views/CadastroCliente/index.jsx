@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Header, Footer } from '../../Components/Header-Footer';
+import PageConstructor from '../../Components/PageConstructor';
 import './styles.css'
 
 function CasdatroCliente() {
     return (
         <>
-            <Header admin={0} />
+            <PageConstructor >
             <div className="App">
                 <main class="section">
                     {/* <div id="overlay">
@@ -121,8 +121,9 @@ function CasdatroCliente() {
                         </div>
                     </form>
                    
-                </main> <Footer />
+                </main>
             </div>
+            </PageConstructor>
            
         </>
 

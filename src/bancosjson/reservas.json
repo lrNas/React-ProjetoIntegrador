@@ -1,0 +1,22 @@
+[
+    {
+        "idReserva":1,
+        "idVeiculo":1,
+        "idUsuario":1,
+        "idLocalRetirada":1,
+        "data retirada":"31/12/2021",
+        "valor":"R$600,00",
+        "idLocalEntrega":2,
+        "data entrega":"05/01/22"
+    },
+    {
+        "idReserva":2,
+        "idVeiculo":2,
+        "idUsuario":1,
+        "idLocalRetirada":2,
+        "data retirada":"05/01/22",
+        "valor":"R$800,00",
+        "idLocalEntrega":1,
+        "data entrega":"05/03/22"
+    }
+]

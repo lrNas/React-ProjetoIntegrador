@@ -1,13 +1,14 @@
-.hli{
+.hli {
     text-decoration-line: none;
     padding-left: 1vw;
     padding-right: 1vw;
     border-radius: 1vmin;
     transition: 0.3s;
     background-color: #5C6BC0;
-    font-size: 2.5vh;
+    font-size: 1.5vmax;
     font-family: 'Open Sans';
 }
-.hli:hover{
-    background-color: #5C6BC0;    
+
+.hli:hover {
+    background-color: #5C6BC0;
 }

@@ -1,0 +1,38 @@
+[
+    {
+    "idUsuario":"1",
+    "tipo":1,
+    "nomeCompleto":"José Carlos da Silva",
+    "email":"email@email.com", 
+    "senha":"senha",
+    "cpf":10023190423,
+    "telefone":11902310029,
+    "datanascimento":"10/01/1992",
+    "cnh":"0923023901",
+    "validadecnh":"20/03/2023",
+    "cep":"01938299",
+    "rua":"Rua Caldeira Velha, 180",
+    "complemento":"Casa 2",
+    "cidade":"São Paulo",
+    "estado":"São Paulo"
+    },
+
+    {
+        "idUsuario":"2",
+        "tipo":2,
+        "nomeCompleto":"José Carlos da Silva",
+        "email":"email2@email.com", 
+        "senha":"senha",
+        "cpf":10023190423,
+        "telefone":11902310029,
+        "datanascimento":"10/01/1992",
+        "cnh":"0923023901",
+        "validadecnh":"20/03/2023",
+        "cep":"01938299",
+        "rua":"Rua Caldeira Velha, 180",
+        "complemento":"Casa 2",
+        "cidade":"São Paulo",
+        "estado":"São Paulo"
+        }
+]
+
