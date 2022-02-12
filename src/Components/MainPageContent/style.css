@@ -1,0 +1,31 @@
+.section {
+    padding-right: 12.5%;
+    padding-left: 12.5%;
+    margin-left: 0;
+    margin-right: 0;
+    width: 75%;
+}
+
+.infobar {
+    /*Revisado e sem defeitos conhecidos*/
+    display: flex;
+    background-color: #C5CAE9;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 5vmax;
+    margin-bottom: 5vmax;
+    width: 100vw;
+    overflow: visible;
+}
+
+.infobaritem {
+    /*Revisado e sem defeitos conhecidos*/
+    width: 20vw;
+    padding: 1vmax;
+    background-color: #e7eaf8;
+    margin-bottom: 2vmax;
+    margin-top: -2vmax;
+    border-radius: 1.2vmin;
+    color: #283477;
+    box-shadow: 1px 3px 3px #7987cb49;
+}

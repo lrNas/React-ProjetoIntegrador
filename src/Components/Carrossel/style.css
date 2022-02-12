@@ -1,0 +1,95 @@
+/*Classes do Carrossel*/
+
+.vcarr {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+.carrossel {
+    /*Revisado e Sem defeitos conhecidos*/
+    display: flex;
+    border-radius: 2vmin;
+    padding: 0;
+    width: 70%;
+    height: fit-content;
+    overflow: hidden;
+    align-items: center;
+    flex-direction: row;
+}
+
+.carrtext {
+    /*Revisado e Sem defeitos conhecidos*/
+    margin-top: -10vmax;
+    align-self: center;
+    font-size: 5vmin;
+    font-weight: 900;
+    color: #283477;
+    background-color: #C5CAE9;
+    opacity: .8;
+    padding: 1vmax;
+    border-radius: 2vmin;
+    box-shadow: 1px 3px 3px #7987cb49;
+}
+
+.btn-carrossel {
+    background-color: #7987cb00;
+    border-color: transparent;
+    border-radius: 0px;
+    margin: 0px;
+    color: rgba(245, 222, 179, 0);
+    font-weight: 0;
+    cursor: pointer;
+    box-shadow: 1px 3px 3px #7987cb00;
+}
+
+.chevright:hover,
+.chevleft:hover {
+    background-color: #7986CB;
+    border-radius: 10px;
+}
+
+.chevright:hover {
+    border-bottom-left-radius: 1.5vmin;
+    border-top-left-radius: 1.5vmin;
+}
+
+.chevleft:hover {
+    border-bottom-right-radius: 1.5vmin;
+    border-top-right-radius: 1.5vmin;
+}
+
+.chevright {
+    /*Revisado e Sem defeitos conhecidos*/
+    margin-left: -4vmax;
+    width: 4vmax;
+    opacity: 0.8;
+}
+
+.chevleft {
+    /*Revisado e Sem defeitos conhecidos*/
+    margin-right: -4vmax;
+    width: 4vmax;
+    opacity: 0.8
+}
+
+.currentimage {
+    align-self: center;
+    z-index: -1;
+    width: 110%;
+}
+
+
+/* Fim das classes do Carrossel*/
+
+@media screen and (max-width: 710px) {
+    .carrtext {
+        margin-top: -9vmax;
+        font-size: 2vmax;
+    }
+    .carrossel {
+        width: 100%;
+    }
+}

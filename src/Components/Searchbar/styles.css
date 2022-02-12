@@ -1,0 +1,95 @@
+.searchbar {
+    /*Revisado e Sem defeitos conhecidos*/
+    border: none;
+    width: fit-content;
+    justify-content: center;
+    align-self: center;
+    align-items: center;
+    margin-top: 5vh;
+    margin-bottom: 2vmax;
+    background-color: #C5CAE9;
+    display: flex;
+    flex-direction: row;
+    border-radius: 1vmin;
+    padding: 1vmax;
+    box-shadow: 1px 3px 3px #7987cb9f;
+}
+
+.searchbar-item {
+    /*Revisado e Sem defeitos conhecidos*/
+    border: none;
+    margin-top: 1vmin;
+    margin-left: 1vmin;
+    margin-right: 1vmin;
+    border-radius: 1vmin;
+    padding: 0.5vmin;
+    height: 2.8vh;
+    color: #283477;
+    background-color: #FFFFFF;
+}
+
+
+/* CSS PARA OS PLACEHOLDERS EM DIVERSOS NAVEGADORES \/ \/ \/ \/ */
+
+::placeholder,
+ :-ms-input-placeholder,
+ ::-ms-input-placeholder {
+    /*Revisado e Sem defeitos conhecidos*/
+    color: #283477;
+    opacity: 0.8;
+    font-size: 1.5vw;
+    padding: 0;
+    margin: 0;
+    align-self: center;
+    justify-self: center;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+    /*Revisado e Sem defeitos conhecidos*/
+    height: 3vh;
+    padding: 0px;
+    margin: 0px
+}
+
+input[type=date] {
+    /*Revisado e Não funciona perfeitamente Mobile. Necessário fazer media querry*/
+    color: #283477;
+    font-size: 1.2vmax;
+}
+
+.searchbar-button {
+    /*Revisado e Sem defeitos conhecidos*/
+    height: 5vmin;
+    width: 6vmax;
+    align-items: center;
+    justify-content: center;
+    padding: 1vmin;
+    margin: 0;
+    color: #283477;
+    background-color: #FFFFFF;
+    display: flex;
+    border-radius: 1vmin;
+    font-size: 1.2vmax;
+}
+
+.garicon {
+    /*Revisado e Sem defeitos conhecidos*/
+    width: 1.8vmax;
+    height: 1.8vmax;
+}
+
+.buscaicon {
+    /*Revisado e Sem defeitos conhecidos*/
+    padding: 0;
+    margin: 0;
+    width: 1.2vmax;
+    height: 1.2vmax;
+}
+
+.searchbar-item a {
+    /*Revisado e Sem defeitos conhecidos*/
+    font-size: 1.3vmax;
+    padding: 0;
+    margin: 0;
+}

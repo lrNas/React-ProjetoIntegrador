@@ -1,0 +1,20 @@
+[{
+        "idItem": 1,
+        "url": "carro1.jpg",
+        "texto": "Aluguel de carros em todo país!"
+    },
+    {
+        "idItem": 2,
+        "url": "carro2.jpg",
+        "texto": "Melhor preço do mercado!"
+    }, {
+        "idItem": 3,
+        "url": "carro3.jpg",
+        "texto": "Variedade de modelos!"
+    },
+    {
+        "idItem": 4,
+        "url": "carro4.jpg",
+        "texto": "Escolha já o seu!"
+    }
+]

@@ -1,7 +1,10 @@
 import NavigateButton from "../NavigateButton";
+import {returnUserType} from "../CookiesHandler"
 
 function HeaderLinks(props){
-    if(props.userType===2){
+    let userType = returnUserType(props)
+
+    if(userType==2){
         return(
             <>
             <li>

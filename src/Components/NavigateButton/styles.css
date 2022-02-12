@@ -9,6 +9,6 @@
     font-family: 'Open Sans';
 }
 
-.hli:hover {
-    background-color: #5C6BC0;
+.hli :hover {
+    background-color: #5c6bc088;
 }
