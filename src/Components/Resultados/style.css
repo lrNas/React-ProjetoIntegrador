@@ -1,0 +1,57 @@
+.retirada-entrega {
+    /*Revisado e sem defeitos conhecidos*/
+    display: flex;
+    justify-content: space-between;
+    height: 3.3vmax;
+    margin-bottom: 2vmax;
+}
+
+.containers {
+    display: flex;
+    width: 80vw;
+    height: fit-content;
+    background-color: #5C6BC0;
+    color: #FFFFFF;
+    justify-content: space-around;
+    border-radius: 1vmin;
+    margin-top: 1.2vmax;
+    box-shadow: 1px 3px 3px #7987cb9f;
+}
+
+.reservaEmAndamento {
+    background-color: #283477;
+}
+
+.reservaPassada {
+    opacity: 0.5;
+}
+
+.seta {
+    width: 9vmax;
+    padding: 0;
+    margin: 0;
+    margin-top: -4vmax;
+    margin-bottom: -4vmax;
+}
+
+.botaoContainer {
+    /*Revisado e sem defeitos conhecidos*/
+    display: flex;
+    justify-content: flex-end;
+    width: 25vmax;
+    align-items: center;
+}
+
+.botaoContainer button {
+    /*Revisado e sem defeitos conhecidos*/
+    font-size: 1.4vmax;
+    background-color: #7986CB;
+    border-color: transparent;
+    border-radius: 1vmin;
+    color: #E8EAF6;
+    font-weight: 900;
+    padding: 0;
+    width: 9vmax;
+    height: 3.2vmax;
+    box-shadow: 1px 3px 3px #7987cb49;
+}

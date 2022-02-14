@@ -6,25 +6,21 @@ import "./style.css"
 
 function MainPageContent(props){
 const index = 
-<main class="section">
+<main className="section">
     <Searchbar />
-    <Carrossel />
-    <div id="resultados">
 
-    </div>
-
-    <div class="infobar" id="infobar">
-        <div class="infobaritem">
+    <div className="infobar" id="infobar">
+        <div className="infobaritem">
             <p>
                 Alugue um veículo e devolva aonde quiser sem taxas adicionais. *confira se está disponível!
             </p>
         </div>
-        <div class="infobaritem">
+        <div className="infobaritem">
             <p>
                 2 horas de cortesia caso você precise retirar o carro depois do horário combinado.
             </p>
         </div>
-        <div class="infobaritem">
+        <div className="infobaritem">
             <p>
                 Faça parte da nossa comunidade, acumule pontos e vantagens para as próximas reservas.
             </p>
@@ -33,38 +29,38 @@ const index =
 </main>
 
 
-const overview = <main class="section">
+const overview = <main className="section">
 <h1>Overview</h1>
-<div class="forms">
-    <div class="ovlabels formsvdivs">
-        <div class="formshdivs">
+<div className="forms">
+    <div className="ovlabels formsvdivs">
+        <div className="formshdivs">
             <p> Alugueis em Andamento:</p>
-            <p class="overview-info "> 13 </p>
+            <p className="overview-info "> 13 </p>
         </div>
-        <div class="formshdivs">
+        <div className="formshdivs">
             <p> Alugueis no Mês:</p>
-            <p class="overview-info "> 5 </p>
+            <p className="overview-info "> 5 </p>
         </div>
-    <div class="formshdivs">
+    <div className="formshdivs">
             <p> Alugueis no Ano Atual:</p>
-            <p class="overview-info "> 48 </p>
+            <p className="overview-info "> 48 </p>
         </div>
-        <div class="formshdivs">
+        <div className="formshdivs">
             <p> Carros Disponíveis:</p>
-            <p class="overview-info "> 40/180 </p>
+            <p className="overview-info "> 40/180 </p>
         </div>
-        <div class="formshdivs">
+        <div className="formshdivs">
             <p> Faturamento do Mês Atual:</p>
-            <p class="overview-info "> R$ 25973,00 </p>
+            <p className="overview-info "> R$ 25973,00 </p>
         </div>
-        <div class="formshdivs">
+        <div className="formshdivs">
             <p> Faturamento do Ano Atual:</p>
-            <p class="overview-info "> R$ 709802,00 </p>
+            <p className="overview-info "> R$ 709802,00 </p>
             </div>
         </div>
-    <div class="overview-div" >
+    <div className="overview-div" >
         <div><h2>Top 5 Agências</h2>
-            <ol class="overview-list ">
+            <ol className="overview-list ">
                 <li>AG- 05 GO</li>
                 <li>AG- 01 GO</li>
                 <li>AG- 20 SP</li>
@@ -73,7 +69,7 @@ const overview = <main class="section">
             </ol>
         </div>
         <div> <h2>Top 5 Veículos</h2>
-            <ol class="overview-list "> 
+            <ol className="overview-list "> 
                 <li>Fox 2019</li>
                 <li>Celta 2020</li>
                 <li>Uno 2020</li>
