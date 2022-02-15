@@ -35,22 +35,29 @@ function NoPeriodo(reservas, dataInicio, dataFim) {
 }
 
 function NoMes(reservas) {
+    /*console.log("-\nNo mês atual:")*/
     let dataInicio = new Date(Date.now())
     dataInicio.setDate("0")
     dataInicio.setHours(0, 0, 0)
+        /*console.log("Data de início:" + dataInicio.toString())*/
     var dataFim = new Date(dataInicio.getTime())
     dataFim.setMonth(dataInicio.getMonth() + 2, 0)
     dataFim.setHours(23, 59, 59)
+        /*console.log("Data do final do período:" + dataFim.toString() + "\n-")*/
     var result = NoPeriodo(reservas, dataInicio, dataFim)
     return result
 }
 
 function NoAno(reservas) {
+    /*console.log("-\nNo ano:")*/
     var dataInicio = new Date(Date.now())
-    dataInicio.setMonth("1", "1")
+    dataInicio.setMonth("0", "1")
     dataInicio.setHours("0", "0", "0")
+        /*console.log("Data de início:" + dataInicio.toString())*/
     var dataFim = new Date(dataInicio.getTime())
     dataFim.setMonth(11, 31)
+    dataFim.setHours(23, 59, 59)
+        /*console.log("Data do final do período:" + dataFim.toString() + "\n-")*/
     return NoPeriodo(reservas, dataInicio, dataFim)
 }
 

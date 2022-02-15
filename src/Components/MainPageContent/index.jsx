@@ -4,6 +4,7 @@ import {returnUserType} from "../CookiesHandler"
 import "./style.css"
 import React from "react"
 import funcFiltros from "./funcFiltros"
+import Carrossel from "../Carrossel"
 
 function MainPageContent(props){
     const reservas = require("../../bancosjson/reservas.json")
@@ -14,18 +15,27 @@ function MainPageContent(props){
 
     let arrNoMes = funcFiltros.NoMes(reservas)
     let noMes = 0
-    arrNoMes.map(item=>noMes+=1)
+    let lucroMensal=0
+    arrNoMes.map(item=>{noMes+=1;lucroMensal+=item.valor;return true})
+
+
 
     let arrNoAno = funcFiltros.NoAno(reservas)
     let noAno = 0
-    arrNoAno.map(item=>noAno+=1)
+    let lucroAnual=0
+    arrNoAno.map(item=>{noAno+=1;lucroAnual+=item.valor;return true})
+    
+    const veiculos = require("../../bancosjson/veiculos.json")
+
+    let totalVeiculos=0
+    veiculos.map(item=>totalVeiculos+=1)
+    let arrdisponiveis = veiculos.filter(veiculo=>veiculo.status==1)
+    let disponiveis=0
+    arrdisponiveis.map(item=>disponiveis+=1)
 
 
 
-    const veiculo = require("../../bancosjson/veiculos.json")
     const agencias = require("../../bancosjson/locadoras.json")
-    const nesseMes = funcFiltros.NoMes(reservas)
-
 
 
 const index = 
@@ -71,15 +81,15 @@ const overview =
         </div>
         <div className="formshdivs">
             <p> Carros Disponíveis:</p>
-            <p className="overview-info "> 40/180 </p>
+            <p className="overview-info "> {disponiveis}/{totalVeiculos} </p>
         </div>
         <div className="formshdivs">
             <p> Faturamento do Mês Atual:</p>
-            <p className="overview-info "> R$ 25973,00 </p>
+            <p className="overview-info ">{lucroMensal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} </p>
         </div>
         <div className="formshdivs">
             <p> Faturamento do Ano Atual:</p>
-            <p className="overview-info "> R$ 709802,00 </p>
+            <p className="overview-info "> {lucroAnual.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} </p>
             </div>
         </div>
     <div className="overview-div" >

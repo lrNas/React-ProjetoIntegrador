@@ -17,7 +17,7 @@
         "kmRodados": 8700,
         "custoDiaria": 60,
         "renavam": "63894759493",
-        "status": 1,
+        "status": 4,
         "locadoraPropietaria:": 2,
         "locadoraAtual": 2,
         "ultimaAtualizacao": "20/01/2022"
@@ -31,6 +31,39 @@
         "renavam": "63894124393",
         "status": 1,
         "locadoraPropietaria:": 2,
+        "locadoraAtual": 1,
+        "ultimaAtualizacao": "20/01/2022"
+    }, {
+        "idVeiculo": "4",
+        "modelo": "Uno 2019",
+        "placa": "XPA E010",
+        "kmRodados": 12000,
+        "custoDiaria": 20,
+        "renavam": "10294124393",
+        "status": 1,
+        "locadoraPropietaria:": 2,
+        "locadoraAtual": 2,
+        "ultimaAtualizacao": "20/01/2022"
+    }, {
+        "idVeiculo": "5",
+        "modelo": "Civic 2019",
+        "placa": "ARA E010",
+        "kmRodados": 1200,
+        "custoDiaria": 35,
+        "renavam": "10299384053",
+        "status": 1,
+        "locadoraPropietaria:": 2,
+        "locadoraAtual": 2,
+        "ultimaAtualizacao": "20/01/2022"
+    }, {
+        "idVeiculo": "6",
+        "modelo": "Honda Fit 2019",
+        "placa": "BDO 9C18",
+        "kmRodados": 4099,
+        "custoDiaria": 30,
+        "renavam": "50493384053",
+        "status": 1,
+        "locadoraPropietaria:": 1,
         "locadoraAtual": 1,
         "ultimaAtualizacao": "20/01/2022"
     }

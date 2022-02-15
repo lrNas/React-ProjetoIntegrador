@@ -1,26 +1,71 @@
-[
-    {
-        "idLocadora":1,
-        "nomeLocadora":"AG. O1 SP",
-        "email":"emailficticio1@email.com", 
-        "cnpj":52313240000192,
-        "telefone":11902310029,
-        "cep":"02938992",
-        "rua":"AV. Casa de Pedras, 1023",
-        "complemento":null,
-        "cidade":"São Paulo",
-        "estado":"São Paulo"
+[{
+        "idLocadora": 1,
+        "nomeLocadora": "AG. O1 SP",
+        "email": "emailficticio1@email.com",
+        "cnpj": 52313240000192,
+        "telefone": 11902310029,
+        "cep": "02938992",
+        "rua": "AV. Casa de Pedras, 1023",
+        "complemento": null,
+        "cidade": "São Paulo",
+        "estado": "São Paulo"
     },
     {
-        "idLocadora":2,
-        "nomeLocadora":"AG. O1 RJ",
-        "email":"emailficticio2@email.com", 
-        "cnpj":52313240000148,
-        "telefone":11902317929,
-        "cep":"09293992",
-        "rua":"AV. Copacabana, 851",
-        "complemento":null,
-        "cidade":"Rio de Janeiro",
-        "estado":"Rio de Janeiro"
+        "idLocadora": 2,
+        "nomeLocadora": "AG. O1 RJ",
+        "email": "emailficticio2@email.com",
+        "cnpj": 59288340000148,
+        "telefone": 21902756929,
+        "cep": "09293992",
+        "rua": "AV. Copacabana, 851",
+        "complemento": null,
+        "cidade": "Rio de Janeiro",
+        "estado": "Rio de Janeiro"
+    }, {
+        "idLocadora": 3,
+        "nomeLocadora": "AG. O2 SP",
+        "email": "emailficticio3@email.com",
+        "cnpj": 19203940000192,
+        "telefone": 11918270029,
+        "cep": "02938492",
+        "rua": "Alameda das Ficções, 1023",
+        "complemento": null,
+        "cidade": "São Paulo",
+        "estado": "São Paulo"
+    },
+    {
+        "idLocadora": 4,
+        "nomeLocadora": "AG. O2 RJ",
+        "email": "emailficticio4@email.com",
+        "cnpj": 32987380000148,
+        "telefone": 21927317929,
+        "cep": "05593992",
+        "rua": "Rua do porto, 210",
+        "complemento": "2o andar",
+        "cidade": "Rio de Janeiro",
+        "estado": "Rio de Janeiro"
+    }, {
+        "idLocadora": 5,
+        "nomeLocadora": "AG. O3 SP",
+        "email": "emailficticio5@email.com",
+        "cnpj": 19209283910192,
+        "telefone": 11992340029,
+        "cep": "02923092",
+        "rua": "Rua Comprida, 53",
+        "complemento": null,
+        "cidade": "São Paulo",
+        "estado": "São Paulo"
+    },
+    {
+        "idLocadora": 6,
+        "nomeLocadora": "AG. O3 RJ",
+        "email": "emailficticio6@email.com",
+        "cnpj": 32992883400148,
+        "telefone": 2199128329,
+        "cep": "08239292",
+        "rua": "Av. Secundária, 450",
+        "complemento": null,
+        "cidade": "Rio de Janeiro",
+        "estado": "Rio de Janeiro"
     }
 ]
