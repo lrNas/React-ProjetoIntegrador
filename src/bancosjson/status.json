@@ -1,21 +1,21 @@
 [{
-    "idStatus":1,
-    "descricao":"Revisado e OK"
-},
-{
-    "idStatus":2,
-    "descricao":"Pendente de Revisão"
-},
-{
-    "idStatus":3,
-    "descricao":"Pendente de Reparo"
-},
-{
-    "idStatus":4,
-    "descricao":"Alugado"
-},
-{
-    "idStatus":5,
-    "descricao":"Indisponível"
-}
+        "idStatus": 1,
+        "descricao": "Revisado e OK"
+    },
+    {
+        "idStatus": 2,
+        "descricao": "Pendente de Revisão"
+    },
+    {
+        "idStatus": 3,
+        "descricao": "Pendente de Reparo"
+    },
+    {
+        "idStatus": 4,
+        "descricao": "Alugado"
+    },
+    {
+        "idStatus": 5,
+        "descricao": "Indisponível"
+    }
 ]

@@ -5,6 +5,12 @@ const reservas = require("../../bancosjson/reservas.json")
 const locadoras = require("../../bancosjson/locadoras.json")
 
 function Resultados(props){
+    /**
+     * <Resultados localRetirada={localRetirada} localEntrega={localEntrega} 
+        dataRetirada={dataRetirada} dataEntrega={dataEntrega}
+        horarioRetirada={horarioRetirada} horarioEntrega={horarioEntrega}/>
+     */
+
     /** Transformar props.dataRetirada + props.horarioRetirada em var momentoRetirada */
     /** Transformar props.dataEntrega + props.horarioEntrega em var momentoEntrega */
     /** Filtrar carros que estão no no local de retirada selecionado */
@@ -20,6 +26,7 @@ function Resultados(props){
                 <h2>Local de retirada</h2>
                 <h2>Local de entrega</h2>
             </div>
+            {/**Componentizar cada container? */}
             <section class="containers" id="reservaFutura">
                 <div>
                     <p>AG. 01 SP - 31/12/2021 - 15H00</p>

@@ -7,12 +7,10 @@ function HeaderLinks(props){
     if(userType==2){
         return(
             <>
-            <li>
-                <li><NavigateButton nome="Casdatro de Locadora" pagina="/CasdatroLocadora"/></li></li>
+                <li><NavigateButton nome="Casdatro de Locadora" pagina="/CasdatroLocadora"/></li>
                 <li><NavigateButton nome="Casdatro de Veiculos" pagina="/CasdatroVeiculos"/></li>
                 <li><NavigateButton nome="Reservas" pagina="/TodasReservas"/></li>
-                <li><NavigateButton nome="Casdatro de Cliente" pagina="/CasdatroCliente"/>
-            </li>
+                <li><NavigateButton nome="Casdatro de Cliente" pagina="/CasdatroCliente"/></li>
             </>
         )
     }

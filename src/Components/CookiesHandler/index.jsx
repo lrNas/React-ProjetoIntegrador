@@ -20,13 +20,11 @@ function getArrayAllCookies(){
     for (let cookie in cookiesStr){
         cookieArray[cookie] = cookiesStr[cookie]
     }
-    console.log(cookieArray)
     return cookieArray
 }
 
 function deleteAllCookies(){
     let cookieArray = cookies.getAll()
-    console.log (cookieArray)
     for (let cookie in cookieArray){
         cookies.remove(cookie)
     }

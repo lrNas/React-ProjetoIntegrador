@@ -7,9 +7,7 @@ function DropContent(props){
     const cookiesFeitos = getArrayAllCookies()
 
     let userType=0
-    console.log(cookiesFeitos)
     if (Object.keys(cookiesFeitos).length>0){
-        console.log("Tem cookies maior que 0")
         userType=cookiesFeitos["tipo"]
     }
     else{

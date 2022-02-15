@@ -110,12 +110,12 @@
     padding: 1vmin;
 }
 
-#ft {
+.ft {
     padding-top: 0.7Vmin;
     padding-right: 1vmax;
 }
 
-#ft1 {
+.ft1 {
     padding-top: 1.25Vmin;
     padding-right: 1vmax;
 }
@@ -147,17 +147,6 @@ p {
 .menuLogado li {
     /*Revisado e sem defeitos conhecidos*/
     margin-top: 1vmin;
-}
-
-.mlItens:hover {
-    /*Revisado e sem defeitos conhecidos*/
-    background-color: #7986CB;
-    width: 100%;
-    margin-left: -7%;
-    border-radius: 1vmin;
-    padding: 0;
-    padding-left: 1vmin;
-    margin: 1vmin;
 }
 
 #hlinks {

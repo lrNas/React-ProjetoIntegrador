@@ -1,10 +1,32 @@
-
-import Carrossel from "../Carrossel"
 import Searchbar from "../Searchbar"
 import {returnUserType} from "../CookiesHandler"
 import "./style.css"
+import React from "react"
+import funcFiltros from "./funcFiltros"
 
 function MainPageContent(props){
+    const reservas = require("../../bancosjson/reservas.json")
+    /**Entender porque não retorna o arrEmAndt.lenght */
+    let arrEmAndt = funcFiltros.EmAndamento(reservas)
+    let emAndt = 0
+    arrEmAndt.map(item=>emAndt+=1)
+
+    let arrNoMes = funcFiltros.NoMes(reservas)
+    let noMes = 0
+    arrNoMes.map(item=>noMes+=1)
+
+    let arrNoAno = funcFiltros.NoAno(reservas)
+    let noAno = 0
+    arrNoAno.map(item=>noAno+=1)
+
+
+
+    const veiculo = require("../../bancosjson/veiculos.json")
+    const agencias = require("../../bancosjson/locadoras.json")
+    const nesseMes = funcFiltros.NoMes(reservas)
+
+
+
 const index = 
 <main className="section">
     <Searchbar />
@@ -29,21 +51,22 @@ const index =
 </main>
 
 
-const overview = <main className="section">
+const overview = 
+<main className="section">
 <h1>Overview</h1>
 <div className="forms">
     <div className="ovlabels formsvdivs">
         <div className="formshdivs">
             <p> Alugueis em Andamento:</p>
-            <p className="overview-info "> 13 </p>
+            <p className="overview-info "> {emAndt}</p>
         </div>
         <div className="formshdivs">
             <p> Alugueis no Mês:</p>
-            <p className="overview-info "> 5 </p>
+            <p className="overview-info "> {noMes}</p>
         </div>
     <div className="formshdivs">
             <p> Alugueis no Ano Atual:</p>
-            <p className="overview-info "> 48 </p>
+            <p className="overview-info "> {noAno}</p>
         </div>
         <div className="formshdivs">
             <p> Carros Disponíveis:</p>

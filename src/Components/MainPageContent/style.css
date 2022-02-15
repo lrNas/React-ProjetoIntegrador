@@ -29,3 +29,46 @@
     color: #283477;
     box-shadow: 1px 3px 3px #7987cb49;
 }
+
+.overview-div {
+    /*Revisado e sem defeitos conhecidos*/
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    font-weight: bold;
+}
+
+.overview-div h2 {
+    /*Revisado e sem defeitos conhecidos*/
+    padding: 0;
+    margin: 2vmax;
+}
+
+.overview-list {
+    /*Revisado e sem defeitos conhecidos*/
+    background-color: white;
+    text-align: center;
+    justify-content: space-around;
+    border-radius: 1vmax;
+    width: fit-content;
+    height: fit-content;
+    padding: 0 2.5vmax 0 2.5vmax;
+    margin: 2vmax;
+}
+
+.overview-list li {
+    /*Revisado e sem defeitos conhecidos*/
+    font-size: 1.8vmax;
+    padding: 1.2vmin;
+}
+
+.overview-info {
+    /*Revisado e sem defeitos conhecidos*/
+    width: 15vmax;
+    background-color: white;
+    text-align: center;
+    border-radius: 1vmin;
+    padding: 1vmin;
+    margin-left: 1vmax;
+    font-weight: bold;
+}
