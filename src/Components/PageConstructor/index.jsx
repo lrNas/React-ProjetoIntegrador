@@ -1,3 +1,4 @@
+/**Colocar alts nas img */
 import './styles.css'
 import imglogo from '../../img/logo.svg'
 import imguser from '../../img/user.svg'

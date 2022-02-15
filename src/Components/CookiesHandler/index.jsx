@@ -1,4 +1,4 @@
-
+/**Sem bugs conhecidos */
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 const usuarios = require("../../bancosjson/usuarios.json")

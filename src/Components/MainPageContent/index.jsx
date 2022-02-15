@@ -1,3 +1,4 @@
+/**Em progresso */
 import Searchbar from "../Searchbar"
 import {returnUserType} from "../CookiesHandler"
 import "./style.css"

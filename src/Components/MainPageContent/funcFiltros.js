@@ -1,3 +1,4 @@
+/**Mudar para um componente */
 function ReturnMoment(data, horario) {
     var date = data.split("-")
     var hora = horario.split(":")

@@ -1,3 +1,4 @@
+/**Colocar alts para imagens */
 import chlft from "../../img/chleft.svg"
 import chrgt from "../../img/chright.svg"
 import "./style.css"

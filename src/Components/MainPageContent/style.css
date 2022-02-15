@@ -1,3 +1,5 @@
+/* Bug no footer, tá com margins left e right que não deveriam acontecer*/
+
 .section {
     padding-right: 12.5%;
     padding-left: 12.5%;
