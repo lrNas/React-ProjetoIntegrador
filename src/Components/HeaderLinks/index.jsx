@@ -7,19 +7,19 @@ function HeaderLinks(props){
     if(userType==2){
         return(
             <>
-                <li><NavigateButton nome="Casdatro de Locadora" pagina="/CasdatroLocadora"/></li>
-                <li><NavigateButton nome="Casdatro de Veiculos" pagina="/CasdatroVeiculos"/></li>
-                <li><NavigateButton nome="Reservas" pagina="/TodasReservas"/></li>
-                <li><NavigateButton nome="Casdatro de Cliente" pagina="/CasdatroCliente"/></li>
+                <li><NavigateButton nome="Casdatro de Locadora" pagina="/casdatrolocadora"/></li>
+                <li><NavigateButton nome="Casdatro de Veiculos" pagina="/casdatroveiculos"/></li>
+                <li><NavigateButton nome="Reservas" pagina="/todasreservas"/></li>
+                <li><NavigateButton nome="Casdatro de Cliente" pagina="/cadastrocliente"/></li>
             </>
         )
     }
     else{
         return(
             <>
-                <li><NavigateButton nome="Contatos" pagina="/Contatos"/></li>
-                <li><NavigateButton nome="Duvidas" pagina="/Duvidas"/></li>
-                <li><NavigateButton nome="Minhas Reservas" pagina="/MinhasReservas"/></li>
+                <li><NavigateButton nome="Contatos" pagina="/contatos"/></li>
+                <li><NavigateButton nome="Duvidas" pagina="/duvidas"/></li>
+                <li><NavigateButton nome="Minhas Reservas" pagina="/minhasreservas"/></li>
             </>
         )
     }

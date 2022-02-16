@@ -27,7 +27,7 @@ function DropContent(props){
                     <input type="password" value={senha}  name="senha" id="senha" placeholder="Digite sua Senha!" onChange={senha=>setSenha(senha.target.value)} />
                     <button id="logon" onClick={()=>login(userName,senha)}>Entrar</button>
                     <p>Problemas para logar? <a href="contato.html">Clique aqui!</a></p>
-                    <p>Ainda não é usuário? <a href="cadastrocliente.html">Cadastre-se!</a></p>
+                    <p>Ainda não é usuário? <a href="cadastrocliente">Cadastre-se!</a></p>
                 </form>
             </div>
         )
