@@ -1,4 +1,4 @@
-export default function CasdatroCliente (){
+export default function CadastroCliente (){
     const [nome, setListName] = useState('')
     const [email, setemail] = useState('')
     const [senha, setListsenha] = useState('')
