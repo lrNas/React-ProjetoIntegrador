@@ -15,8 +15,6 @@ Afazeres:
 
 -Fazer a página minhasreservas buscando do JSON (e pedir login se o usuário estiver deslogado)
 
--Botar o carrossel pra rodar automaticamente
-
 -Fazer a searchbar retornar resultados válidos
 --Mudar os botões para reservar
 --Fazer o overlay aparecer após clicar em reservar

@@ -1,27 +1,57 @@
 /**Colocar alts para imagens */
+import { useState,useEffect } from "react"
 import chlft from "../../img/chleft.svg"
 import chrgt from "../../img/chright.svg"
 import "./style.css"
 
+let count = 0
 const carrcontent = require('./carrcontent.json')
-let textoCarrossel = carrcontent[0].texto
 
-    function Carrossel(){
-return(
+function Carrossel(){
+    const [texto,setTexto] = useState(carrcontent[count].texto)
+    const [image,setImage] = useState(`${process.env.PUBLIC_URL}/img/${carrcontent[count].url}`)
+    function nextImage(){
+        count++
+        if(count>=carrcontent.length){
+            count=0
+        }
+        setImage(`${process.env.PUBLIC_URL}/img/${carrcontent[count].url}`)
+        setTexto(carrcontent[count].texto)
+    
+    }
+    function previousImage(){
+        count--
+        if(count<0){
+            count=carrcontent.length-1
+        }
+        setImage(`${process.env.PUBLIC_URL}/img/${carrcontent[count].url}`)
+        setTexto(carrcontent[count].texto)
+        
+    }
+    /**O método abaixo é pra garantir o intervalo funcionando bem */
+    useEffect(()=>{
+        const interval = 
+        setInterval(nextImage,5000)
+        return () => clearInterval(interval)
 
+        }
+    )
+    
+    
+    return(
         <div className="carrossel" id="carrossel" >
             
-            <button type="button" onClick={()=>false} className="btn-carrossel">
+            <button type="button" onClick={()=>previousImage()} className="btn-carrossel">
                 <img src={chlft} id="chevleft" className="chevleft"/>
             </button>
             
             <div className="vcarr">
-                <img src={`${process.env.PUBLIC_URL}/img/${carrcontent[0].url}`} className="currentimage" id="currentimage"/>
+                <img src={image} className="currentimage" id="currentimage"/>
                 <p className="carrtext" id="carrtext">
-                    {textoCarrossel}
+                    {texto}
                 </p>
             </div>
-            <button type="button" onClick={()=>false} className="btn-carrossel">
+            <button type="button" onClick={()=>nextImage()} className="btn-carrossel">
                 <img src={chrgt}  id="chevright"className="chevright"/>
             </button>
             

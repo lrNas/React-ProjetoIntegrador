@@ -87,7 +87,6 @@ function Top5Agencias(reservas, agencias) {
     let doAno = NoAno(reservas)
     let dasAgencias = []
     for (let agencia of agencias) {
-        console.log(agencia)
         dasAgencias.push(doAno.filter(reserva => reserva.idLocalRetirada == agencia.idLocadora))
     }
     let seq = []
