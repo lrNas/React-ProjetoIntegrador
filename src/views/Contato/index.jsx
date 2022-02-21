@@ -3,17 +3,21 @@ import PageConstructor from '../../Components/PageConstructor';
 import './styles.css'
 
 function Contatos() {
+    const [overview,setOverview]= useState("")
+    const content = <div id="overlay">
+    <div className="message">
+        <h2> Mensagem enviada com sucesso!</h2>
+        <button onClick={()=>setOverview("")}> Ok</button>
+    </div>
+</div>
+
     return (
         
         <PageConstructor >
+            {overview}
         <div className="App">
         <main className="section">
-            <div id="overlay">
-                <div className="message">
-                    <h2> Mensagem enviada com sucesso!</h2>
-                    <button> Ok</button>
-                </div>
-            </div>
+            
             <form name="contato">
                 <h1>Contato</h1>
                 <p>Tem alguma dúvida? Veja nossa página de perguntas frequentes!
@@ -40,7 +44,7 @@ function Contatos() {
                 </div>
                 <div className="formsbuttons">
                     <button>Cancelar</button>
-                    <button>Enviar</button>
+                    <button onClick={()=>setOverview(content)}>Enviar</button>
                 </div>
                 
             </form>

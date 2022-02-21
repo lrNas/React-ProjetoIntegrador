@@ -10,7 +10,7 @@
         "cnh": "0923023901",
         "validadecnh": "20/03/2023",
         "cep": "01938299",
-        "rua": "Rua Caldeira Velha, 180",
+        "logradouro": "Rua Caldeira Velha, 180",
         "complemento": "Casa 2",
         "cidade": "São Paulo",
         "estado": "São Paulo"
@@ -28,7 +28,7 @@
         "cnh": "0923023901",
         "validadecnh": "20/03/2023",
         "cep": "01938299",
-        "rua": "Rua Caldeira Velha, 180",
+        "logradouro": "Rua Caldeira Velha, 180",
         "complemento": "Casa 2",
         "cidade": "São Paulo",
         "estado": "São Paulo"
@@ -44,7 +44,7 @@
         "cnh": "0923023901",
         "validadecnh": "23/03/2023",
         "cep": "01938987",
-        "rua": "Rua Casa Branca, 10",
+        "logradouro": "Rua Casa Branca, 10",
         "complemento": "Casa 1",
         "cidade": "São Paulo",
         "estado": "São Paulo"

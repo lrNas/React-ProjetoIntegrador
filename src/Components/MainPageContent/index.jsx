@@ -3,7 +3,7 @@ import Searchbar from "../Searchbar"
 import {returnUserType} from "../CookiesHandler"
 import "./style.css"
 import React from "react"
-import funcFiltros from "../../controllers/bancoJson"
+import funcFiltros from "../../Controllers/bancoJson"
 
 function MainPageContent(props){
     const reservas = require("../../bancosjson/reservas.json")

@@ -58,7 +58,7 @@ function CadastroCliente() {
                         }
                         <form name="dadosCliente">
                             <h1>
-                                Cadastro do Cliente
+                                Cadastro de Cliente
                             </h1>
                             <div className="forms">
                                 <h2>Dados do Cliente</h2>
