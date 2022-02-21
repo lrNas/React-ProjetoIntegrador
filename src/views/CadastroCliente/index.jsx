@@ -50,7 +50,7 @@ function CadastroCliente() {
                         {
                             overlay ? <div id="overlay">
                                 <div className="message">
-                                    <h2 style="color:#414D92"> Cadastro realizado com sucesso!</h2>
+                                    <h2 style={"color:#414D92"}> Cadastro realizado com sucesso!</h2>
                                     <button onClick={setOverlay(false)}> Ok</button>
                                 </div>
                             </div>

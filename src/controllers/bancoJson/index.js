@@ -1,4 +1,3 @@
-/**Mudar para um componente */
 function ReturnMoment(data, horario) {
     var date = data.split("-")
     var hora = horario.split(":")
@@ -61,4 +60,50 @@ function NoAno(reservas) {
     return NoPeriodo(reservas, dataInicio, dataFim)
 }
 
-export default { ReturnMoment, EmAndamento, NoPeriodo, NoMes, NoAno }
+function Top5Carros(reservas, carros) {
+    let doAno = NoAno(reservas)
+    let dosCarros = []
+    for (let carro of carros) {
+        dosCarros.push(doAno.filter(reserva => reserva.idVeiculo == carro.idVeiculo))
+    }
+    let seq = []
+    let count = 1
+    for (let doCarro of dosCarros) {
+        seq.push([count, doCarro.length])
+        count++
+    }
+    seq.sort(([a, b], [c, d]) => d - b)
+    let result = []
+    seq.map(item => {
+
+        if (result.length < 5) { result.push(...carros.filter(carro => carro.idVeiculo == item[0])) }
+    })
+    return result
+
+
+}
+
+function Top5Agencias(reservas, agencias) {
+    let doAno = NoAno(reservas)
+    let dasAgencias = []
+    for (let agencia of agencias) {
+        console.log(agencia)
+        dasAgencias.push(doAno.filter(reserva => reserva.idLocalRetirada == agencia.idLocadora))
+    }
+    let seq = []
+    let count = 1
+    for (let daAgencia of dasAgencias) {
+        seq.push([count, daAgencia.length])
+        count++
+    }
+    seq.sort(([a, b], [c, d]) => d - b)
+    let result = []
+    seq.map(item => {
+
+        if (result.length < 5) { result.push(...agencias.filter(agencia => agencia.idLocadora == item[0])) }
+    })
+    return result
+
+
+}
+export default { ReturnMoment, EmAndamento, NoPeriodo, NoMes, NoAno, Top5Carros, Top5Agencias }

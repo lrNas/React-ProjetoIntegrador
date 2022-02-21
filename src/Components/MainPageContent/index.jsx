@@ -3,39 +3,31 @@ import Searchbar from "../Searchbar"
 import {returnUserType} from "../CookiesHandler"
 import "./style.css"
 import React from "react"
-import funcFiltros from "./funcFiltros"
-import Carrossel from "../Carrossel"
+import funcFiltros from "../../controllers/bancoJson"
 
 function MainPageContent(props){
     const reservas = require("../../bancosjson/reservas.json")
-    /**Entender porque não retorna o arrEmAndt.lenght */
-    let arrEmAndt = funcFiltros.EmAndamento(reservas)
-    let emAndt = 0
-    arrEmAndt.map(item=>emAndt+=1)
+    /**Entender porque não retorna o arrEmAndt.lenght 
+     *Resposta: 
+     *É porque o correto é length
+    */
+    let emAndt = funcFiltros.EmAndamento(reservas)
 
-    let arrNoMes = funcFiltros.NoMes(reservas)
-    let noMes = 0
+    let noMes = funcFiltros.NoMes(reservas)
     let lucroMensal=0
-    arrNoMes.map(item=>{noMes+=1;lucroMensal+=item.valor;return true})
+    noMes.map(item=>{lucroMensal+=item.valor;return true})
 
-
-
-    let arrNoAno = funcFiltros.NoAno(reservas)
-    let noAno = 0
+    let noAno = funcFiltros.NoAno(reservas)
     let lucroAnual=0
-    arrNoAno.map(item=>{noAno+=1;lucroAnual+=item.valor;return true})
-    
+    noAno.map(item=>{lucroAnual+=item.valor;return true})
+
     const veiculos = require("../../bancosjson/veiculos.json")
-
-    let totalVeiculos=0
-    veiculos.map(item=>totalVeiculos+=1)
-    let arrdisponiveis = veiculos.filter(veiculo=>veiculo.status==1)
-    let disponiveis=0
-    arrdisponiveis.map(item=>disponiveis+=1)
-
-
+    let disponiveis = veiculos.filter(veiculo=>veiculo.status==1)
+    const filtroCarros = funcFiltros.Top5Carros(reservas,veiculos)
 
     const agencias = require("../../bancosjson/locadoras.json")
+
+    const topAgencias = funcFiltros.Top5Agencias(reservas,agencias)
 
 
 const index = 
@@ -69,19 +61,19 @@ const overview =
     <div className="ovlabels formsvdivs">
         <div className="formshdivs">
             <p> Alugueis em Andamento:</p>
-            <p className="overview-info "> {emAndt}</p>
+            <p className="overview-info "> {emAndt.length}</p>
         </div>
         <div className="formshdivs">
             <p> Alugueis no Mês:</p>
-            <p className="overview-info "> {noMes}</p>
+            <p className="overview-info "> {noMes.length}</p>
         </div>
     <div className="formshdivs">
             <p> Alugueis no Ano Atual:</p>
-            <p className="overview-info "> {noAno}</p>
+            <p className="overview-info "> {noAno.length}</p>
         </div>
         <div className="formshdivs">
             <p> Carros Disponíveis:</p>
-            <p className="overview-info "> {disponiveis}/{totalVeiculos} </p>
+            <p className="overview-info "> {disponiveis.length}/{veiculos.length} </p>
         </div>
         <div className="formshdivs">
             <p> Faturamento do Mês Atual:</p>
@@ -95,20 +87,20 @@ const overview =
     <div className="overview-div" >
         <div><h2>Top 5 Agências</h2>
             <ol className="overview-list ">
-                <li>AG- 05 GO</li>
-                <li>AG- 01 GO</li>
-                <li>AG- 20 SP</li>
-                <li>AG- 03 SP</li>
-                <li>AG- 02 RJ</li>
+                <li>{topAgencias[0].nomeLocadora}</li>
+                <li>{topAgencias[1].nomeLocadora}</li>
+                <li>{topAgencias[2].nomeLocadora}</li>
+                <li>{topAgencias[3].nomeLocadora}</li>
+                <li>{topAgencias[4].nomeLocadora}</li>
             </ol>
         </div>
         <div> <h2>Top 5 Veículos</h2>
             <ol className="overview-list "> 
-                <li>Fox 2019</li>
-                <li>Celta 2020</li>
-                <li>Uno 2020</li>
-                <li>Civic 2019</li>
-                <li>HB20</li>
+                <li>{filtroCarros[0].modelo}</li>
+                <li>{filtroCarros[1].modelo}</li>
+                <li>{filtroCarros[2].modelo}</li>
+                <li>{filtroCarros[3].modelo}</li>
+                <li>{filtroCarros[4].modelo}</li>
             </ol>
         </div>
     </div>   

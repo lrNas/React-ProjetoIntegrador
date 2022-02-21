@@ -66,5 +66,29 @@
         "locadoraPropietaria:": 1,
         "locadoraAtual": 1,
         "ultimaAtualizacao": "20/01/2022"
+    },
+    {
+        "idVeiculo": "7",
+        "modelo": "Honda Fit 2018",
+        "placa": "BCK 9C18",
+        "kmRodados": 4019,
+        "custoDiaria": 40,
+        "renavam": "50493984053",
+        "status": 1,
+        "locadoraPropietaria:": 2,
+        "locadoraAtual": 2,
+        "ultimaAtualizacao": "20/01/2022"
+    },
+    {
+        "idVeiculo": "8",
+        "modelo": "Honda Fit 2020",
+        "placa": "BKO 9C18",
+        "kmRodados": 3099,
+        "custoDiaria": 30,
+        "renavam": "51493384053",
+        "status": 1,
+        "locadoraPropietaria:": 3,
+        "locadoraAtual": 3,
+        "ultimaAtualizacao": "20/01/2022"
     }
 ]
