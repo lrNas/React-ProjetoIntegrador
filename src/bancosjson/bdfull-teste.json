@@ -1,0 +1,417 @@
+[
+    
+   {
+       "dadosbancarios":[
+        {
+            "idUsuario": 1,
+            "nomeCartao": "José C S",
+            "numeroCartao": 6049203910293849,
+            "validadeCartao": "09-20-2044",
+            "cvc": 460
+        },
+        {
+            "idUsuario": 2,
+            "nomeCartao": "Marra C S",
+            "numeroCartao": 1231321313445678,
+            "validadeCartao": "09-20-2044",
+            "cvc": 460
+        }
+       ]
+   },
+   {
+       "locadoras":[
+        {
+            "idLocadora": 1,
+            "nomeLocadora": "AG. O1 SP",
+            "email": "emailficticio1@email.com",
+            "cnpj": 52313240000192,
+            "telefone": 11902310029,
+            "cep": "02938992",
+            "rua": "AV. Casa de Pedras, 1023",
+            "complemento": null,
+            "cidade": "São Paulo",
+            "estado": "São Paulo"
+        },
+        {
+            "idLocadora": 2,
+            "nomeLocadora": "AG. O1 RJ",
+            "email": "emailficticio2@email.com",
+            "cnpj": 59288340000148,
+            "telefone": 21902756929,
+            "cep": "09293992",
+            "rua": "AV. Copacabana, 851",
+            "complemento": null,
+            "cidade": "Rio de Janeiro",
+            "estado": "Rio de Janeiro"
+        }, {
+            "idLocadora": 3,
+            "nomeLocadora": "AG. O2 SP",
+            "email": "emailficticio3@email.com",
+            "cnpj": 19203940000192,
+            "telefone": 11918270029,
+            "cep": "02938492",
+            "rua": "Alameda das Ficções, 1023",
+            "complemento": null,
+            "cidade": "São Paulo",
+            "estado": "São Paulo"
+        },
+        {
+            "idLocadora": 4,
+            "nomeLocadora": "AG. O2 RJ",
+            "email": "emailficticio4@email.com",
+            "cnpj": 32987380000148,
+            "telefone": 21927317929,
+            "cep": "05593992",
+            "rua": "Rua do porto, 210",
+            "complemento": "2o andar",
+            "cidade": "Rio de Janeiro",
+            "estado": "Rio de Janeiro"
+        }, {
+            "idLocadora": 5,
+            "nomeLocadora": "AG. O3 SP",
+            "email": "emailficticio5@email.com",
+            "cnpj": 19209283910192,
+            "telefone": 11992340029,
+            "cep": "02923092",
+            "rua": "Rua Comprida, 53",
+            "complemento": null,
+            "cidade": "São Paulo",
+            "estado": "São Paulo"
+        },
+        {
+            "idLocadora": 6,
+            "nomeLocadora": "AG. O3 RJ",
+            "email": "emailficticio6@email.com",
+            "cnpj": 32992883400148,
+            "telefone": 2199128329,
+            "cep": "08239292",
+            "rua": "Av. Secundária, 450",
+            "complemento": null,
+            "cidade": "Rio de Janeiro",
+            "estado": "Rio de Janeiro"
+        }
+       ]
+   },
+   {
+       "mensagens":
+       [
+        {
+            "idMensagem":1,
+            "nomeCompleto":"Juliana Gomes Barbosa",
+            "email":"ju-li-a-na@me.com",
+            "mensagem":"Não consigo acessar minha conta, como posso resolver isso?"
+        },
+        {
+            "idMensagem":2,
+            "nomeCompleto":"Rafael Mendes",
+            "email":"raffffffffa@gmks.com",
+            "mensagem":"Estou tentando cadastrar e não vai, como fazer?"
+        }
+       ]
+   },
+   {
+       "reservas":
+       [
+        {
+            "idReserva": 1,
+            "idVeiculo": 1,
+            "idUsuario": 1,
+            "idLocalRetirada": 1,
+            "dataRetirada": "12-31-2021",
+            "horarioRetirada": "08:00",
+            "valor": 600.37,
+            "idLocalEntrega": 2,
+            "dataEntrega": "01-05-2022",
+            "horarioEntrega": "17:00",
+            "dataCriacao": "12-29-2021",
+            "horarioCriacao": "21:19"
+        },
+        {
+            "idReserva": 2,
+            "idVeiculo": 2,
+            "idUsuario": 1,
+            "idLocalRetirada": 2,
+            "dataRetirada": "01-05-2022",
+            "horarioRetirada": "19:00",
+            "valor": 744.30,
+            "idLocalEntrega": 1,
+            "dataEntrega": "03-05-2022",
+            "horarioEntrega": "13:00",
+            "dataCriacao": "01-03-2022",
+            "horarioCriacao": "13:00"
+        },
+        {
+            "idReserva": 3,
+            "idVeiculo": 2,
+            "idUsuario": 1,
+            "idLocalRetirada": 1,
+            "dataRetirada": "03-18-2022",
+            "horarioRetirada": "19:00",
+            "valor": 799.50,
+            "idLocalEntrega": 1,
+            "dataEntrega": "04-05-2022",
+            "horarioEntrega": "13:00",
+            "dataCriacao": "02-05-2022",
+            "horarioCriacao": "17:20"
+        },
+        {
+            "idReserva": 4,
+            "idVeiculo": 1,
+            "idUsuario": 2,
+            "idLocalRetirada": 1,
+            "dataRetirada": "03-18-2022",
+            "horarioRetirada": "19:00",
+            "valor": 850.00,
+            "idLocalEntrega": 2,
+            "dataEntrega": "04-05-2022",
+            "horarioEntrega": "13:00",
+            "dataCriacao": "02-05-2022",
+            "horarioCriacao": "13:00"
+        }, {
+            "idReserva": 4,
+            "idVeiculo": 3,
+            "idUsuario": 3,
+            "idLocalRetirada": 1,
+            "dataRetirada": "01-18-2022",
+            "horarioRetirada": "19:00",
+            "valor": 800.00,
+            "idLocalEntrega": 1,
+            "dataEntrega": "04-05-2022",
+            "horarioEntrega": "13:00",
+            "dataCriacao": "01-15-2022",
+            "horarioCriacao": "13:00"
+        }, {
+            "idReserva": 4,
+            "idVeiculo": 4,
+            "idUsuario": 3,
+            "idLocalRetirada": 0,
+            "dataRetirada": "03-18-2022",
+            "horarioRetirada": "19:00",
+            "valor": 800.00,
+            "idLocalEntrega": 2,
+            "dataEntrega": "05-05-2022",
+            "horarioEntrega": "13:00",
+            "dataCriacao": "01-15-2022",
+            "horarioCriacao": "13:00"
+        },
+        {
+            "idReserva": 5,
+            "idVeiculo": 2,
+            "idUsuario": 2,
+            "idLocalRetirada": 2,
+            "dataRetirada": "04-18-2022",
+            "horarioRetirada": "19:00",
+            "valor": 800.00,
+            "idLocalEntrega": 2,
+            "dataEntrega": "05-05-2022",
+            "horarioEntrega": "13:00",
+            "dataCriacao": "01-15-2022",
+            "horarioCriacao": "13:00"
+        }, {
+            "idReserva": 6,
+            "idVeiculo": 5,
+            "idUsuario": 2,
+            "idLocalRetirada": 2,
+            "dataRetirada": "05-18-2022",
+            "horarioRetirada": "19:00",
+            "valor": 800.00,
+            "idLocalEntrega": 2,
+            "dataEntrega": "06-05-2022",
+            "horarioEntrega": "13:00",
+            "dataCriacao": "01-15-2022",
+            "horarioCriacao": "13:00"
+        },
+        {
+            "idReserva": 7,
+            "idVeiculo": 6,
+            "idUsuario": 2,
+            "idLocalRetirada": 2,
+            "dataRetirada": "07-18-2022",
+            "horarioRetirada": "19:00",
+            "valor": 800.00,
+            "idLocalEntrega": 2,
+            "dataEntrega": "08-05-2022",
+            "horarioEntrega": "13:00",
+            "dataCriacao": "01-15-2022",
+            "horarioCriacao": "13:00"
+        }
+    
+       ]
+   },
+   {
+       "status":[
+        {
+            "idStatus": 1,
+            "descricao": "Revisado e OK"
+        },
+        {
+            "idStatus": 2,
+            "descricao": "Pendente de Revisão"
+        },
+        {
+            "idStatus": 3,
+            "descricao": "Pendente de Reparo"
+        },
+        {
+            "idStatus": 4,
+            "descricao": "Alugado"
+        },
+        {
+            "idStatus": 5,
+            "descricao": "Indisponível"
+        }
+       ]
+   },
+   {
+       "usuarios":[
+        {
+            "idUsuario": "1",
+            "tipo": 1,
+            "nomeCompleto": "José Carlos da Silva",
+            "email": "email@email.com",
+            "senha": "senha",
+            "cpf": 10023190423,
+            "telefone": 11902310029,
+            "datanascimento": "10/01/1992",
+            "cnh": "0923023901",
+            "validadecnh": "20/03/2023",
+            "cep": "01938299",
+            "logradouro": "Rua Caldeira Velha, 180",
+            "complemento": "Casa 2",
+            "cidade": "São Paulo",
+            "estado": "São Paulo"
+        },
+    
+        {
+            "idUsuario": "2",
+            "tipo": 2,
+            "nomeCompleto": "José Carlos da Silva",
+            "email": "email2@email.com",
+            "senha": "senha",
+            "cpf": 10023190423,
+            "telefone": 11902310029,
+            "datanascimento": "10/01/1992",
+            "cnh": "0923023901",
+            "validadecnh": "20/03/2023",
+            "cep": "01938299",
+            "logradouro": "Rua Caldeira Velha, 180",
+            "complemento": "Casa 2",
+            "cidade": "São Paulo",
+            "estado": "São Paulo"
+        }, {
+            "idUsuario": "3",
+            "tipo": 1,
+            "nomeCompleto": "Maria Andrade da Silva",
+            "email": "email3@email.com",
+            "senha": "senha",
+            "cpf": 92033384912,
+            "telefone": 11910910029,
+            "datanascimento": "12/01/1992",
+            "cnh": "0923023901",
+            "validadecnh": "23/03/2023",
+            "cep": "01938987",
+            "logradouro": "Rua Casa Branca, 10",
+            "complemento": "Casa 1",
+            "cidade": "São Paulo",
+            "estado": "São Paulo"
+        }
+       ]
+   },
+   {
+       "veiculos":[
+        {
+            "idVeiculo": "1",
+            "modelo": "Agile 2020",
+            "placa": "EXT 5021",
+            "kmRodados": 7500,
+            "custoDiaria": 70,
+            "renavam": "19302847993",
+            "status": 1,
+            "locadoraPropietaria:": 1,
+            "locadoraAtual": 1,
+            "ultimaAtualizacao": "20/01/2022"
+        },
+        {
+            "idVeiculo": "2",
+            "modelo": "Fox 2020",
+            "placa": "FXH 0451",
+            "kmRodados": 8700,
+            "custoDiaria": 60,
+            "renavam": "63894759493",
+            "status": 4,
+            "locadoraPropietaria:": 2,
+            "locadoraAtual": 2,
+            "ultimaAtualizacao": "20/01/2022"
+        },
+        {
+            "idVeiculo": "3",
+            "modelo": "Celta 2020",
+            "placa": "FGG 0121",
+            "kmRodados": 8902,
+            "custoDiaria": 40,
+            "renavam": "63894124393",
+            "status": 1,
+            "locadoraPropietaria:": 2,
+            "locadoraAtual": 1,
+            "ultimaAtualizacao": "20/01/2022"
+        }, {
+            "idVeiculo": "4",
+            "modelo": "Uno 2019",
+            "placa": "XPA E010",
+            "kmRodados": 12000,
+            "custoDiaria": 20,
+            "renavam": "10294124393",
+            "status": 1,
+            "locadoraPropietaria:": 2,
+            "locadoraAtual": 2,
+            "ultimaAtualizacao": "20/01/2022"
+        }, {
+            "idVeiculo": "5",
+            "modelo": "Civic 2019",
+            "placa": "ARA E010",
+            "kmRodados": 1200,
+            "custoDiaria": 35,
+            "renavam": "10299384053",
+            "status": 1,
+            "locadoraPropietaria:": 2,
+            "locadoraAtual": 2,
+            "ultimaAtualizacao": "20/01/2022"
+        }, {
+            "idVeiculo": "6",
+            "modelo": "Honda Fit 2019",
+            "placa": "BDO 9C18",
+            "kmRodados": 4099,
+            "custoDiaria": 30,
+            "renavam": "50493384053",
+            "status": 1,
+            "locadoraPropietaria:": 1,
+            "locadoraAtual": 1,
+            "ultimaAtualizacao": "20/01/2022"
+        },
+        {
+            "idVeiculo": "7",
+            "modelo": "Honda Fit 2018",
+            "placa": "BCK 9C18",
+            "kmRodados": 4019,
+            "custoDiaria": 40,
+            "renavam": "50493984053",
+            "status": 1,
+            "locadoraPropietaria:": 2,
+            "locadoraAtual": 2,
+            "ultimaAtualizacao": "20/01/2022"
+        },
+        {
+            "idVeiculo": "8",
+            "modelo": "Honda Fit 2020",
+            "placa": "BKO 9C18",
+            "kmRodados": 3099,
+            "custoDiaria": 30,
+            "renavam": "51493384053",
+            "status": 1,
+            "locadoraPropietaria:": 3,
+            "locadoraAtual": 3,
+            "ultimaAtualizacao": "20/01/2022"
+        }
+       ]
+   }
+]

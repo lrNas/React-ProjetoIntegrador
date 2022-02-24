@@ -12,7 +12,7 @@ import DropContent from '../DropContent'
 import HeaderLinks from '../HeaderLinks'
 
 const logo = <img src={imglogo} className="logo" alt="Locar - Locação de Veículos" onClick={()=>{window.location.replace("/")}} />
-
+    
 
 function PageConstructor(props) {
     return (
