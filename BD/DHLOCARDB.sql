@@ -16,7 +16,7 @@ CREATE TABLE usuario (
     cnh_usuario INT NOT NULL UNIQUE,
     validade_cnh_usuario DATE NOT NULL,
     fk_id_endereco INT NOT NULL,
-    foreign key (fk_id_endereco) references dhlocar.endereco(id_endereco)
+    foreign key (fk_id_endereco) references dhlocar.endereco(id_endereco),
     foreign key (fk_id_tipo_usuario) references dhlocar.tipo_usuario(id_tipo_usuario)
     
     );
