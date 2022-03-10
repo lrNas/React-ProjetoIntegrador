@@ -7,6 +7,8 @@ para acessar como usuario administrador, usar o e-mail email2@email.com
 a senha é "senha"
 
 Afazeres:
+-Teste
+
 -Fazer a página CadastroLocadora levantar o overlay após cadastrar
 
 -Fazer a página Contato registrar as mensagens recebidas
