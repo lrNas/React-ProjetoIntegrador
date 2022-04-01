@@ -1,7 +1,7 @@
-import axios from 'axios';
 import React, { useState } from 'react';
 import PageConstructor from '../../Components/PageConstructor';
 import './styles.css'
+import axios from 'axios';
 
 function Contatos() {
     const [overview,setOverview]= useState("")
@@ -17,7 +17,7 @@ function Contatos() {
 
     //  Incompleto pois vou verificar com o grupo sobre o BD
     const sendContatos = async () => {
-        const contatos = {nome_completo_mensagem:nome, email_mensagem: email, conteudo_mensagem: mensagem}
+        const contatos = {nome_completo:nome, email: email, conteudo: mensagem}
         try {
             const resposta = await axios.post("http://localhost:3030/mensagem", contatos)
             alert(resposta.data)

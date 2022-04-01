@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PageConstructor from '../../Components/PageConstructor';
 import './styles.css'
+import axios from 'axios';
 
 function CadastroVeiculos() {
     const [modeloDoVeiculo, setModeloDoVeiculo] = useState('')
@@ -12,6 +13,23 @@ function CadastroVeiculos() {
     const [locadoraAtual, setLocadoraAtual] = useState('')
     const [locadoraProprietaria, setLocadoraProprietaria] = useState('')
     const [overlay, setOverlay] = useState(false)
+
+    // Talvez precise de atualizações em conteúdos do objeto!
+    const sendVeiculos = async () => {
+        const veiculos = {modelo: modeloDoVeiculo, placa: placa, km_rodados: kmRodado, custo_diario: custoDiaria, renavam: renavam}
+
+        try {
+            const resposta = await axios.post("http://localhost:3030/veiculo", veiculos)
+            alert(resposta.data)
+            setModeloDoVeiculo("")
+            setPlaca("")
+            setKmRodado("")
+            setCustoDiaria("")
+            setRenavam("")
+        } catch (err) {
+            console.log(err)
+        }
+    }
 
     return (
         <>
@@ -69,7 +87,7 @@ function CadastroVeiculos() {
                                 </div>
                             </div>
                             <div class="formsbuttons">
-                                <button>Cancelar</button><button>Salvar</button>
+                                <button>Cancelar</button><button onClick={()=>{sendVeiculos()}}>Salvar</button>
                             </div>
                         </form>
                     </main>

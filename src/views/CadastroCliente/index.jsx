@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PageConstructor from '../../Components/PageConstructor';
 import './styles.css'
+import axios from 'axios';
 
 function CadastroCliente() {
     const [nome, setListName] = useState('')
@@ -11,7 +12,7 @@ function CadastroCliente() {
     const [cnh, setCnh] = useState('')
     const [telefone, setTelefone] = useState('')
     const [cpf, setCpf] = useState('')
-    const [repetirSenha, setrepetirSenha] = useState('')
+    const [repetirSenha, setRepetirSenha] = useState('')
     const [cep, setCep] = useState('')
     const [cidade, setCidade] = useState('')
     const [estado, setEstado] = useState('')
@@ -32,10 +33,10 @@ function CadastroCliente() {
         let cliente = {
             nome: nome, email: email, senha: senha, nascimento: nascimento,
             validade: validade, cpf: cpf, telefone: telefone,
-            cnh: cnh, repetirsenha: repetirsenha, cep: cep,
+            cnh: cnh, repetirsenha: repetirSenha, cep: cep,
             cidade: cidade, estado: estado, rua: rua,
-            complemento: complemento, numcartao: numcartao,
-            nomecartao: nomecartao, datavalidade: datavalidade,
+            complemento: complemento, numcartao: numCartao,
+            nomecartao: nomeCartao, datavalidade: dataValidade,
             cvc: cvc
         }
         localStorage.setItem('cliente' + Number(localStorage.visitas), JSON.stringify(cliente))
@@ -147,7 +148,7 @@ function CadastroCliente() {
                                             </div>
                                             <div className="formshdivs">
                                                 <label htmlFor="repetirsenha"> Repetir a Senha:</label>
-                                                <input type="password" name="repetirsenha" id="repetirsenha" value={repetirSenha} onChange={event => setrepetirSenha(event.target.value)} />
+                                                <input type="password" name="repetirsenha" id="repetirsenha" value={repetirSenha} onChange={event => setRepetirSenha(event.target.value)} />
                                             </div>
                                             <div className="formshdivs">
                                                 <label htmlFor="cnh">CNH:</label>
