@@ -5,23 +5,23 @@ import './styles.css'
 function CadastroCliente() {
     const [nome, setListName] = useState('')
     const [overlay, setOverlay] = useState(false)
-    const [email, setemail] = useState('')
+    const [email, setEmail] = useState('')
     const [senha, setListsenha] = useState('')
-    const [nascimento, setnascimento] = useState('')
-    const [cnh, setcnh] = useState('')
-    const [telefone, settelefone] = useState('')
-    const [cpf, setcpf] = useState('')
-    const [repetirsenha, setrepetirsenha] = useState('')
-    const [cep, setcep] = useState('')
-    const [cidade, setcidade] = useState('')
-    const [estado, setestado] = useState('')
-    const [rua, setrua] = useState('')
-    const [validade, setvalidade] = useState('')
-    const [complemento, setcomplemento] = useState('')
-    const [numcartao, setnumcartao] = useState('')
-    const [datavalidade, setdatavalidade] = useState('')
-    const [cvc, setcvc] = useState('')
-    const [nomecartao, setnomecartao] = useState('')
+    const [nascimento, setNascimento] = useState('')
+    const [cnh, setCnh] = useState('')
+    const [telefone, setTelefone] = useState('')
+    const [cpf, setCpf] = useState('')
+    const [repetirSenha, setrepetirSenha] = useState('')
+    const [cep, setCep] = useState('')
+    const [cidade, setCidade] = useState('')
+    const [estado, setEstado] = useState('')
+    const [rua, setRua] = useState('')
+    const [validade, setValidade] = useState('')
+    const [complemento, setComplemento] = useState('')
+    const [numCartao, setNumCartao] = useState('')
+    const [dataValidade, setDataValidade] = useState('')
+    const [cvc, setCvc] = useState('')
+    const [nomeCartao, setNomeCartao] = useState('')
 
     function local() {
         if (localStorage.visitas) {
@@ -40,6 +40,56 @@ function CadastroCliente() {
         }
         localStorage.setItem('cliente' + Number(localStorage.visitas), JSON.stringify(cliente))
         setOverlay(true)
+    }
+
+    const sendCartao = async () => {
+        const usuarioCartao = {nome: nomeCartao, numero: numCartao, validade: dataValidade, cvc: cvc}
+
+        try {
+            const resposta = await axios.post("http://localhost:3030/cartao", usuarioCartao)
+            alert(resposta.data)
+            setNomeCartao("")
+            setNumCartao("")
+            setDataValidade("")
+            setCvc("")
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    const sendEndereco = async () => {
+        const usuarioEndereco = {cep:cep, logadouro: rua,cidade: cidade, estado: estado, complemento: complemento}
+
+        try {
+            const resposta = await axios.post("http://localhost:3030/endereco", usuarioEndereco)
+            alert(resposta.data)
+            setCep("")
+            setRua("")
+            setCidade("")
+            setEstado("")
+            setComplemento("")
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    const sendUsuario = async () => {
+        const usuarioCliente = {nome_completo:nome, email: email, senha: senha, cpf: cpf, telefone: telefone, data_nascimento:nascimento, cnh: cnh, validade_cnh: validade}
+        
+        try {
+            const resposta = await axios.post("http://localhost:3030/usuario", usuarioCliente)
+            alert(resposta.data)
+            setListName("")
+            setEmail("")
+            setListsenha("")
+            setCpf("")
+            setTelefone("")
+            setNascimento("")
+            setCnh("")
+            setValidade("")
+        } catch (err) {
+            console.log(err)
+        }
     }
 
     return (
@@ -70,7 +120,7 @@ function CadastroCliente() {
                                         </div>
                                         <div className="formshdivs">
                                             <label htmlFor="emailcad" > E-mail:</label>
-                                            <input type="email" name="emailcad" id="emailcad" value={email} onChange={event => setemail(event.target.value)} />
+                                            <input type="email" name="emailcad" id="emailcad" value={email} onChange={event => setEmail(event.target.value)} />
                                         </div>
                                         <div className="formshdivs">
                                             <label htmlFor="senhacad" > Senha:</label>
@@ -78,30 +128,30 @@ function CadastroCliente() {
                                         </div>
                                         <div className="formshdivs">
                                             <label htmlFor="nascimento" > Data de Nascimento:</label>
-                                            <input type="date" name="nascimento" id="nascimento" value={nascimento} onChange={event => setnascimento(event.target.value)} />
+                                            <input type="date" name="nascimento" id="nascimento" value={nascimento} onChange={event => setNascimento(event.target.value)} />
                                         </div>
                                         <div className="formshdivs">
                                             <label htmlFor="validade" > Validade:</label>
-                                            <input type="date" name="validade" id="validade" value={validade} onChange={event => setvalidade(event.target.value)} />
+                                            <input type="date" name="validade" id="validade" value={validade} onChange={event => setValidade(event.target.value)} />
                                         </div>
                                     </div>
                                     <div className="formsvdivs">
                                         <div className="formsvdivs">
                                             <div className="formshdivs">
                                                 <label htmlFor="cpf"> CPF:</label>
-                                                <input type="text" maxLength="14" name="cpf" id="cpf" onKeyUp={() => false/*mascaraCpf('###.###.###-##', this)*/} value={cpf} onChange={event => setcpf(event.target.value)} />
+                                                <input type="text" maxLength="14" name="cpf" id="cpf" onKeyUp={() => false/*mascaraCpf('###.###.###-##', this)*/} value={cpf} onChange={event => setCpf(event.target.value)} />
                                             </div>
                                             <div className="formshdivs">
                                                 <label htmlFor="telefone"> Celular:</label>
-                                                <input type="text" name="telefone" id="telefone" value={telefone} onChange={event => settelefone(event.target.value)} />
+                                                <input type="text" name="telefone" id="telefone" value={telefone} onChange={event => setTelefone(event.target.value)} />
                                             </div>
                                             <div className="formshdivs">
                                                 <label htmlFor="repetirsenha"> Repetir a Senha:</label>
-                                                <input type="password" name="repetirsenha" id="repetirsenha" value={repetirsenha} onChange={event => setrepetirsenha(event.target.value)} />
+                                                <input type="password" name="repetirsenha" id="repetirsenha" value={repetirSenha} onChange={event => setrepetirSenha(event.target.value)} />
                                             </div>
                                             <div className="formshdivs">
                                                 <label htmlFor="cnh">CNH:</label>
-                                                <input type="text" maxLength="11" name="cnh" id="cnh" value={cnh} onChange={event => setcnh(event.target.value)} />
+                                                <input type="text" maxLength="11" name="cnh" id="cnh" value={cnh} onChange={event => setCnh(event.target.value)} />
                                             </div>
                                         </div>
                                     </div>
@@ -113,29 +163,29 @@ function CadastroCliente() {
                                     <div className="formsvdivs">
                                         <div className="formshdivs">
                                             <label htmlFor="cep"> CEP:</label>
-                                            <input type="number" maxLength="10" name="cep" id="cep" value={cep} onChange={event => setcep(event.target.value)} />
+                                            <input type="number" maxLength="10" name="cep" id="cep" value={cep} onChange={event => setCep(event.target.value)} />
                                         </div>
                                         <div className="formshdivs">
                                             <label htmlFor="cidade"> Cidade:</label>
-                                            <input type="text" name="cidade" id="cidade" value={cidade} onChange={event => setcidade(event.target.value)} />
+                                            <input type="text" name="cidade" id="cidade" value={cidade} onChange={event => setCidade(event.target.value)} />
                                         </div>
                                     </div>
                                     <div className="formsvdivs">
                                         <div className="formshdivs"> <label></label></div>
                                         <div className="formshdivs">
                                             <label htmlFor="estado">Estado:</label>
-                                            <input type="text" maxLength="2" name="estado" id="estado" value={estado} onChange={event => setestado(event.target.value)} />
+                                            <input type="text" maxLength="2" name="estado" id="estado" value={estado} onChange={event => setEstado(event.target.value)} />
                                         </div>
                                     </div>
                                 </div>
                                 <div className="formsvdivs">
                                     <div className="formshdivs">
                                         <label htmlFor="rua"> Rua:</label>
-                                        <input type="text" className="size4" maxLength="20" name="rua" id="rua" value={rua} onChange={event => setrua(event.target.value)} />
+                                        <input type="text" className="size4" maxLength="20" name="rua" id="rua" value={rua} onChange={event => setRua(event.target.value)} />
                                     </div>
                                     <div className="formshdivs">
                                         <label htmlFor="complemento" >Complemento:</label>
-                                        <input type="text" className="size4" name="complemento" id="complemento" value={complemento} onChange={event => setcomplemento(event.target.value)} />
+                                        <input type="text" className="size4" name="complemento" id="complemento" value={complemento} onChange={event => setComplemento(event.target.value)} />
                                     </div>
                                 </div>
                             </div>
@@ -143,23 +193,23 @@ function CadastroCliente() {
                                 <h2>Dados Bancários</h2>
                                 <div className="formshdivs">
                                     <label htmlFor="numcartao"> Número do Cartão:</label>
-                                    <input type="text" maxLength="20" name="numcartao" id="numcartao" className="size3" value={numcartao} onChange={event => setnumcartao(event.target.value)} />
+                                    <input type="text" maxLength="20" name="numcartao" id="numcartao" className="size3" value={numCartao} onChange={event => setNumCartao(event.target.value)} />
                                 </div>
                                 <div className="formshdivs">
                                     <label htmlFor="nomecartao"> Nome do Cartão:</label>
-                                    <input type="text" name="nomecartao" id="nomecartao" className="size3" value={nomecartao} onChange={event => setnomecartao(event.target.value)} />
+                                    <input type="text" name="nomecartao" id="nomecartao" className="size3" value={nomeCartao} onChange={event => setNomeCartao(event.target.value)} />
                                 </div>
                                 <div className="formshdivs">
                                     <label htmlFor="datavalidade">Data de Validade:</label>
-                                    <input type="date" name="datavalidade" id="datavalidade" className="size3" value={datavalidade} onChange={event => setdatavalidade(event.target.value)} />
+                                    <input type="date" name="datavalidade" id="datavalidade" className="size3" value={dataValidade} onChange={event => setDataValidade(event.target.value)} />
                                 </div>
                                 <div className="formshdivs">
                                     <label htmlFor="cvc"> CVC:</label>
-                                    <input type="text" maxLength="3" name="cvc" id="cvc" value={cvc} onChange={event => setcvc(event.target.value)} className="size1" />
+                                    <input type="text" maxLength="3" name="cvc" id="cvc" value={cvc} onChange={event => setCvc(event.target.value)} className="size1" />
                                 </div>
                             </div>
                             <div className="formsbuttons">
-                                <button>Cancelar</button><button onClick={() => local()}>Salvar</button>
+                                <button>Cancelar</button><button onClick={() =>[local(), sendCartao(), sendEndereco(), sendUsuario()]}>Salvar</button>
                             </div>
                         </form>
 

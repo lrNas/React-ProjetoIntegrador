@@ -5,9 +5,9 @@ import './styles.css'
 
 function Contatos() {
     const [overview,setOverview]= useState("")
-    const [nomeContato,setNomeContato]= useState("")
-    const [emailContato,setEmailContato]= useState("")
-    const [mensagemContato,setMensagemContato]= useState("")
+    const [nome,setNome]= useState("")
+    const [email,setEmail]= useState("")
+    const [mensagem,setMensagem]= useState("")
     const content = <div id="overlay">
     <div className="message">
         <h2> Mensagem enviada com sucesso!</h2>
@@ -17,13 +17,13 @@ function Contatos() {
 
     //  Incompleto pois vou verificar com o grupo sobre o BD
     const sendContatos = async () => {
-        const contatos = {nome:nomeContato, email: emailContato, mensagem: mensagemContato}
+        const contatos = {nome_completo_mensagem:nome, email_mensagem: email, conteudo_mensagem: mensagem}
         try {
-            const resposta = await axios.post("http://localhost:3000/contato", contatos)
+            const resposta = await axios.post("http://localhost:3030/mensagem", contatos)
             alert(resposta.data)
-            setNomeContato("")
-            setEmailContato("")
-            setMensagemContato("")
+            setNome("")
+            setEmail("")
+            setMensagem("")
         } catch (err) {
             console.log(err)
         }
@@ -48,15 +48,15 @@ function Contatos() {
                     <div className="formsvdivs">
                         <div className="formshdivs">
                             <label id="nome" > Nome Completo:</label>
-                            <input type="text" className="size4" name="nome" id="nome" value={nomeContato} onChange={event => setNomeContato(event.target.value)} required />
+                            <input type="text" className="size4" name="nome" id="nome" value={nome} onChange={event => setNome(event.target.value)} required />
                         </div>
                         <div className="formshdivs">
                             <label id="emailContato"> E-mail:</label>
-                            <input type="email" className="size4" name="email" id="emailContato" value={emailContato} onChange={event => setEmailContato(event.target.value)} required />
+                            <input type="email" className="size4" name="email" id="emailContato" value={email} onChange={event => setEmail(event.target.value)} required />
                         </div>
                         <div className="formshdivs">
                             <label id="mensagem"> Mensagem:</label>
-                            <textarea className="size4" value={mensagemContato} onChange={event => setMensagemContato(event.target.value)}></textarea>
+                            <textarea className="size4" value={mensagem} onChange={event => setMensagem(event.target.value)}></textarea>
                         </div>
                     </div>
                 </div>
