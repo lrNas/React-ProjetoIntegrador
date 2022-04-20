@@ -14,6 +14,21 @@ function CadastroLocadora() {
     const [complemento, setComplemento] = useState('')
     const [overlay, setOverlay] = useState(false)
 
+    const sendLocadora = async () => {
+        const locadora = {nome: nomeUnidade, email: email, cnpj: cnpj, telefone: telefone}
+
+        try {
+            const resposta = await axios.post("http://localhost:3030/locadora", locadora)
+            alert(resposta.data)
+            setNomeUnidade("")
+            setEmail("")
+            setCnpj("")
+            setTelefone("")
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
     return (
         <>
             <PageConstructor>
@@ -82,7 +97,7 @@ function CadastroLocadora() {
                                 </div>
                             </div>
                             <div className="formsbuttons">
-                                <button>Cancelar</button><button>Salvar</button>
+                                <button>Cancelar</button><button onClick={() => sendLocadora()}>Salvar</button>
                             </div>
                         </form>
                     </main>
