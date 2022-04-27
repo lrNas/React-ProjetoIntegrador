@@ -24,27 +24,9 @@ function CadastroCliente() {
     const [cvc, setCvc] = useState('')
     const [nomeCartao, setNomeCartao] = useState('')
 
-    function local() {
-        if (localStorage.visitas) {
-            localStorage.visitas = Number(localStorage.visitas) + 1
-        } else {
-            localStorage.visitas = 1
-        }
-        let cliente = {
-            nome: nome, email: email, senha: senha, nascimento: nascimento,
-            validade: validade, cpf: cpf, telefone: telefone,
-            cnh: cnh, repetirsenha: repetirSenha, cep: cep,
-            cidade: cidade, estado: estado, rua: rua,
-            complemento: complemento, numcartao: numCartao,
-            nomecartao: nomeCartao, datavalidade: dataValidade,
-            cvc: cvc
-        }
-        localStorage.setItem('cliente' + Number(localStorage.visitas), JSON.stringify(cliente))
-        setOverlay(true)
-    }
-
+    
     const sendCartao = async () => {
-        const usuarioCartao = {nome: nomeCartao, numero: numCartao, validade: dataValidade, cvc: cvc}
+        const usuarioCartao = { nome: nomeCartao, numero: numCartao, validade: dataValidade, cvc: cvc }
 
         try {
             const resposta = await axios.post("http://localhost:3030/cartao", usuarioCartao)
@@ -59,7 +41,7 @@ function CadastroCliente() {
     }
 
     const sendEndereco = async () => {
-        const usuarioEndereco = {cep:cep, logadouro: rua,cidade: cidade, estado: estado, complemento: complemento}
+        const usuarioEndereco = { cep: cep, logadouro: rua, cidade: cidade, estado: estado, complemento: complemento }
 
         try {
             const resposta = await axios.post("http://localhost:3030/endereco", usuarioEndereco)
@@ -75,8 +57,8 @@ function CadastroCliente() {
     }
 
     const sendUsuario = async () => {
-        const usuarioCliente = {nome_completo:nome, email: email, senha: senha, cpf: cpf, telefone: telefone, data_nascimento:nascimento, cnh: cnh, validade_cnh: validade}
-        
+        const usuarioCliente = { nome_completo: nome, email: email, senha: senha, cpf: cpf, telefone: telefone, data_nascimento: nascimento, cnh: cnh, validade_cnh: validade }
+
         try {
             const resposta = await axios.post("http://localhost:3030/usuario", usuarioCliente)
             alert(resposta.data)
@@ -92,6 +74,51 @@ function CadastroCliente() {
             console.log(err)
         }
     }
+
+    /* VALIDAÇÃO DE NASCIMENTO */
+    const validaNascimento = () => {
+        const data = new Date()
+        let diaAtual = data.getDate()
+        let mesAtual = data.getMonth() + 1
+        let anoAtual = data.getFullYear()
+        let arrayNascimento = nascimento.split('-')
+        let diaNascimento = arrayNascimento[2]
+        let mesNascimento = arrayNascimento[1]
+        let anoNascimento = arrayNascimento[0]
+        let diferencaAno = anoAtual - anoNascimento
+        if (mesAtual >= mesNascimento && diaAtual >= diaNascimento) {
+            if (diferencaAno <= 18) {
+                alert("Data de Nascimento inválida.")
+            }
+        } else {
+            diferencaAno--
+            if (diferencaAno <= 18) {
+                alert("Data de Nascimento inválida.")
+            }
+        }
+    }
+    //Fim da validação do Nascimento
+
+    /* VALIDAÇÃO DE CPF */
+    let inputLenght = cpf.length
+    const formatoPress = () => {
+        console.log(inputLenght)
+        if (inputLenght === 3 || inputLenght === 7) {
+            setCpf(cpf + '.')
+        } else if (inputLenght === 11) {
+            setCpf(cpf + '-')
+        }
+    }
+
+    const formatoBlur = () => {
+        let validarRegExCpf = /^\d{3}.\d{3}.\d{3}-\d{2}$/;
+        if (cpf.match(validarRegExCpf)) {
+        } else if (cpf == "") { }
+        else {
+            alert("CPF com formato Inválido!")
+        }
+    }
+    //Fim da validação de CPF
 
     return (
         <>
@@ -129,7 +156,7 @@ function CadastroCliente() {
                                         </div>
                                         <div className="formshdivs">
                                             <label htmlFor="nascimento" > Data de Nascimento:</label>
-                                            <input type="date" name="nascimento" id="nascimento" value={nascimento} onChange={event => setNascimento(event.target.value)} />
+                                            <input type="date" name="nascimento" id="nascimento" value={nascimento} onChange={event => setNascimento(event.target.value)} onBlur={validaNascimento} />
                                         </div>
                                         <div className="formshdivs">
                                             <label htmlFor="validade" > Validade:</label>
@@ -140,7 +167,7 @@ function CadastroCliente() {
                                         <div className="formsvdivs">
                                             <div className="formshdivs">
                                                 <label htmlFor="cpf"> CPF:</label>
-                                                <input type="text" maxLength="14" name="cpf" id="cpf" onKeyUp={() => false/*mascaraCpf('###.###.###-##', this)*/} value={cpf} onChange={event => setCpf(event.target.value)} />
+                                                <input type="text" maxLength="14" name="cpf" id="cpf" onKeyUp={() => false/*mascaraCpf('###.###.###-##', this)*/} value={cpf} onChange={event => setCpf(event.target.value)} onKeyPress={formatoPress} onBlur={formatoBlur} />
                                             </div>
                                             <div className="formshdivs">
                                                 <label htmlFor="telefone"> Celular:</label>
@@ -210,7 +237,8 @@ function CadastroCliente() {
                                 </div>
                             </div>
                             <div className="formsbuttons">
-                                <button>Cancelar</button><button onClick={() =>[local(), sendCartao(), sendEndereco(), sendUsuario()]}>Salvar</button>
+                                <button>Cancelar</button>
+                                <button onClick={() => [sendCartao(), sendEndereco(), sendUsuario()]}>Salvar</button>
                             </div>
                         </form>
 

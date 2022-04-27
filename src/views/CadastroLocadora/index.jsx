@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PageConstructor from '../../Components/PageConstructor';
 import './styles.css'
+import axios from 'axios';
 
 function CadastroLocadora() {
     const [nomeUnidade, setNomeUnidade] = useState('')
@@ -15,7 +16,7 @@ function CadastroLocadora() {
     const [overlay, setOverlay] = useState(false)
 
     const sendLocadora = async () => {
-        const locadora = {nome: nomeUnidade, email: email, cnpj: cnpj, telefone: telefone}
+        const locadora = { nome: nomeUnidade, email: email, cnpj: cnpj, telefone: telefone }
 
         try {
             const resposta = await axios.post("http://localhost:3030/locadora", locadora)
@@ -28,6 +29,27 @@ function CadastroLocadora() {
             console.log(err)
         }
     }
+
+    /* FORMATO DE TELEFONE */
+    let inputLenght = telefone.length
+    const formatoPress = () => {
+        console.log(inputLenght)
+        if (inputLenght === 3 || inputLenght === 7) {
+            setTelefone(telefone + '.')
+        } else if (inputLenght === 11) {
+            setTelefone(telefone + '-')
+        }
+    }
+
+    const formatoTel = () => {
+        let validarRegExTel = /^1\d\d(\d\d)?$|^0800 ?\d{3} ?\d{4}$|^(\(0?([1-9a-zA-Z][0-9a-zA-Z])?[1-9]\d\) ?|0?([1-9a-zA-Z][0-9a-zA-Z])?[1-9]\d[ .-]?)?(9|9[ .-])?[2-9]\d{3}[ .-]?\d{4}$/
+        if (telefone.match(validarRegExTel)) {
+        } else if (telefone == "") { }
+        else {
+            alert("Formato de telefone Inválido")
+        }
+    }
+    //Fim do formato de telefone
 
     return (
         <>
@@ -59,8 +81,8 @@ function CadastroLocadora() {
                                     <div className="formsvdivs">
                                         <input type="text" name="unidade" id="unidade" value={nomeUnidade} onChange={event => setNomeUnidade(event.target.value)} required />
                                         <input type="email" name="emailLocadora" id="emailLocadora" value={email} onChange={event => setEmail(event.target.value)} required />
-                                        <input type="number" maxlength="18" name="cnpj" id="cnpj" value={cnpj} onChange={event => setCnpj(event.target.value)} required />
-                                        <input type="tel" name="telefone" id="telefone" value={telefone} onChange={event => setTelefone(event.target.value)} required />
+                                        <input type="number" maxLength="18" name="cnpj" id="cnpj" value={cnpj} onChange={event => setCnpj(event.target.value)} required />
+                                        <input type="tel" name="telefone" id="telefone" value={telefone} onChange={event => setTelefone(event.target.value)} onBlur={formatoTel} required />
                                     </div>
                                 </div>
                             </div>
@@ -70,7 +92,7 @@ function CadastroLocadora() {
                                     <div className="formsvdivs">
                                         <div className="formshdivs">
                                             <label htmlFor="cep"> CEP:</label>
-                                            <input type="number" maxlength="10" name="cep" id="cep" value={cep} onChange={event => setCep(event.target.value)} required />
+                                            <input type="number" maxLength="10" name="cep" id="cep" value={cep} onChange={event => setCep(event.target.value)} required />
                                         </div>
                                         <div className="formshdivs">
                                             <label htmlFor="cidade"> Cidade:</label>
@@ -81,14 +103,14 @@ function CadastroLocadora() {
                                         <div className="formshdivs"> <label></label></div>
                                         <div className="formshdivs">
                                             <label htmlFor="estado">Estado:</label>
-                                            <input type="text" maxlength="2" name="estado" id="estado" value={estado} onChange={event => setEstado(event.target.value)} required />
+                                            <input type="text" maxLength="2" name="estado" id="estado" value={estado} onChange={event => setEstado(event.target.value)} required />
                                         </div>
                                     </div>
                                 </div>
                                 <div className="formsvdivs">
                                     <div className="formshdivs">
                                         <label htmlFor="rua"> Rua:</label>
-                                        <input type="text" className="size4" maxlength="2" name="rua" id="rua" value={rua} onChange={event => setRua(event.target.value)} required />
+                                        <input type="text" className="size4" maxLength="2" name="rua" id="rua" value={rua} onChange={event => setRua(event.target.value)} required />
                                     </div>
                                     <div className="formshdivs">
                                         <label htmlFor="complemento" >Complemento:</label>
