@@ -57,7 +57,7 @@ function CadastroCliente() {
     }
 
     const sendUsuario = async () => {
-        const usuarioCliente = { nome_completo: nome, email: email, senha: senha, cpf: cpf, telefone: telefone, data_nascimento: nascimento, cnh: cnh, validade_cnh: validade }
+        const usuarioCliente = { nome_completo: nome, email: email, senha: senha, cpf: cpf, telefone: telefone, data_nascimento: nascimento, cnh: cnh, validade_cnh: validade, fk_id_tipo_usuario: 1}
 
         try {
             const resposta = await axios.post("http://localhost:3030/usuario", usuarioCliente)
