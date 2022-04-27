@@ -34,9 +34,11 @@ function CadastroLocadora() {
     let inputLenght = telefone.length
     const formatoPress = () => {
         console.log(inputLenght)
-        if (inputLenght === 3 || inputLenght === 7) {
-            setTelefone(telefone + '.')
-        } else if (inputLenght === 11) {
+        if (inputLenght === 0) {
+            setTelefone(telefone + '(')
+        } else if(inputLenght === 3){
+            setTelefone(telefone + ') ')
+        } else if (inputLenght === 10) {
             setTelefone(telefone + '-')
         }
     }
@@ -82,7 +84,7 @@ function CadastroLocadora() {
                                         <input type="text" name="unidade" id="unidade" value={nomeUnidade} onChange={event => setNomeUnidade(event.target.value)} required />
                                         <input type="email" name="emailLocadora" id="emailLocadora" value={email} onChange={event => setEmail(event.target.value)} required />
                                         <input type="number" maxLength="18" name="cnpj" id="cnpj" value={cnpj} onChange={event => setCnpj(event.target.value)} required />
-                                        <input type="tel" name="telefone" id="telefone" value={telefone} onChange={event => setTelefone(event.target.value)} onBlur={formatoTel} required />
+                                        <input type="tel" name="telefone" id="telefone" value={telefone} onChange={event => setTelefone(event.target.value)} onBlur={formatoTel} onKeyPress={formatoPress} required />
                                     </div>
                                 </div>
                             </div>
