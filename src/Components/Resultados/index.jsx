@@ -1,8 +1,8 @@
 import "./style.css"
 import seta from "../../img/seta.svg"
-const veiculos = require("../../bancosjson/veiculos.json")
-const reservas = require("../../bancosjson/reservas.json")
-const locadoras = require("../../bancosjson/locadoras.json")
+// const veiculos = require("../../bancosjson/veiculos.json")
+// const reservas = require("../../bancosjson/reservas.json")
+// const locadoras = require("../../bancosjson/locadoras.json")
 
 function Resultados(props){
     /**

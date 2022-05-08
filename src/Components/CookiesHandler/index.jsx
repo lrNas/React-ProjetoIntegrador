@@ -1,3 +1,5 @@
+import axios from "axios";
+
 /**Sem bugs conhecidos */
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
@@ -5,7 +7,7 @@ const usuarios = require("../../bancosjson/usuarios.json")
 
 function returnUserType(prop){
     let userType = prop
-    if(prop!=0){
+    if(parseInt(prop)!==0){
 
         if(cookies.get("tipo")){
             userType=parseInt(cookies.get("tipo"))
@@ -30,7 +32,23 @@ function deleteAllCookies(){
     }
 }
 
-function login(userName,senha){
+
+async function login (userName,senha){
+
+    try {
+        const usuarioCartao = {
+            "email": userName,
+            "senha": senha
+        }
+
+            const resposta = await axios({method:"POST",url:"http://localhost:3030/login", data: usuarioCartao})
+            console.log(resposta.data)
+
+        } catch (err) {
+            console.log(err)
+        }
+    
+
     const result = usuarios.filter( (usuario)=> usuario.email === userName )
  
     /**Verifica se só tem um resultado */

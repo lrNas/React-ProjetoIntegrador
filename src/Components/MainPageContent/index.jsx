@@ -7,9 +7,8 @@ import funcFiltros from "../../Controllers/bancoJson"
 
 function MainPageContent(props){
     const reservas = require("../../bancosjson/reservas.json")
-    /**Entender porque não retorna o arrEmAndt.lenght 
-     *Resposta: 
-     *É porque o correto é length
+    /*
+    Mudar as funções de Jsons para axios
     */
     let emAndt = funcFiltros.EmAndamento(reservas)
 
@@ -22,7 +21,7 @@ function MainPageContent(props){
     noAno.map(item=>{lucroAnual+=item.valor;return true})
 
     const veiculos = require("../../bancosjson/veiculos.json")
-    let disponiveis = veiculos.filter(veiculo=>veiculo.status==1)
+    let disponiveis = veiculos.filter(veiculo=>veiculo.status==="1")
     const filtroCarros = funcFiltros.Top5Carros(reservas,veiculos)
 
     const agencias = require("../../bancosjson/locadoras.json")
@@ -57,6 +56,7 @@ const index =
 const overview = 
 <main className="section">
 <h1>Overview</h1>
+{/* div, filedset ou section, o que é corretamente semântico? */}
 <div className="forms">
     <div className="ovlabels formsvdivs">
         <div className="formshdivs">
@@ -108,13 +108,12 @@ const overview =
 </main>
 
 const userType = returnUserType(props.userType)
-if(userType===2){
+if(userType===1){
     return(
         overview
         )   
 }
 else{
-
     return(
         index
         )

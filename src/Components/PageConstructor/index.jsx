@@ -68,11 +68,11 @@ function PageConstructor(props) {
                         Fale Conosco:
                     </li>
                     <li className='ft1'>
-                        <img src={imgchat} className="hli" />
-                        <img src={imgfacebook} className="hli" />
-                        <img src={imginstagram} className="hli" />
-                        <img src={imgtwitter} className="hli" />
-                        <img src={imgwhats} className="hli" />
+                        <img src={imgchat} className="hli" alt="Chat" />
+                        <img src={imgfacebook} className="hli" alt="Facebook"/>
+                        <img src={imginstagram} className="hli" alt="Instagram"/>
+                        <img src={imgtwitter} className="hli" alt="Twitter"/>
+                        <img src={imgwhats} className="hli" alt="Whatsapp"/>
                     </li>
                 </ul>
             </div>

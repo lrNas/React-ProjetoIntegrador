@@ -4,7 +4,7 @@ import {returnUserType} from "../CookiesHandler"
 function HeaderLinks(props){
     let userType = returnUserType(props)
 
-    if(userType==2){
+    if(userType===1){
         return(
             <>
                 <li><NavigateButton nome="Casdatro de Locadora" pagina="/cadastrolocadora"/></li>

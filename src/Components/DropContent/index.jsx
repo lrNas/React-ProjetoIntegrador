@@ -20,15 +20,13 @@ function DropContent(props){
     {
         return(
             <div className="drop-content" id="drop-content">
-                <form>
                     <label htmlFor="email">E-mail</label>
                     <input type="email" name="usuario" id="email" value={userName} onChange={usuario=>setUsername(usuario.target.value)} placeholder="Digite seu E-mail!" />
                     <label htmlFor="senha">Senha</label>
                     <input type="password" value={senha}  name="senha" id="senha" placeholder="Digite sua Senha!" onChange={senha=>setSenha(senha.target.value)} />
-                    <button id="logon" onClick={()=>login(userName,senha)}>Entrar</button>
+                    <button type="submit"id="logon" onClick={()=>login(userName,senha)}>Entrar</button>
                     <p>Problemas para logar? <a href="contato.html">Clique aqui!</a></p>
                     <p>Ainda não é usuário? <a href="cadastrocliente">Cadastre-se!</a></p>
-                </form>
             </div>
         )
     }

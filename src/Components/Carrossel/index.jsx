@@ -42,17 +42,17 @@ function Carrossel(){
         <div className="carrossel" id="carrossel" >
             
             <button type="button" onClick={()=>previousImage()} className="btn-carrossel">
-                <img src={chlft} id="chevleft" className="chevleft"/>
+                <img src={chlft} id="chevleft" className="chevleft" alt="Anterior"/>
             </button>
             
             <div className="vcarr">
-                <img src={image} className="currentimage" id="currentimage"/>
+                <img src={image} className="currentimage" id="currentimage" alt="Veículo ilustrativo"/>
                 <p className="carrtext" id="carrtext">
                     {texto}
                 </p>
             </div>
             <button type="button" onClick={()=>nextImage()} className="btn-carrossel">
-                <img src={chrgt}  id="chevright"className="chevright"/>
+                <img src={chrgt}  id="chevright"className="chevright" alt="Próximo"/>
             </button>
             
         </div>
