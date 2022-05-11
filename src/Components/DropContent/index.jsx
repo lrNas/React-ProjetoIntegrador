@@ -4,15 +4,15 @@ import React,{ useState } from "react";
 
 function DropContent(props){
     /** Implementar função de "Lembrar-Me" */
-    const cookiesFeitos = getArrayAllCookies()
+    /* const cookiesFeitos = getArrayAllCookies() */
 
     let userType=0
-    if (Object.keys(cookiesFeitos).length>0){
+    /* if (Object.keys(cookiesFeitos).length>0){
         userType=cookiesFeitos["tipo"]
     }
     else{
         userType=0
-    }
+    } */
     const [userName,setUsername] = useState("")
     const [senha,setSenha] = useState("")
     
@@ -35,10 +35,10 @@ function DropContent(props){
         return(
             <div className="drop-content" id="drop-content">
                 <ul className="menuLogado">
-                    <li id="nomeUsuario" className="nomeUsuario">{cookiesFeitos.nomeCompleto}</li>
+                    <li id="nomeUsuario" className="nomeUsuario">{/* {cookiesFeitos.nomeCompleto} */}</li>
                     <li className="mlItens" id="EditarPerfil">Editar Perfil</li>
                     <li className="mlItens" id="historicoLocacoes">Histórico de locações</li>
-                    <li className="mlItens" id="logout" onClick={()=>{deleteAllCookies(); window.location.reload()}}>Sair</li>
+                    <li className="mlItens" id="logout" /* onClick={()=>{deleteAllCookies(); window.location.reload()}} */>Sair</li>
                 </ul>
             </div>
         )

@@ -1,8 +1,8 @@
 import NavigateButton from "../NavigateButton";
-import {returnUserType} from "../CookiesHandler"
+/* import {returnUserType} from "../CookiesHandler"  */
 
 function HeaderLinks(props){
-    let userType = returnUserType(props)
+    let userType = 1
 
     if(userType===1){
         return(
@@ -10,7 +10,7 @@ function HeaderLinks(props){
                 <li><NavigateButton nome="Casdatro de Locadora" pagina="/cadastrolocadora"/></li>
                 <li><NavigateButton nome="Casdatro de Veiculos" pagina="/cadastroveiculos"/></li>
                 <li><NavigateButton nome="Reservas" pagina="/todasreservas"/></li>
-                <li><NavigateButton nome="Casdatro de Cliente" pagina="/cadastrocliente"/></li>
+                <li><NavigateButton nome="Cadastro de Cliente" pagina="/cadastrocliente"/></li>
             </>
         )
     }

@@ -107,7 +107,7 @@ const overview =
 </div>
 </main>
 
-const userType = returnUserType(props.userType)
+const userType = 0
 if(userType===1){
     return(
         overview
@@ -117,7 +117,7 @@ else{
     return(
         index
         )
-    }
+    } 
 }
     
 export default MainPageContent
