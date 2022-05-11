@@ -1,8 +1,9 @@
 import NavigateButton from "../NavigateButton";
-/* import {returnUserType} from "../CookiesHandler"  */
+import {getCookie} from "../CookiesHandler"
 
 function HeaderLinks(props){
-    let userType = 1
+    let userType = getCookie("tipo")
+    console.log(userType)
 
     if(userType===1){
         return(

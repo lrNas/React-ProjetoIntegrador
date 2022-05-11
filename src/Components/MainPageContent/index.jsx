@@ -1,6 +1,6 @@
 /**Em progresso */
 import Searchbar from "../Searchbar"
-import {returnUserType} from "../CookiesHandler"
+import {getCookie} from "../CookiesHandler"
 import "./style.css"
 import React from "react"
 import funcFiltros from "../../Controllers/bancoJson"
@@ -107,7 +107,7 @@ const overview =
 </div>
 </main>
 
-const userType = 0
+const userType = getCookie("tipo")
 if(userType===1){
     return(
         overview
