@@ -9,7 +9,7 @@ function HeaderLinks(props){
     function getUser(){
     return getCookie("tipousuario") == null? 0 : getCookie("tipousuario")}
 
-    if(getUser()==5){
+    if(getUser()==1){
         return(
             <>
                 <li><NavigateButton nome="Casdatro de Locadora" pagina="/cadastrolocadora"/></li>

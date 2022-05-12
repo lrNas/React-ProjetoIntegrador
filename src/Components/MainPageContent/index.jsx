@@ -6,6 +6,7 @@ import React from "react"
 import funcFiltros from "../../Controllers/bancoJson"
 
 function MainPageContent(props){
+
     const reservas = require("../../bancosjson/reservas.json")
     /*
     Mudar as funções de Jsons para axios
@@ -107,8 +108,8 @@ const overview =
 </div>
 </main>
 
-const userType = getCookie("tipo")
-if(userType===1){
+const userType = getCookie("tipousuario")
+if(userType==1){
     return(
         overview
         )   
