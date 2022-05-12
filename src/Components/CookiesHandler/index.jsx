@@ -35,10 +35,20 @@ function getCookie(cname) {
     }
     return "";
 }
+const deleteCookies = () => {
+    if (typeof window === 'undefined') return;
+    const decodedCookies = decodeURIComponent(document.cookie);
+    const cookies = decodedCookies.split(";");
+    for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i];
+          const eqPos = cookie.indexOf("=");
+          const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;          
+        document.cookie = `${name}=${";"} path=/${";"} expires=${new Date(0)}`;
+    
+  }}
 
 
-
-export { login, getCookie }
+export { login, getCookie, deleteCookies }
     /* const result = usuarios.filter( (usuario)=> usuario.email === userName )
  
 //Verifica se só tem um resultado 
