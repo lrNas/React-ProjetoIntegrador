@@ -1,15 +1,20 @@
 import "./style.css"
 import {getCookie,login} from "../CookiesHandler"
-import React,{ useState } from "react";
+import React,{ useState, useEffect } from "react";
 
 function DropContent(props){
-    let userType
-    getCookie("tipo")==null?userType = 0:userType = getCookie("tipo")
-    console.log(getCookie("tipo"))
+    useEffect(() => {
+        getUser()
+        },[])  
+    function getUser(){
+    return getCookie("tipousuario") == null? 0 : getCookie("tipousuario")}
+
+   
+
     const [userName,setUsername] = useState("")
     const [senha,setSenha] = useState("")
     
-    if(userType===0)
+    if(getUser()==0)
     {
         return(
             <div className="drop-content" id="drop-content">

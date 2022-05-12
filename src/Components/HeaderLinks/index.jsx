@@ -1,11 +1,15 @@
 import NavigateButton from "../NavigateButton";
-import {getCookie} from "../CookiesHandler"
+import {getCookie} from "../CookiesHandler";
+import React,{ useState, useEffect } from "react";
 
 function HeaderLinks(props){
-    let userType = getCookie("tipo")
-    console.log(userType)
+    useEffect(() => {
+        getUser()
+        },[])  
+    function getUser(){
+    return getCookie("tipousuario") == null? 0 : getCookie("tipousuario")}
 
-    if(userType===1){
+    if(getUser()==5){
         return(
             <>
                 <li><NavigateButton nome="Casdatro de Locadora" pagina="/cadastrolocadora"/></li>

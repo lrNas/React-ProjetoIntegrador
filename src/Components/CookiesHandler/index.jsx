@@ -12,12 +12,12 @@ async function login(userName, senha) {
         document.cookie = `auth=${resposta.data.token}`
         document.cookie = `tipousuario=${resposta.data.tipo}`
         document.cookie = `nomeusuario=${resposta.data.nomeusuario}`
-        console.log(getCookie("nomeusuario"))
 
 
     } catch (err) {
         console.log(err)
     }
+    window.location.reload();
 }
 
 function getCookie(cname) {
