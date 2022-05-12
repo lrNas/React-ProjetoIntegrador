@@ -100,9 +100,8 @@ function CadastroCliente() {
     //Fim da validação do Nascimento
 
     /* VALIDAÇÃO DE CPF */
-    let inputLenght = cpf.length
-    const formatoPress = () => {
-        console.log(inputLenght)
+    const cpfPress = () => {
+        let inputLenght = cpf.length
         if (inputLenght === 3 || inputLenght === 7) {
             setCpf(cpf + '.')
         } else if (inputLenght === 11) {
@@ -110,7 +109,7 @@ function CadastroCliente() {
         }
     }
 
-    const formatoBlur = () => {
+    const cpfBlur = () => {
         let validarRegExCpf = /^\d{3}.\d{3}.\d{3}-\d{2}$/;
         if (cpf.match(validarRegExCpf)) {
         } else if (cpf == "") { }
@@ -119,6 +118,24 @@ function CadastroCliente() {
         }
     }
     //Fim da validação de CPF
+
+    //  Validação && Formatação CEP
+    const cepPress = () => {
+        let inputLenght = cep.length
+        if (inputLenght === 5) 
+            setCep(cep + '-')
+    }
+
+    const cepBlur = () => {
+        /* let validarRegExCep = /^\d{3}.\d{3}.\d{3}-\d{2}$/;
+        if (cep.match(validarRegExCpf)) {
+        } else if (cpf == "") { }
+        else {
+            alert("CPF com formato Inválido!")
+        } */
+    }
+    //Fim da Validação do CEP
+
 
     return (
         <>
@@ -167,7 +184,7 @@ function CadastroCliente() {
                                         <div className="formsvdivs">
                                             <div className="formshdivs">
                                                 <label htmlFor="cpf"> CPF:</label>
-                                                <input type="text" maxLength="14" name="cpf" id="cpf" onKeyUp={() => false/*mascaraCpf('###.###.###-##', this)*/} value={cpf} onChange={event => setCpf(event.target.value)} onKeyPress={formatoPress} onBlur={formatoBlur} />
+                                                <input type="text" maxLength="14" name="cpf" id="cpf" onKeyUp={() => false/*mascaraCpf('###.###.###-##', this)*/} value={cpf} onChange={event => setCpf(event.target.value)} onKeyPress={cpfPress} onBlur={cpfBlur} />
                                             </div>
                                             <div className="formshdivs">
                                                 <label htmlFor="telefone"> Celular:</label>
@@ -191,7 +208,7 @@ function CadastroCliente() {
                                     <div className="formsvdivs">
                                         <div className="formshdivs">
                                             <label htmlFor="cep"> CEP:</label>
-                                            <input type="number" maxLength="10" name="cep" id="cep" value={cep} onChange={event => setCep(event.target.value)} />
+                                            <input type="text" maxLength="9" name="cep" id="cep" value={cep} onChange={event => setCep(event.target.value)} onKeyPress={cepPress} onBlur={cepBlur} />
                                         </div>
                                         <div className="formshdivs">
                                             <label htmlFor="cidade"> Cidade:</label>
