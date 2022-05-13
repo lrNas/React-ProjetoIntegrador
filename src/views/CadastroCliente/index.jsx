@@ -114,7 +114,7 @@ function CadastroCliente() {
         if (cpf.match(validarRegExCpf)) {
         } else if (cpf == "") { }
         else {
-            alert("CPF com formato Inválido!")
+            alert("CPF Inválido!")
         }
     }
     //Fim da validação de CPF
@@ -127,12 +127,13 @@ function CadastroCliente() {
     }
 
     const cepBlur = () => {
-        /* let validarRegExCep = /^\d{3}.\d{3}.\d{3}-\d{2}$/;
-        if (cep.match(validarRegExCpf)) {
-        } else if (cpf == "") { }
+        let validarRegExCep = /[0-9]{5}-[\d]{3}/
+        if (cep.match(validarRegExCep)) {
+        } else if (cep == "") { }
         else {
-            alert("CPF com formato Inválido!")
-        } */
+            alert("CEP Inválido!")
+            setCep("")
+        } 
     }
     //Fim da Validação do CEP
 
