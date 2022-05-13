@@ -17,7 +17,6 @@ function CadastroLocadora() {
 
     const sendLocadora = async () => {
         const locadora = { nome: nomeUnidade, email: email, cnpj: cnpj, telefone: telefone }
-
         try {
             const resposta = await axios.post("http://localhost:3030/locadora", locadora)
             alert(resposta.data)
@@ -30,7 +29,11 @@ function CadastroLocadora() {
         }
     }
 
-    /* FORMATO DE TELEFONE */
+    //Formatação && Validação CNPJ
+
+    //----------------------------------------------
+
+    //Formatação && Validação de Telefone
     let inputLenght = telefone.length
     const formatoPress = () => {
         console.log(inputLenght)
@@ -42,7 +45,6 @@ function CadastroLocadora() {
             setTelefone(telefone + '-')
         }
     }
-
     const formatoTel = () => {
         let validarRegExTel = /^1\d\d(\d\d)?$|^0800 ?\d{3} ?\d{4}$|^(\(0?([1-9a-zA-Z][0-9a-zA-Z])?[1-9]\d\) ?|0?([1-9a-zA-Z][0-9a-zA-Z])?[1-9]\d[ .-]?)?(9|9[ .-])?[2-9]\d{3}[ .-]?\d{4}$/
         if (telefone.match(validarRegExTel)) {
@@ -51,7 +53,27 @@ function CadastroLocadora() {
             alert("Formato de telefone Inválido")
         }
     }
-    //Fim do formato de telefone
+    //----------------------------------------------
+
+    const cnpjPress = () => {
+        let inputLenght = cnpj.length
+        if (inputLenght === 2 || inputLenght === 6) {
+            setCnpj(cnpj + '.')
+        } else if (inputLenght === 10) {
+            setCnpj(cnpj + '/')
+        }else if (inputLenght === 15) {
+            setCnpj(cnpj + '-')
+        }
+    }
+
+    const cnpjBlur = () => {
+        let validarRegExCnpj = /^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$/
+        if (cnpj.match(validarRegExCnpj)) {
+        } else if (cnpj == "") { }
+        else {
+            alert("CNPJ Inválido!")
+        }
+    }
 
     return (
         <>
@@ -83,8 +105,8 @@ function CadastroLocadora() {
                                     <div className="formsvdivs">
                                         <input type="text" name="unidade" id="unidade" value={nomeUnidade} onChange={event => setNomeUnidade(event.target.value)} required />
                                         <input type="email" name="emailLocadora" id="emailLocadora" value={email} onChange={event => setEmail(event.target.value)} required />
-                                        <input type="number" maxLength="18" name="cnpj" id="cnpj" value={cnpj} onChange={event => setCnpj(event.target.value)} required />
-                                        <input type="tel" name="telefone" id="telefone" value={telefone} onChange={event => setTelefone(event.target.value)} onBlur={formatoTel} onKeyPress={formatoPress} required />
+                                        <input type="text" maxLength="18" name="cnpj" id="cnpj" value={cnpj} onChange={event => setCnpj(event.target.value)} required onKeyPress={cnpjPress} onBlur={cnpjBlur} />
+                                        <input type="tel" maxLength="20" name="telefone" id="telefone" value={telefone} onChange={event => setTelefone(event.target.value)} onBlur={formatoTel} onKeyPress={formatoPress} required />
                                     </div>
                                 </div>
                             </div>

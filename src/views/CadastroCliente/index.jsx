@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PageConstructor from '../../Components/PageConstructor';
 import './styles.css'
 import axios from 'axios';
-
+ 
 function CadastroCliente() {
     const [nome, setListName] = useState('')
     const [overlay, setOverlay] = useState(false)
@@ -75,7 +75,7 @@ function CadastroCliente() {
         }
     }
 
-    /* VALIDAÇÃO DE NASCIMENTO */
+    //  Validação Nascimento
     const validaNascimento = () => {
         const data = new Date()
         let diaAtual = data.getDate()
@@ -97,9 +97,9 @@ function CadastroCliente() {
             }
         }
     }
-    //Fim da validação do Nascimento
+    //----------------------------------------------
 
-    /* VALIDAÇÃO DE CPF */
+    //  Validação && Formatação CPF
     const cpfPress = () => {
         let inputLenght = cpf.length
         if (inputLenght === 3 || inputLenght === 7) {
@@ -117,7 +117,7 @@ function CadastroCliente() {
             alert("CPF Inválido!")
         }
     }
-    //Fim da validação de CPF
+    //----------------------------------------------
 
     //  Validação && Formatação CEP
     const cepPress = () => {
@@ -135,7 +135,7 @@ function CadastroCliente() {
             setCep("")
         } 
     }
-    //Fim da Validação do CEP
+    //----------------------------------------------
 
 
     return (
