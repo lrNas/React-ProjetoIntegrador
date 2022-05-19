@@ -1,6 +1,10 @@
 import axios from 'axios';
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import api from '../../api'
+import Select from 'react-select'
+import makeAnimated from "react-select/animated"
 
+const animatedComponents = makeAnimated()
 
 function PageCadastroCliente() {
     const [nome, setListName] = useState('')
@@ -14,7 +18,6 @@ function PageCadastroCliente() {
     const [repetirSenha, setRepetirSenha] = useState('')
     const [cep, setCep] = useState('')
     const [cidade, setCidade] = useState('')
-    const [estado, setEstado] = useState('')
     const [rua, setRua] = useState('')
     const [validade, setValidade] = useState('')
     const [complemento, setComplemento] = useState('')
@@ -22,6 +25,31 @@ function PageCadastroCliente() {
     const [dataValidade, setDataValidade] = useState('')
     const [cvc, setCvc] = useState('')
     const [nomeCartao, setNomeCartao] = useState('')
+    const [estado, setEstado] = useState(null)
+    const [uf, setUf] = useState('')
+    const selectContent = value => { setUf(value) }
+
+    //Select Estados
+    useEffect(() => {
+        axios.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados/')
+            .then(response => response.data)
+            .then(response => response.map(element => { return { value: element.nome, label: element.nome } }))
+            .then(response => {
+                setEstado(response)
+                console.log(response)
+            })
+    }, [])
+    const customTheme = (theme) => {
+        return {
+            ...theme,
+            colors: {
+                ...theme.colors,
+                primary25:'grey',
+                primary: 'black'
+            }
+        }
+    }
+    //----------------------------------------------
 
     //Axios
     const sendCartao = async () => {
@@ -48,7 +76,7 @@ function PageCadastroCliente() {
             setCep("")
             setRua("")
             setCidade("")
-            setEstado("")
+            setEstado(null)
             setComplemento("")
         } catch (err) {
             console.log(err)
@@ -154,9 +182,9 @@ function PageCadastroCliente() {
     ) */
     //----------------------------------------------
 
-    
-return (
-    <>
+
+    return (
+        <>
             <div className="App">
                 <main className="section">
                     {
@@ -229,14 +257,24 @@ return (
                                     </div>
                                     <div className="formshdivs">
                                         <label htmlFor="cidade"> Cidade:</label>
-                                        <input type="text" name="cidade" id="cidade" value={cidade} onChange={event => setCidade(event.target.value)} />
+                                        <input type="text" name="cidade" id="cidade"
+                                            value={cidade}
+                                            onChange={event => setCidade(event.target.value)}
+                                        />
                                     </div>
-                                </div>
-                                <div className="formsvdivs">
-                                    <div className="formshdivs"> <label></label></div>
                                     <div className="formshdivs">
                                         <label htmlFor="estado">Estado:</label>
-                                        <input type="text" maxLength="2" name="estado" id="estado" value={estado} onChange={event => setEstado(event.target.value)} />
+                                        <Select className="select" name="estado" id="estado"
+                                            value={uf}
+                                            theme={customTheme}
+                                            onChange={selectContent}
+                                            components={animatedComponents}
+                                            options={estado}
+                                            placeholder="Selecione seu Estado"
+                                            isSearchable
+                                            closeMenuOnSelect
+                                            isMulti
+                                        />
                                     </div>
                                 </div>
                             </div>
@@ -278,9 +316,9 @@ return (
 
                 </main>
             </div>
-    </>
+        </>
 
-)
+    )
 }
 
 export default PageCadastroCliente

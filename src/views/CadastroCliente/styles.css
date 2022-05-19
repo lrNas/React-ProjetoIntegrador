@@ -18,6 +18,9 @@ input[type=date] {
 
 /* TAMANHOS PARA INPUTS, TENTEM REUTILIZAR!*/
 
+.select{
+    width: 15vw;
+}
 
 /* Todos revisados e Sem defeitos conhecidos*/
 
