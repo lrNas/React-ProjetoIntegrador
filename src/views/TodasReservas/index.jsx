@@ -1,13 +1,17 @@
-import {React, Component} from "react";
+import {React, Component, useEffect} from "react";
 import PageConstructor from "../../Components/PageConstructor";
 import garagem from "../../img/garagem.svg";
 import seta from "../../img/seta.svg";
 import bancoDeDados from "../../bancosjson/bdfull-teste.json";
+import axios from "axios";
 import "./style.css";
+import ModuloReservas from "../../Components/ModuloReservas";
 
-class TodasReservas extends Component {
+export default function TodasReservas(){
 
-  bookingStatus = () => {
+  
+ 
+  const bookingStatus = () => {
     let data = new Date();
     let date = data.toLocaleDateString("pt-br");
     let dia = parseInt(date.split("/")[0]);
@@ -32,126 +36,58 @@ class TodasReservas extends Component {
     }
   };
 
-  render() {
   return (
   <>
     <PageConstructor>
-      <main className="section">
-        <h1>Todas Reservas</h1>
-        <div id="formsFiltrar" className="forms formsFiltrar">
-          <form id="filtros" name="filtros">
-            <div className="formshdivs">
-              <div className="formsvdivs">
-                <h2>Filtrar</h2>
-                <img src={garagem} alt="garagem" id="garagem" />
-              </div>
-              <div className="formsvdivs">
-                <div className="formshdivs">
-                  <div className="formsvdivs">
-                    <input className="searchbar-item-size3" placeholder="Nome / E-mail do Locatário" type="text" />
-                  </div>
-                </div>
-                <div className="formshdivs">
-                  <div className="formsvdivs">
-                    <input className="searchbar-item-size3" type="text" name="" id=""
-                      placeholder="Digite Aqui o Local de Retirada" />
-                    <input className="searchbar-item-size3" type="text" name="" id=""
-                      placeholder="Digite Aqui o Local de Entrega" />
-                  </div>
-                  <div className="formsvdivs">
-                    <input className="searchbar-item" type="date" name="" id="" placeholder="Dia da Retirada" />
-                    <input className="searchbar-item" type="date" name="" id="" placeholder="Dia da Devolução" />
-                  </div>
+    <main className="section">
+    <h1>Todas Reservas</h1>
+            <div id="formsFiltrar" className="forms formsFiltrar">
+                <form id="filtros" name="filtros">
+                    <div className="formshdivs">
+                        <div className="formsvdivs">
+                            <h2>Filtrar</h2>
+                            <img src={garagem} alt="garagem" id="garagem" />
+                        </div>
+                        <div className="formsvdivs">
+                            <div className="formshdivs">
+                                <div className="formsvdivs">
+                                    <input className="searchbar-item-size3" placeholder="Nome / E-mail do Locatário" type="text" />
+                                </div>
+                            </div>
+                            <div className="formshdivs">
+                                <div className="formsvdivs">
+                                    <input className="searchbar-item-size3" type="text" name="" id=""
+                                        placeholder="Digite Aqui o Local de Retirada" />
+                                    <input className="searchbar-item-size3" type="text" name="" id=""
+                                        placeholder="Digite Aqui o Local de Entrega" />
+                                </div>
+                                <div className="formsvdivs">
+                                    <input className="searchbar-item" type="date" name="" id="" placeholder="Dia da Retirada" />
+                                    <input className="searchbar-item" type="date" name="" id="" placeholder="Dia da Devolução" />
+                                </div>
 
-                  <div className="formsvdivs">
-                    <input className="searchbar-item" type="time" name="" id="" placeholder="Horário da Retirada" />
-                    <input className="searchbar-item" type="time" name="" id="" placeholder="Horário da Devolução" />
-                  </div>
-                </div>
-                <div className="botaoContainer todasReservas">
-                  <input type="checkbox" name="ocultarencerradas" id="ocultarencerradas" />
-                  <label for="ocultarencerradas">
-                    Ocultar Reservas Encerradas
-                  </label>
-                  <button>Buscar</button>
-                </div>
-              </div>
+                                <div className="formsvdivs">
+                                    <input className="searchbar-item" type="time" name="" id="" placeholder="Horário da Retirada" />
+                                    <input className="searchbar-item" type="time" name="" id="" placeholder="Horário da Devolução" />
+                                </div>
+                            </div>
+                            <div className="botaoContainer todasReservas">
+                                <input type="checkbox" name="ocultarencerradas" id="ocultarencerradas" />
+                                <label for="ocultarencerradas">
+                                    Ocultar Reservas Encerradas
+                                </label>
+                                <button>Buscar</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
-          </form>
-        </div>
-        <section className="containers" id="reservaFutura">
-          <div>
-            <p>AG. 01 SP - 31/12/2021 - 15H00</p>
-            <p>FOX 2020 - FXH 0E51</p>
-          </div>
-          <div>
-            <p>
-              <img src={seta} className="seta" alt="seta" />
-            </p>
-            <p>R$ 600,00</p>
-          </div>
-          <div>
-            <p>AG. 05 RJ 05/01/2022 - 15H00</p>
-            <div className="botaoContainer">
-              <button>Alterar</button>
-              <button>Cancelar</button>
-            </div>
-          </div>
-        </section>
-        <section className="containers reservaEmAndamento">
-          <div>
-            <p>AG. 05 GO - 05/12/2021 - 15H00 </p>
-            <p>GOL 2020 - MLK 0875</p>
-          </div>
-          <div>
-            <p>
-              <img src={seta} className="seta" alt="seta" />
-            </p>
-            <p>R$ 1500,00</p>
-          </div>
-          <div>
-            <p>AG. 01 SP 31/12/2021 - 15H00</p>
-            <div className="botaoContainer">
-              <button className="alterar">Alterar</button>
-            </div>
-          </div>
-        </section>
-
-        <section className="containers reservaPassada">
-          <div>
-            <p>AG. 05 GO - 05/12/2021 - 15H00</p>
-            <p>GOL 2020 - MLK 0875</p>
-          </div>
-          <div>
-            <p>
-              <img src={seta} className="seta" alt="seta" />
-            </p>
-            <p>R$ 700,00</p>
-          </div>
-          <div>
-            <p>AG. 01 SP 31/12/2021 - 15H00</p>
-          </div>
-        </section>
-        <section className="containers reservaPassada">
-          <div>
-            <p>AG. 05 GO - 05/12/2021 - 15H00</p>
-            <p>GOL 2020 - MLK 0875</p>
-          </div>
-          <div>
-            <p>
-              <img src={seta} className="seta" alt="seta" />
-            </p>
-            <p>R$ 700,00</p>
-          </div>
-          <div>
-            <p>AG. 01 SP 31/12/2021 - 15H00</p>
-          </div>
-        </section>
+      <ModuloReservas>
+        
+      </ModuloReservas>
       </main>
     </PageConstructor>
   </>
   );
+  
   }
-  }
-
-  export default TodasReservas;
