@@ -4,6 +4,8 @@ import api from '../../api'
 import Select from 'react-select'
 import makeAnimated from "react-select/animated"
 
+
+
 const animatedComponents = makeAnimated()
 
 function PageCadastroCliente() {
@@ -36,7 +38,6 @@ function PageCadastroCliente() {
             .then(response => response.map(element => { return { value: element.nome, label: element.nome } }))
             .then(response => {
                 setEstado(response)
-                console.log(response)
             })
     }, [])
     const customTheme = (theme) => {
@@ -44,7 +45,7 @@ function PageCadastroCliente() {
             ...theme,
             colors: {
                 ...theme.colors,
-                primary25:'grey',
+                primary25: '#7986CB',
                 primary: 'black'
             }
         }
@@ -68,7 +69,7 @@ function PageCadastroCliente() {
     }
 
     const sendEndereco = async () => {
-        const usuarioEndereco = { cep: cep, logadouro: rua, cidade: cidade, estado: estado, complemento: complemento }
+        const usuarioEndereco = { cep: cep, logadouro: rua, cidade: cidade, estado: uf, complemento: complemento }
 
         try {
             const resposta = await axios.post("http://localhost:3030/endereco", usuarioEndereco)
@@ -76,7 +77,7 @@ function PageCadastroCliente() {
             setCep("")
             setRua("")
             setCidade("")
-            setEstado(null)
+            setUf("")
             setComplemento("")
         } catch (err) {
             console.log(err)
@@ -269,11 +270,15 @@ function PageCadastroCliente() {
                                             theme={customTheme}
                                             onChange={selectContent}
                                             components={animatedComponents}
-                                            options={estado}
+                                            options={estado}styles={{
+                                                indicatorSeparator: () => {},
+                                                dropdownIndicator: defaultStyles => ({ display: 'none' })
+                                            }}
                                             placeholder="Selecione seu Estado"
                                             isSearchable
                                             closeMenuOnSelect
-                                            isMulti
+                                            
+                                            required
                                         />
                                     </div>
                                 </div>

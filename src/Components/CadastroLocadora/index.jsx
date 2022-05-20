@@ -1,6 +1,9 @@
 import axios from 'axios';
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import Select from 'react-select'
+import makeAnimated from "react-select/animated"
 
+const animatedComponents = makeAnimated()
 
 function PageCadastroLocadora() {
 
@@ -14,6 +17,30 @@ function PageCadastroLocadora() {
     const [rua, setRua] = useState('')
     const [complemento, setComplemento] = useState('')
     const [overlay, setOverlay] = useState(false)
+
+    const [uf, setUf] = useState('')
+    const selectContent = value => { setUf(value) }
+
+    //Select Estados
+    useEffect(() => {
+        axios.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados/')
+            .then(response => response.data)
+            .then(response => response.map(element => { return { value: element.nome, label: element.nome } }))
+            .then(response => {
+                setEstado(response)
+            })
+    }, [])
+    const customTheme = (theme) => {
+        return {
+            ...theme,
+            colors: {
+                ...theme.colors,
+                primary25: '#7986CB',
+                primary: 'black'
+            }
+        }
+    }
+    //----------------------------------------------
 
     const sendLocadora = async () => {
         const locadora = { nome: nomeUnidade, email: email, cnpj: cnpj, telefone: telefone }
@@ -36,14 +63,14 @@ function PageCadastroLocadora() {
     //Formatação && Validação de Telefone
     let inputLenght = telefone.length
     const formatoPress = () => {
-        console.log(inputLenght)
+        /* console.log(inputLenght)
         if (inputLenght === 0) {
             setTelefone(telefone + '(')
         } else if (inputLenght === 3) {
             setTelefone(telefone + ') ')
         } else if (inputLenght === 10) {
             setTelefone(telefone + '-')
-        }
+        } */
     }
     const formatoTel = () => {
         let validarRegExTel = /^1\d\d(\d\d)?$|^0800 ?\d{3} ?\d{4}$|^(\(0?([1-9a-zA-Z][0-9a-zA-Z])?[1-9]\d\) ?|0?([1-9a-zA-Z][0-9a-zA-Z])?[1-9]\d[ .-]?)?(9|9[ .-])?[2-9]\d{3}[ .-]?\d{4}$/
@@ -127,7 +154,21 @@ function PageCadastroLocadora() {
                                     <div className="formshdivs"> <label></label></div>
                                     <div className="formshdivs">
                                         <label htmlFor="estado">Estado:</label>
-                                        <input type="text" maxLength="2" name="estado" id="estado" value={estado} onChange={event => setEstado(event.target.value)} required />
+                                        <Select className="select" name="estado" id="estado"
+                                            value={uf}
+                                            theme={customTheme}
+                                            onChange={selectContent}
+                                            components={animatedComponents}
+                                            options={estado}
+                                            styles={{
+                                                indicatorSeparator: () => {},
+                                                dropdownIndicator: defaultStyles => ({ display: 'none' })
+                                            }}
+                                            placeholder="Selecione seu Estado"
+                                            isSearchable
+                                            closeMenuOnSelect
+                                            required
+                                        />
                                     </div>
                                 </div>
                             </div>
