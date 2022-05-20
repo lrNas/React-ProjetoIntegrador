@@ -1,5 +1,8 @@
 import axios from 'axios';
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";import Select from 'react-select'
+import makeAnimated from "react-select/animated"
+
+const animatedComponents = makeAnimated()
 
 function PageCadastroVeiculos() {
     const [modeloDoVeiculo, setModeloDoVeiculo] = useState('')
@@ -7,10 +10,49 @@ function PageCadastroVeiculos() {
     const [placa, setPlaca] = useState('')
     const [kmRodado, setKmRodado] = useState('')
     const [custoDiaria, setCustoDiaria] = useState('')
-    const [status, setStatus] = useState('')
     const [locadoraAtual, setLocadoraAtual] = useState('')
     const [locadoraProprietaria, setLocadoraProprietaria] = useState('')
     const [overlay, setOverlay] = useState(false)
+    const [status, setStatus] = useState('')
+
+    const [dadosStatus, setDadosStatus] = useState('')
+    const [dadosAtual, setDadosAtual] = useState('')
+    const [dadosProp, setDadosProp] = useState('')
+    const selectContentStatus = value => { setStatus(value) }
+    const selectContentAtual = value => { setLocadoraAtual(value) }
+    const selectContentProp = value => { setLocadoraProprietaria(value) }
+
+    //Select Status
+    useEffect(() => {
+        axios.get('http://localhost:3030/status')
+            .then(response => response.data)
+            .then(response => response.map(element => { return { value: element.descricao, label: element.descricao } }))
+            .then(response => {
+                setDadosStatus(response)
+            })
+    }, [])
+
+    useEffect(() => {
+        axios.get('http://localhost:3030/locadora')
+            .then(response => response.data)
+            .then(response => response.map(element => { return { value: element.nome, label: element.nome } }))
+            .then(response => {
+                setDadosAtual(response)
+                setDadosProp(response)
+            })
+    }, [])
+
+    const customTheme = (theme) => {
+        return {
+            ...theme,
+            colors: {
+                ...theme.colors,
+                primary25: '#7986CB',
+                primary: 'black'
+            }
+        }
+    }
+    //----------------------------------------------
 
     // Talvez precise de atualizações em conteúdos do objeto!
     const sendVeiculos = async () => {
@@ -46,44 +88,86 @@ function PageCadastroVeiculos() {
                             Cadastro de Veiculos
                         </h1>
                         <form name="dadosVeiculos">
-                            <div class="forms">
+                            <div className="forms">
                                 <h2>Dados do Veículo</h2>
-                                <div class="formsvdivs">
-                                    <div class="formshdivs">
-                                        <label for="modeloveiculo"> Modelo do Veículo:</label>
+                                <div className="formsvdivs">
+                                    <div className="formshdivs">
+                                        <label htmlFor="modeloveiculo"> Modelo do Veículo:</label>
                                         <input type="text" name="modeloveiculo" id="modeloveiculo" value={modeloDoVeiculo} onChange={event => setModeloDoVeiculo(event.target.value)} required />
                                     </div>
-                                    <div class="formshdivs">
-                                        <label for="renavam"> RENAVAM:</label>
-                                        <input type="number" maxlength="11" name="renavam" id="renavam" value={renavam} onChange={event => setRenavam(event.target.value)} required />
+                                    <div className="formshdivs">
+                                        <label htmlFor="renavam"> RENAVAM:</label>
+                                        <input type="number" maxLength="11" name="renavam" id="renavam" value={renavam} onChange={event => setRenavam(event.target.value)} required />
                                     </div>
-                                    <div class="formshdivs">
-                                        <label for="placa"> Placa:</label>
-                                        <input type="text" maxlength="7" name="placa" id="placa" value={placa} onChange={event => setPlaca(event.target.value)} required />
+                                    <div className="formshdivs">
+                                        <label htmlFor="placa"> Placa:</label>
+                                        <input type="text" maxLength="7" name="placa" id="placa" value={placa} onChange={event => setPlaca(event.target.value)} required />
                                     </div>
-                                    <div class="formshdivs">
-                                        <label for="kmrodado"> KM Rodados:</label>
+                                    <div className="formshdivs">
+                                        <label htmlFor="kmrodado"> KM Rodados:</label>
                                         <input type="number" name="kmrodado" id="kmrodado" value={kmRodado} onChange={event => setKmRodado(event.target.value)} required />
                                     </div>
-                                    <div class="formshdivs">
-                                        <label for="custodiaria"> Custo da diária</label>
+                                    <div className="formshdivs">
+                                        <label htmlFor="custodiaria"> Custo da diária</label>
                                         <input type="number" name="custodiaria" id="custodiaria" value={custoDiaria} onChange={event => setCustoDiaria(event.target.value)} required />
                                     </div>
-                                    <div class="formshdivs">
-                                        <label for="status"> Status: </label>
-                                        <select name="status" value={status} onChange={event => setStatus(event.target.value)} ></select>
+                                    <div className="formshdivs">
+                                        <label htmlFor="status"> Status: </label>
+                                        <Select className="select" name="estado" id="estado"
+                                            value={status}
+                                            theme={customTheme}
+                                            onChange={selectContentStatus}
+                                            components={animatedComponents}
+                                            options={dadosStatus}styles={{
+                                                indicatorSeparator: () => {},
+                                                dropdownIndicator: defaultStyles => ({ display: 'none' })
+                                            }}
+                                            placeholder="Selecione"
+                                            isSearchable
+                                            closeMenuOnSelect
+                                            isMulti
+                                            required
+                                        />
                                     </div>
-                                    <div class="formshdivs">
-                                        <label for="localAtual"> Locadora Atual:</label>
-                                        <select name="localAtual" value={locadoraAtual} onChange={event => setLocadoraAtual(event.target.value)} ></select>
+                                    <div className="formshdivs">
+                                        <label htmlFor="localAtual"> Locadora Atual:</label>
+                                        <Select className="select" name="estado" id="estado"
+                                            value={locadoraAtual}
+                                            theme={customTheme}
+                                            onChange={selectContentAtual}
+                                            components={animatedComponents}
+                                            options={dadosAtual}
+                                            styles={{
+                                                indicatorSeparator: () => {},
+                                                dropdownIndicator: defaultStyles => ({ display: 'none' })
+                                            }}
+                                            placeholder="Selecione"
+                                            isSearchable
+                                            closeMenuOnSelect
+                                            required
+                                        />
                                     </div>
-                                    <div class="formshdivs">
-                                        <label for="localProprietaria"> Locadora Propietária:</label>
-                                        <select name="localProprietaria" value={locadoraProprietaria} onChange={event => setLocadoraProprietaria(event.target.value)} ></select>
+                                    <div className="formshdivs">
+                                        <label htmlFor="localProprietaria"> Locadora Propietária:</label>
+                                        <Select className="select" name="estado" id="estado"
+                                            value={locadoraProprietaria}
+                                            theme={customTheme}
+                                            onChange={selectContentProp}
+                                            components={animatedComponents}
+                                            options={dadosProp}
+                                            styles={{
+                                                indicatorSeparator: () => {},
+                                                dropdownIndicator: defaultStyles => ({ display: 'none' })
+                                            }}
+                                            placeholder="Selecione"
+                                            isSearchable
+                                            closeMenuOnSelect
+                                            required
+                                        />
                                     </div>
                                 </div>
                             </div>
-                            <div class="formsbuttons">
+                            <div className="formsbuttons">
                                 <button>Cancelar</button><button onClick={()=>{sendVeiculos()}}>Salvar</button>
                             </div>
                         </form>

@@ -17,7 +17,11 @@ input[type=date] {
 }
 
 /* TAMANHOS PARA INPUTS, TENTEM REUTILIZAR!*/
+.select{
+    width: 14em;
+    font-size:1em;
 
+}
 
 /* Todos revisados e Sem defeitos conhecidos*/
 
