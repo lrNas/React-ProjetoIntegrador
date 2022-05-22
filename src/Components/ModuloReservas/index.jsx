@@ -45,9 +45,9 @@ export default function ModuloReservas() {
         }
     }
 
-    {nomelocadoras.map((item) => {
+    if(nomelocadoras){nomelocadoras.map((item) => {
             return (
-                <section className="containers" id="reservaFutura">
+                <div className="containers" id="reservaFutura">
                     <div>
                         <p>{item.nome} - 31/12/2021 - 15H00</p>
                         <p>FOX 2020 - FXH 0E51</p>
@@ -65,7 +65,7 @@ export default function ModuloReservas() {
                             <button>Cancelar</button>
                         </div>
                     </div>
-                </section>
+                </div>
             )
         })
     }

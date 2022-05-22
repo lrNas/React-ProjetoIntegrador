@@ -10,6 +10,7 @@ async function login(userName, senha) {
 
         const resposta = await axios({ method: "POST", url: "http://localhost:3030/login", data: usuarioCartao })
         document.cookie = `auth=${resposta.data.token}`
+        document.cookie = `id=${resposta.data.id}`
         document.cookie = `tipousuario=${resposta.data.tipo}`
         document.cookie = `nomeusuario=${resposta.data.nomeusuario}`
 

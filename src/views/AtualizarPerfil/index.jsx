@@ -1,14 +1,13 @@
+import PageConstructor from '../../Components/PageConstructor';
 import axios from 'axios';
 import React, { useState, useEffect } from "react";
-import api from '../../api'
+import {getCookie} from "../../Components/CookiesHandler";
 import Select from 'react-select'
 import makeAnimated from "react-select/animated"
-
-
-
+import './styles.css'
 const animatedComponents = makeAnimated()
 
-export default function PageCadastroCliente() {
+function AtualizarPerfil() {
     const [nome, setListName] = useState('')
     const [overlay, setOverlay] = useState(false)
     const [email, setEmail] = useState('')
@@ -29,10 +28,14 @@ export default function PageCadastroCliente() {
     const [nomeCartao, setNomeCartao] = useState('')
     const [estado, setEstado] = useState(null)
     const [uf, setUf] = useState('')
+    const [token, setToken] = useState('')
     const selectContent = value => { setUf(value) }
 
+
+    
     //Select Estados
     useEffect(() => {
+        setToken(getCookie("auth"))
         axios.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados/')
             .then(response => response.data)
             .then(response => response.map(element => { return { value: element.nome, label: element.nome } }))
@@ -53,12 +56,13 @@ export default function PageCadastroCliente() {
     //----------------------------------------------
 
     //Axios
+    //Atualizar a forma como o put funciona na api
     const sendCartao = async () => {
         const usuarioCartao = { nome: nomeCartao, numero: numCartao, validade: dataValidade, cvc: cvc }
 
         try {
-            const resposta = await axios.post("http://localhost:3030/cartao", usuarioCartao)
-            alert(resposta.data)
+            const resposta = await axios.put("http://localhost:3030/cartao", usuarioCartao)
+            alert(resposta.data.nome_completo)
             setNomeCartao("")
             setNumCartao("")
             setDataValidade("")
@@ -67,12 +71,12 @@ export default function PageCadastroCliente() {
             console.log(err)
         }
     }
-
+    //Atualizar a forma como o put funciona na api
     const sendEndereco = async () => {
-        const usuarioEndereco = { cep: cep, logadouro: rua, cidade: cidade, estado: uf, complemento: complemento }
+        const usuarioEndereco = { id: 1,cep: cep, logadouro: rua, cidade: cidade, estado: uf, complemento: complemento }
 
         try {
-            const resposta = await axios.post("http://localhost:3030/endereco", usuarioEndereco)
+            const resposta = await axios.put("http://localhost:3030/endereco", usuarioEndereco)
             alert(resposta.data)
             setCep("")
             setRua("")
@@ -83,12 +87,12 @@ export default function PageCadastroCliente() {
             console.log(err)
         }
     }
-
+    
     const sendUsuario = async () => {
-        const usuarioCliente = { nome_completo: nome, email: email, senha: senha, cpf: cpf, telefone: telefone, data_nascimento: nascimento, cnh: cnh, validade_cnh: validade, fk_id_tipo_usuario: 2 }
-
+        const usuarioCliente = {token: token,id: getCookie('id'), nome_completo: nome, email: email, senha: senha, cpf: cpf, telefone: telefone, data_nascimento: nascimento, cnh: cnh, validade_cnh: validade, fk_id_tipo_usuario: 2 }
+        console.log(token)
         try {
-            const resposta = await axios.post("http://localhost:3030/usuario", usuarioCliente)
+            const resposta = await axios.put("http://localhost:3030/usuario", usuarioCliente)
             alert(resposta.data)
             setListName("")
             setEmail("")
@@ -165,27 +169,10 @@ export default function PageCadastroCliente() {
             setCep("")
         }
     }
-    //----------------------------------------------
-
-
-
-    // VALIDAÇÃO DE CNH 
-    /* funcaoValidade.addEventListener('blur', () => {
-        const validade = document.getElementById('validade').value
-        const data = new Date()
-        let anoAtual = data.getFullYear()
-        let arrayValidade = validade.split('-')
-        let anoValidade = arrayValidade[0]
-        if (anoValidade > anoAtual) {
-            alert("Data inválida")
-        }
-    }
-    ) */
-    //----------------------------------------------
-
 
     return (
-        <>
+        <PageConstructor >
+            <>
             <div className="App">
                 <main className="section">
                     {
@@ -199,7 +186,7 @@ export default function PageCadastroCliente() {
                     }
                     <form name="dadosCliente">
                         <h1>
-                            Cadastro de Cliente
+                            Atualizar Cadastro de Cliente
                         </h1>
                         <div className="forms">
                             <h2>Dados do Cliente</h2>
@@ -322,7 +309,8 @@ export default function PageCadastroCliente() {
                 </main>
             </div>
         </>
-
+        </PageConstructor>
     )
 }
 
+export default AtualizarPerfil

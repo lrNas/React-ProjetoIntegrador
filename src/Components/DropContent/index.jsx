@@ -1,7 +1,7 @@
 import "./style.css"
 import {getCookie,login,deleteCookies} from "../CookiesHandler"
 import React,{ useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 function DropContent(props){
     useEffect(() => {
@@ -30,18 +30,28 @@ function DropContent(props){
             </div>
         )
     }
-    else{
+    else if(getUser()==1){
 
         return(
             <div className="drop-content" id="drop-content">
                 <ul className="menuLogado">
                     <li id="nomeUsuario" className="nomeUsuario">{getCookie("nomeusuario")}</li>
-                    <li className="mlItens" id="EditarPerfil">Editar Perfil</li>
-                    <li className="mlItens" id="historicoLocacoes">Histórico de locações</li>
-                    <li className="mlItens" id="logout"  onClick={()=>{deleteCookies(); window.location.reload()}} >Sair</li>
+                    <li className="mlItens" id="logout"  onClick={()=>{deleteCookies(); window.location.assign("http://localhost:3000/")}} >Sair</li>
                 </ul>
             </div>
         )
+
+    }
+    else{ return(
+        <div className="drop-content" id="drop-content">
+            <ul className="menuLogado">
+                <li id="nomeUsuario" className="nomeUsuario">{getCookie("nomeusuario")}</li>
+                <li className="mlItens" id="EditarPerfil" onClick={()=>{window.location.assign("http://localhost:3000/atualizar")}}>Editar Perfil</li>
+                <li className="mlItens" id="historicoLocacoes">Histórico de locações</li>
+                <li className="mlItens" id="logout"  onClick={()=>{deleteCookies(); window.location.assign("http://localhost:3000/")}} >Sair</li>
+            </ul>
+        </div>
+    )
 
     }
 }

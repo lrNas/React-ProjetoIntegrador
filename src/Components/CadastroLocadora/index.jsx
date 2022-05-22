@@ -1,12 +1,8 @@
 import axios from 'axios';
-<<<<<<< HEAD
-import React, { useEffect, useState } from "react";
-=======
 import React, { useState, useEffect } from "react";
 import Select from 'react-select'
 import makeAnimated from "react-select/animated"
->>>>>>> af729b5c8437b8474a532e73f5acd0f99db35fc9
-
+ 
 const animatedComponents = makeAnimated()
 
 function PageCadastroLocadora() {
