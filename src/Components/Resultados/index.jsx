@@ -32,7 +32,7 @@ function Resultados(props){
                                         </div>
                                         <div>
                                             <p><img src={seta} className="seta" alt=" - Para - " /></p>
-                                            <p>{resultado.valor_total}</p>
+                                            <p>R$ {resultado.valor_total}</p>
                                         </div>
                                         <div>
                                             <p>{resultado.ag_destino.nome} - {formataData(resultado.data_devolucao)}</p>
