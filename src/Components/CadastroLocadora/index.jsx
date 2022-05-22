@@ -1,13 +1,16 @@
 import axios from 'axios';
+<<<<<<< HEAD
 import React, { useState, useEffect } from "react";
 import Select from 'react-select'
 import makeAnimated from "react-select/animated"
  
 const animatedComponents = makeAnimated()
+=======
+import React, { useState} from "react";
+import SelectEstados from '../SelectEstados'
+>>>>>>> c95d22e8e17d7b9c7a8d874bbbae43767adc7c39
 
 function PageCadastroLocadora() {
-
-    
 
     const [nomeUnidade, setNomeUnidade] = useState('')
     const [email, setEmail] = useState('')
@@ -15,34 +18,11 @@ function PageCadastroLocadora() {
     const [telefone, setTelefone] = useState('')
     const [cep, setCep] = useState('')
     const [cidade, setCidade] = useState('')
-    const [estado, setEstado] = useState('')
     const [rua, setRua] = useState('')
     const [complemento, setComplemento] = useState('')
     const [overlay, setOverlay] = useState(false)
 
-    const [uf, setUf] = useState('')
-    const selectContent = value => { setUf(value) }
 
-    //Select Estados
-    useEffect(() => {
-        axios.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados/')
-            .then(response => response.data)
-            .then(response => response.map(element => { return { value: element.nome, label: element.nome } }))
-            .then(response => {
-                setEstado(response)
-            })
-    }, [])
-    const customTheme = (theme) => {
-        return {
-            ...theme,
-            colors: {
-                ...theme.colors,
-                primary25: '#7986CB',
-                primary: 'black'
-            }
-        }
-    }
-    //----------------------------------------------
 
     const sendLocadora = async () => {
         const locadora = { nome: nomeUnidade, email: email, cnpj: cnpj, telefone: telefone }
@@ -156,21 +136,7 @@ function PageCadastroLocadora() {
                                     <div className="formshdivs"> <label></label></div>
                                     <div className="formshdivs">
                                         <label htmlFor="estado">Estado:</label>
-                                        <Select className="select" name="estado" id="estado"
-                                            value={uf}
-                                            theme={customTheme}
-                                            onChange={selectContent}
-                                            components={animatedComponents}
-                                            options={estado}
-                                            styles={{
-                                                indicatorSeparator: () => {},
-                                                dropdownIndicator: defaultStyles => ({ display: 'none' })
-                                            }}
-                                            placeholder="Selecione seu Estado"
-                                            isSearchable
-                                            closeMenuOnSelect
-                                            required
-                                        />
+                                        <SelectEstados />
                                     </div>
                                 </div>
                             </div>

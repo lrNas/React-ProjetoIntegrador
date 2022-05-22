@@ -1,49 +1,53 @@
 import "./style.css"
 import seta from "../../img/seta.svg"
-// const veiculos = require("../../bancosjson/veiculos.json")
-// const reservas = require("../../bancosjson/reservas.json")
-// const locadoras = require("../../bancosjson/locadoras.json")
+
+function formataNumero(num){
+    if(num>=10){
+        return num;
+    }
+    return `0${num}`
+    
+}
+
+function formataData(data){
+    let date = new Date(data);
+    let string = `${formataNumero(date.getDate())}/${formataNumero(date.getMonth()+1)}/${date.getFullYear()} - ${formataNumero(date.getHours())}:${formataNumero(date.getMinutes())} `
+    return string;
+}
 
 function Resultados(props){
-    /**
-     * <Resultados localRetirada={localRetirada} localEntrega={localEntrega} 
-        dataRetirada={dataRetirada} dataEntrega={dataEntrega}
-        horarioRetirada={horarioRetirada} horarioEntrega={horarioEntrega}/>
-     */
 
-    /** Transformar props.dataRetirada + props.horarioRetirada em var momentoRetirada */
-    /** Transformar props.dataEntrega + props.horarioEntrega em var momentoEntrega */
-    /** Filtrar carros que estão no no local de retirada selecionado */
-    /** Filtrar array de reservas pela ID dos carros no local de retirada */
-    /** Filtrar array das reservas dos carros específicos para checar se 
-     * há alguma reserva conflitando com o momentoRetirada e 
-     * momentoEntrega (intervalo de 5 horas entre cada locação do veículo) */
-
-    
+    let resultados = []
+    resultados.push(...props.resultados); 
     return (
         <div className="resultados">
-            <div class="retirada-entrega">
+            <div className="retirada-entrega">
                 <h2>Local de retirada</h2>
                 <h2>Local de entrega</h2>
             </div>
-            {/**Componentizar cada container? */}
-            <section class="containers" id="reservaFutura">
-                <div>
-                    <p>AG. 01 SP - 31/12/2021 - 15H00</p>
-                    <p>FOX 2020 - FXH 0E51</p>
-                </div>
-                <div>
-                    <p><img src={seta} class="seta" alt="Seta para a direita" /></p>
-                    <p>R$ 600,00</p>
-                </div>
-                <div>
-                    <p>AG. 05 RJ 05/01/2022 - 15H00</p>
-                    <div class="botaoContainer">
-                        <button>Alterar</button>
-                        <button>Cancelar</button>
-                    </div>
-                </div>
-            </section>
+            {resultados.map((resultado,index)=>{ return (<section className="containers" id={`reservaFutura${index}`} key={index}>
+                                        <div>
+                                            <p>{resultado.ag_retirada.nome} - {formataData(resultado.data_retirada)}</p>
+                                            <p>{resultado.nome_veiculo} - {resultado.placa_veiculo}</p>
+                                        </div>
+                                        <div>
+                                            <p><img src={seta} className="seta" alt=" - Para - " /></p>
+                                            <p>R$ {resultado.valor_total}</p>
+                                        </div>
+                                        <div>
+                                            <p>{resultado.ag_destino.nome} - {formataData(resultado.data_devolucao)}</p>
+                                            <div className="botaoContainer">
+                                                <button>Reservar!</button>
+                                                {/* Desabilitar esse botão acima se deslogado, 
+                                                ou direcionar para login/criação de conta,
+                                                 se logado, habilitado */}
+                                            </div>
+                                        </div>
+                                    </section>)})
+            }
+            
+            
+            
 
         </div>
     )
