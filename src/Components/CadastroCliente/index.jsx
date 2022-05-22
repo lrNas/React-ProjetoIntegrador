@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import api from '../../api'
 import Select from 'react-select'
 import makeAnimated from "react-select/animated"
+import { getCookie } from '../CookiesHandler';
 
 
 
@@ -54,7 +55,7 @@ export default function PageCadastroCliente() {
 
     //Axios
     const sendCartao = async () => {
-        const usuarioCartao = { nome: nomeCartao, numero: numCartao, validade: dataValidade, cvc: cvc }
+        const usuarioCartao = { nome: nomeCartao, numero: numCartao, validade: dataValidade, cvc: cvc, fk_id_usuario: 2 }
 
         try {
             const resposta = await axios.post("http://localhost:3030/cartao", usuarioCartao)
@@ -69,7 +70,7 @@ export default function PageCadastroCliente() {
     }
 
     const sendEndereco = async () => {
-        const usuarioEndereco = { cep: cep, logadouro: rua, cidade: cidade, estado: uf, complemento: complemento }
+        const usuarioEndereco = { cep: cep, logadouro: rua, cidade: cidade, estado: uf, complemento: complemento,fk_id_usuario : 2 }
 
         try {
             const resposta = await axios.post("http://localhost:3030/endereco", usuarioEndereco)

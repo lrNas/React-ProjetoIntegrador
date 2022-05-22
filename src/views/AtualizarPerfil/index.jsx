@@ -73,7 +73,7 @@ function AtualizarPerfil() {
     }
     //Atualizar a forma como o put funciona na api
     const sendEndereco = async () => {
-        const usuarioEndereco = { id: 1,cep: cep, logadouro: rua, cidade: cidade, estado: uf, complemento: complemento }
+        const usuarioEndereco = { id: 2,cep: cep, logadouro: rua, cidade: cidade, estado: uf, complemento: complemento }
 
         try {
             const resposta = await axios.put("http://localhost:3030/endereco", usuarioEndereco)

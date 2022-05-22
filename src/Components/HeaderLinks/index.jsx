@@ -19,12 +19,20 @@ function HeaderLinks(props){
             </>
         )
     }
-    else{
+    else if(getUser()==2){
         return(
             <>
                 <li><NavigateButton nome="Contato" pagina="/contato"/></li>
                 <li><NavigateButton nome="Duvidas" pagina="/duvidas"/></li>
                 <li><NavigateButton nome="Minhas Reservas" pagina="/minhasreservas"/></li>
+            </>
+        )
+    }else{
+        return(
+            <>
+                <li><NavigateButton nome="Contato" pagina="/contato"/></li>
+                <li><NavigateButton nome="Duvidas" pagina="/duvidas"/></li>
+                <li><NavigateButton nome="Minhas Reservas" pagina="/cadastrocliente"/></li>
             </>
         )
     }
