@@ -4,13 +4,10 @@ import buscar from "../../img/busca.svg"
 import { useState } from "react"
 import Carrossel from "../Carrossel"
 import Resultados from "../Resultados"
+import axios from "axios";
 
 
-function buscarVeiculos(){
-    
-    console.log("Teste")
-    
-}
+
 
 function Searchbar (){
     const [showResults, setShowResults] = useState(false)
@@ -20,7 +17,31 @@ function Searchbar (){
     const [dataEntrega,setDataEntrega] = useState("")
     const [horarioRetirada,setHorarioRetirada] = useState("")
     const [horarioEntrega,setHorarioEntrega] = useState("")
+    const [resultados,setResultados] = useState("")
     
+    async function buscarVeiculos(){
+    
+        try {
+
+            let data_entrega=`${dataEntrega}T${horarioEntrega}`;
+            let data_retirada=`${dataRetirada}T${horarioRetirada}`;
+
+            const busca = {
+                "data_retirada":data_retirada,
+    "data_entrega":data_entrega,
+    "cidade_origem":localRetirada,
+    "cidade_destino":localEntrega,
+    "estado_origem":localRetirada,
+    "estado_destino":localEntrega
+            }
+            const resposta = await axios({ method: "POST", url: "http://localhost:3030/busca", data: busca })
+            setResultados(resposta.data);
+            
+
+        } catch (err) {
+            console.log(err)
+        }
+}
 
         return (
         <>
@@ -31,6 +52,7 @@ function Searchbar (){
                 </div>
                 <div className="searchbar-h">
                     <div className="searchbar-v">
+                        
                         <input className="searchbar-item size3" type="text" name="localRetirada" value={localRetirada} onChange={local=>setLocalRetirada(local.target.value)} id="localRetirada" placeholder="Digite aqui o local de retirada"/>
                         <input className="searchbar-item size2" type="date" name="diaRetirada" value={dataRetirada} onChange={data=>setDataRetirada(data.target.value)} id="diaRetirada" placeholder="Dia da retirada"/>
                         <input className="searchbar-item size1" type="time" name="horarioRetirada" value={horarioRetirada} onChange={horario=>setHorarioRetirada(horario.target.value)} id="horarioRetirada" placeholder="Horário da retirada"/>
@@ -42,14 +64,12 @@ function Searchbar (){
                     </div>
                 </div>
                 {/*LINK ABAIXO SOMENTE PARA DEMONSTRAÇÃO, O BOTÃO BUSCAR NÂO FUNCIONARA POR A HREF !!!!*/}
-                <button type="button" className="searchbar-button" id="buscaveiculo" onClick={()=>{buscarVeiculos(); setShowResults(true)}}> Buscar<img src={buscar} alt="Buscar"className="buscaicon"/> </button>
+                <button type="button" className="searchbar-button" id="buscaveiculo" onClick={()=>{buscarVeiculos(); setShowResults(true)}}> Buscar<img src={buscar} alt="Buscar" className="buscaicon"/> </button>
             </div>
         </form>
         
         { showResults ? 
-        <Resultados localRetirada={localRetirada} localEntrega={localEntrega} 
-        dataRetirada={dataRetirada} dataEntrega={dataEntrega}
-        horarioRetirada={horarioRetirada} horarioEntrega={horarioEntrega}/>:
+        <Resultados resultados={resultados}/>:
          <Carrossel/>  
          }
         
