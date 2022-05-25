@@ -4,30 +4,30 @@ import { getCookie } from "../CookiesHandler"
 import "./style.css"
 import React from "react"
 import { useState, useEffect } from "react"
-import funcFiltros from "../../Controllers/bancoJson"
 import axios from "axios"
 
 function MainPageContent(props) {
     const [veiculoAndamento, setVeiculoAndamento] = useState([])
-    const [quantidadeVeiculo, setQuantidadeVeiculo] = useState(0)
+    const [veiculosDisponiveis, setVeiculosDisponiveis] = useState("")
+    const [quantidadeVeiculo, setQuantidadeVeiculo] = useState("")
 
     /*
     Mudar as funções de Jsons para axios
     */
 
     useEffect(() => {
-        let carro = [];
+        setVeiculosDisponiveis(0)
         axios.get('http://localhost:3030/veiculo')
             .then(res => res.data)
             .then(res => {
                 setQuantidadeVeiculo(res.length)
                 for(const veiculo of res) {
                     if(veiculo.fk_id_status_veiculo == 1){
-                     setQuantidadeVeiculo(quantidadeVeiculo+1)
+                        setVeiculosDisponiveis(veiculosDisponiveis+1)
                     }
                 }
             })
-        setVeiculoAndamento(carro.length)
+            console.log(veiculosDisponiveis +" / "+quantidadeVeiculo)
         }, [])
 
 
