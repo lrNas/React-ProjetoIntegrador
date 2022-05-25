@@ -73,7 +73,7 @@ export default function TodasReservas(){
                             </div>
                             <div className="botaoContainer todasReservas">
                                 <input type="checkbox" name="ocultarencerradas" id="ocultarencerradas" />
-                                <label for="ocultarencerradas">
+                                <label htmlFor="ocultarencerradas">
                                     Ocultar Reservas Encerradas
                                 </label>
                                 <button>Buscar</button>
@@ -83,8 +83,7 @@ export default function TodasReservas(){
                 </form>
             </div>
       <ModuloReservas>
-        
-      </ModuloReservas>
+      </ModuloReservas>       
       </main>
     </PageConstructor>
   </>
