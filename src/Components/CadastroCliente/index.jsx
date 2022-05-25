@@ -28,7 +28,8 @@ export default function PageCadastroCliente() {
     const [dataValidade, setDataValidade] = useState('')
     const [cvc, setCvc] = useState('')
     const [nomeCartao, setNomeCartao] = useState('')
-    const [estado, setEstado] = useState(null)
+    const [estado, setEstado] = useState('')
+    const [holderEstado, setHolderEstado] = useState('Selecione seu Estado')
     const [uf, setUf] = useState('')
     const selectContent = value => { setUf(value) }
 
@@ -36,7 +37,7 @@ export default function PageCadastroCliente() {
     useEffect(() => {
         axios.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados/')
             .then(response => response.data)
-            .then(response => response.map(element => { return { value: element.nome, label: element.nome } }))
+            .then(response => response.map(element => { return { value: element.nome, label: element.sigla } }))
             .then(response => {
                 setEstado(response)
             })
@@ -165,6 +166,13 @@ export default function PageCadastroCliente() {
             alert("CEP Inválido!")
             setCep("")
         }
+        
+    axios.get(`https://viacep.com.br/ws/${cep}/json/`)
+        .then(res => res.data)
+        .then(data => {
+            setCidade(data.localidade)
+            setRua(data.logradouro)
+        })
     }
     //----------------------------------------------
 
@@ -275,7 +283,7 @@ export default function PageCadastroCliente() {
                                                 indicatorSeparator: () => {},
                                                 dropdownIndicator: defaultStyles => ({ display: 'none' })
                                             }}
-                                            placeholder="Selecione seu Estado"
+                                            placeholder={holderEstado}
                                             isSearchable
                                             closeMenuOnSelect
                                             
