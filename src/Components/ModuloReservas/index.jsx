@@ -3,9 +3,9 @@ import garagem from "../../img/garagem.svg";
 import seta from "../../img/seta.svg";
 import axios from "axios";
 import "./style.css";
-import Resultados from "../Resultados";
 
 export default function ModuloReservas() {
+    const meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul","Ago","Set","Out","Nov","Dez"];
     const [cards, setCard] = useState([])
     const removeDoubleElements = (list) => [...list.filter((item, index) => list.indexOf(item) === index)];
 
@@ -32,8 +32,12 @@ export default function ModuloReservas() {
                  };
                 card.id = data.id
                 card.valor = data.valor
-                card.data_retirada = data.data_retirada
-                card.data_devolucao = data.data_entrega
+                let data_retirada = new Date(data.data_retirada)                
+                data_retirada = ((data_retirada.getDate() + " " + meses[(data_retirada.getMonth())] + " " + data_retirada.getFullYear()));
+                let data_devolucao = new Date(data.data_entrega)
+                data_devolucao = ((data_devolucao.getDate() + " " + meses[(data_devolucao.getMonth())] + " " + data_devolucao.getFullYear()));
+                card.data_retirada = data_retirada
+                card.data_devolucao = data_devolucao
 
                 const localretirada = await axios.get(`http://localhost:3030/locadora/${data.fk_id_local_retirada}`)
                 card.ag_retirada = localretirada.data[0].nome
@@ -62,7 +66,7 @@ export default function ModuloReservas() {
                 return (
                     <li className="containers" id="reservaFutura" key={item.id}>
                         <div>
-                            <p>{item.ag_retirada} - {item.data_retirada}</p>
+                            <p>{item.ag_retirada} - Retirada: {item.data_retirada}</p>
                             <p>{item.modelo} - {item.placa_veiculo}</p>
                         </div>
                         <div>
@@ -72,7 +76,7 @@ export default function ModuloReservas() {
                             <p>R$ {item.valor}</p>
                         </div>
                         <div>
-                            <p>{item.ag_destino} - {item.data_devolucao}</p>
+                            <p>{item.ag_destino} - Entrega: {item.data_devolucao}</p>
                             <div className="botaoContainer">
                                 <button>Alterar</button>
                                 <button>Cancelar</button>
