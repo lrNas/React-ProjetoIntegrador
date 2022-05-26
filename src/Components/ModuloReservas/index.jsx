@@ -6,61 +6,51 @@ import "./style.css";
 import Resultados from "../Resultados";
 
 export default function ModuloReservas() {
-    const [Loc, setLocadora] = useState('')
-    const [renavam, setRenavam] = useState('')
-    const [placa, setPlaca] = useState('')
-    const [kmRodado, setKmRodado] = useState('')
-    const [custoDiaria, setCustoDiaria] = useState('')
-    const [status, setStatus] = useState('')
-    const [locadoraAtual, setLocadoraAtual] = useState('')
-    const [locadoraProprietaria, setLocadoraProprietaria] = useState('')
-    const [overlay, setOverlay] = useState(false)
-    const [nomeLocadoras, setNomeLocadoras] = useState([])
-
-
+    const [cards, setCard] = useState([])
     const removeDoubleElements = (list) => [...list.filter((item, index) => list.indexOf(item) === index)];
 
     useEffect(() => {        
-        resolveProblema()
-    }, []);
-    
-    function resolveProblema(){
         getReservas()
-    }
+    }, []);
     
     async function getReservas() {
         try {
-            const resposta = await axios.get("http://localhost:3030/reserva")
-            let idlocadoras = []
-            let locadorasAux = []
-            let placa = []
-            let modelo = []
-            let veiculo = []
-            resposta.data.map(data => {
-                idlocadoras.push(data.fk_id_local_entrega)
-                idlocadoras.push(data.fk_id_local_retirada)
-                veiculo.push(data.fk_id_veiculo)
-            })
-            veiculo = removeDoubleElements(veiculo)
-            veiculo.forEach(async (veiculo) => {
-                const vei = await axios.get(`http://localhost:3030/veiculo/${veiculo}`)
-                placa.push(vei.data[0].placa)
-                modelo.push(vei.data[0].modelo)
-            }       ) 
-            idlocadoras = removeDoubleElements(idlocadoras)
-            idlocadoras.forEach(async (locadora) => {
-                const locadoras = await axios.get(`http://localhost:3030/locadora/${locadora}`)
-                resposta.data.map(data => {
-                    if (data.fk_id_veiculo == modelo.indexOf){
-                    locadoras.data[0].modelo = modelo[0]
-                    locadoras.data[0].placa =  placa[0]}
-                })
-                
-                locadorasAux.push(locadoras.data[0])
-                setNomeLocadoras([...locadorasAux])
-            }    
             
-            )
+            let cardsaux = [];
+
+            const resposta = await axios.get("http://localhost:3030/reserva")
+            resposta.data.map(async (data) => {
+                let card = {
+                    "id":"",
+                    "modelo":"",
+                    "valor":"",
+                    "placa_veiculo":"",
+                    "ag_retirada":"",     
+                    "ag_destino":"",           
+                    "data_retirada":"",
+                    "data_devolucao":""
+                 };
+                card.id = data.id
+                card.valor = data.valor
+                card.data_retirada = data.data_retirada
+                card.data_devolucao = data.data_entrega
+
+                const localretirada = await axios.get(`http://localhost:3030/locadora/${data.fk_id_local_retirada}`)
+                card.ag_retirada = localretirada.data[0].nome
+
+                const localentrega = await axios.get(`http://localhost:3030/locadora/${data.fk_id_local_entrega}`)
+                card.ag_destino = localentrega.data[0].nome
+
+                const vei = await axios.get(`http://localhost:3030/veiculo/${data.fk_id_veiculo}`)
+                card.modelo = vei.data[0].modelo
+                card.placa_veiculo = vei.data[0].placa    
+
+                cardsaux.push(card)                
+                setCard([...cardsaux])  
+                console.log(cardsaux)              
+            })            
+            
+            
         } catch (err) {
             console.log(err)
         }
@@ -68,21 +58,21 @@ export default function ModuloReservas() {
 
     return (
     <>
-        {nomeLocadoras.map((item) => {
+        {cards.map((item) => {
                 return (
                     <li className="containers" id="reservaFutura" key={item.id}>
                         <div>
-                            <p>{item.nome} - 31/12/2021 - 15H00</p>
-                            <p>{item.modelo} - {item.placa}</p>
+                            <p>{item.ag_retirada} - {item.data_retirada}</p>
+                            <p>{item.modelo} - {item.placa_veiculo}</p>
                         </div>
                         <div>
                             <p>
                                 <img src={seta} className="seta" alt="seta" />
                             </p>
-                            <p>R$ 600,00</p>
+                            <p>{item.valor}</p>
                         </div>
                         <div>
-                            <p>AG. 05 RJ 05/01/2022 - 15H00</p>
+                            <p>{item.ag_destino} - {item.data_devolucao}</p>
                             <div className="botaoContainer">
                                 <button>Alterar</button>
                                 <button>Cancelar</button>
