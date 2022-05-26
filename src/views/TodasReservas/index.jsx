@@ -37,11 +37,10 @@ export default function TodasReservas(){
   };
 
   return (
-  <>
     <PageConstructor>
     <main className="section">
     <h1>Todas Reservas</h1>
-            <div id="formsFiltrar" className="forms formsFiltrar">
+            <div id="formsFiltrar" className="forms">
                 <form id="filtros" name="filtros">
                     <div className="formshdivs">
                         <div className="formsvdivs">
@@ -71,7 +70,7 @@ export default function TodasReservas(){
                                     <input className="searchbar-item" type="time" name="" id="" placeholder="Horário da Devolução" />
                                 </div>
                             </div>
-                            <div className="botaoContainer todasReservas">
+                            <div className="botaoContainer">
                                 <input type="checkbox" name="ocultarencerradas" id="ocultarencerradas" />
                                 <label htmlFor="ocultarencerradas">
                                     Ocultar Reservas Encerradas
@@ -86,7 +85,6 @@ export default function TodasReservas(){
       </ModuloReservas>       
       </main>
     </PageConstructor>
-  </>
   );
   
   }

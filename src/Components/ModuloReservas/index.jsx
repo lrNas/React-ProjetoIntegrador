@@ -69,7 +69,7 @@ export default function ModuloReservas() {
                             <p>
                                 <img src={seta} className="seta" alt="seta" />
                             </p>
-                            <p>{item.valor}</p>
+                            <p>R$ {item.valor}</p>
                         </div>
                         <div>
                             <p>{item.ag_destino} - {item.data_devolucao}</p>

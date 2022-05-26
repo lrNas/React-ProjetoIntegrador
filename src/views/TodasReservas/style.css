@@ -234,7 +234,6 @@ p{
     display: flex;
     justify-content: space-between;
     width: 60%;
-    margin-top: 2vmax;
     margin-bottom: -3vmax;
 }
 .containers{
