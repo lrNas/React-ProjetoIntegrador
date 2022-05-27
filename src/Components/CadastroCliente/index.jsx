@@ -73,11 +73,7 @@ export default function PageCadastroCliente() {
     }
 
     const sendEndereco = async () => {
-<<<<<<< HEAD
-        const usuarioEndereco = { cep: cep, logadouro: rua, cidade: cidade, estado: uf, complemento: complemento, fk_id_usuario: 2 }
-=======
         const usuarioEndereco = { cep: cep, logadouro: rua, cidade: cidade, estado: uf, complemento: complemento,fk_id_usuario : fkid }
->>>>>>> daf81d80baf5df0f733f649121c6b1ae8f8739b7
 
         try {
             const resposta = await axios.post("http://localhost:3030/endereco", usuarioEndereco)
