@@ -1,7 +1,3 @@
-
-
-
-
 #garagem
 {
     height: 7vmin;
@@ -234,6 +230,7 @@ p{
     display: flex;
     justify-content: space-between;
     width: 60%;
+    margin-top: 2vmax;
     margin-bottom: -3vmax;
 }
 .containers{
@@ -507,10 +504,7 @@ p{
         }
         .carrossel{
             width: 100%;
-        }
-        .section{
-            padding-top: 3vmax;
-        }
+        }       
         #details{
             font-size: 1.5vmax;
         }

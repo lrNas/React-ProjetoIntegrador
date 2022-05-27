@@ -2,8 +2,10 @@ import { React, useState, useEffect } from "react";
 import seta from "../../img/seta.svg";
 import axios from "axios";
 import "./style.css";
+import { getCookie } from "../CookiesHandler";
 
 export default function ModuloReservas() {
+    const[Id,setId] = useState(getCookie("id"))
     const meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul","Ago","Set","Out","Nov","Dez"];
     const [cards, setCard] = useState([])
     //const removeDoubleElements = (list) => [...list.filter((item, index) => list.indexOf(item) === index)];
@@ -12,12 +14,12 @@ export default function ModuloReservas() {
         getReservas()
     }, []);
 
+
     async function getReservas() {
         try {
-            
             let cardsaux = [];
 
-            const resposta = await axios.get("http://localhost:3030/reserva")
+            const resposta = await axios.get(`http://localhost:3030/reserva/usuario/${Id}`)
             resposta.data.map(async (data) => {
                 let card = {
                     "id":"",

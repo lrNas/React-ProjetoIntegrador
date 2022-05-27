@@ -11,6 +11,7 @@ const animatedComponents = makeAnimated()
 
 export default function PageCadastroCliente() {
     const [nome, setListName] = useState('')
+    const [fkid, setFkid] = useState('')
     const [overlay, setOverlay] = useState(false)
     const [email, setEmail] = useState('')
     const [senha, setListsenha] = useState('')
@@ -56,7 +57,7 @@ export default function PageCadastroCliente() {
 
     //Axios
     const sendCartao = async () => {
-        const usuarioCartao = { nome: nomeCartao, numero: numCartao, validade: dataValidade, cvc: cvc, fk_id_usuario: 2 }
+        const usuarioCartao = { nome: nomeCartao, numero: numCartao, validade: dataValidade, cvc: cvc, fk_id_usuario: fkid }
 
         try {
             const resposta = await axios.post("http://localhost:3030/cartao", usuarioCartao)
@@ -65,13 +66,18 @@ export default function PageCadastroCliente() {
             setNumCartao("")
             setDataValidade("")
             setCvc("")
+            
         } catch (err) {
             console.log(err)
         }
     }
 
     const sendEndereco = async () => {
+<<<<<<< HEAD
         const usuarioEndereco = { cep: cep, logadouro: rua, cidade: cidade, estado: uf, complemento: complemento, fk_id_usuario: 2 }
+=======
+        const usuarioEndereco = { cep: cep, logadouro: rua, cidade: cidade, estado: uf, complemento: complemento,fk_id_usuario : fkid }
+>>>>>>> daf81d80baf5df0f733f649121c6b1ae8f8739b7
 
         try {
             const resposta = await axios.post("http://localhost:3030/endereco", usuarioEndereco)
@@ -100,6 +106,7 @@ export default function PageCadastroCliente() {
             setNascimento("")
             setCnh("")
             setValidade("")
+            setFkid(resposta.data.id)
         } catch (err) {
             console.log(err)
         }
