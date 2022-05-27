@@ -39,14 +39,14 @@ function PageCadastroLocadora() {
     //Formatação && Validação de Telefone
     let inputLenght = telefone.length
     const formatoPress = () => {
-        /* console.log(inputLenght)
+        console.log(inputLenght)
         if (inputLenght === 0) {
             setTelefone(telefone + '(')
         } else if (inputLenght === 3) {
             setTelefone(telefone + ') ')
         } else if (inputLenght === 10) {
             setTelefone(telefone + '-')
-        } */
+        }
     }
     const formatoTel = () => {
         let validarRegExTel = /^1\d\d(\d\d)?$|^0800 ?\d{3} ?\d{4}$|^(\(0?([1-9a-zA-Z][0-9a-zA-Z])?[1-9]\d\) ?|0?([1-9a-zA-Z][0-9a-zA-Z])?[1-9]\d[ .-]?)?(9|9[ .-])?[2-9]\d{3}[ .-]?\d{4}$/
@@ -109,7 +109,7 @@ function PageCadastroLocadora() {
                                     <input type="text" name="unidade" id="unidade" value={nomeUnidade} onChange={event => setNomeUnidade(event.target.value)} required />
                                     <input type="email" name="emailLocadora" id="emailLocadora" value={email} onChange={event => setEmail(event.target.value)} required />
                                     <input type="text" maxLength="18" name="cnpj" id="cnpj" value={cnpj} onChange={event => setCnpj(event.target.value)} required onKeyPress={cnpjPress} onBlur={cnpjBlur} />
-                                    <input type="tel" maxLength="20" name="telefone" id="telefone" value={telefone} onChange={event => setTelefone(event.target.value)} onBlur={formatoTel} onKeyPress={formatoPress} required />
+                                    <input type="tel" maxLength="15" name="telefone" id="telefone" value={telefone} onChange={event => setTelefone(event.target.value)} onBlur={formatoTel} onKeyPress={formatoPress} required />
                                 </div>
                             </div>
                         </div>

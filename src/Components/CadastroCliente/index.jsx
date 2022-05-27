@@ -154,6 +154,16 @@ export default function PageCadastroCliente() {
     }
     //----------------------------------------------
 
+    //  Formatação Cartão
+    const cartaoPress = () => {
+        let validarRegExCartao = /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/
+        if (numCartao.match(validarRegExCartao)) {
+        } else if (numCartao === "") { }
+        else {
+            setCep("")
+        }
+    //----------------------------------------------
+    
     //  Validação && Formatação CEP
     const cepPress = () => {
         let inputLenght = cep.length
@@ -177,6 +187,20 @@ export default function PageCadastroCliente() {
                 setRua(data.logradouro)
                 setUf({ value: data.uf, label: data.uf })
             })
+    }
+    //----------------------------------------------
+
+    //Formatação && Validação de Telefone
+    let inputLenght = telefone.length
+    const formatoPress = () => {
+        console.log(inputLenght)
+        if (inputLenght === 0) {
+            setTelefone(telefone + '(')
+        } else if (inputLenght === 3) {
+            setTelefone(telefone + ') ')
+        } else if (inputLenght === 10) {
+            setTelefone(telefone + '-')
+        }
     }
     //----------------------------------------------
 
@@ -243,11 +267,11 @@ export default function PageCadastroCliente() {
                                     <div className="formsvdivs">
                                         <div className="formshdivs">
                                             <label htmlFor="cpf"> CPF:</label>
-                                            <input type="text" maxLength="14" name="cpf" id="cpf" onKeyUp={() => false/*mascaraCpf('###.###.###-##', this)*/} value={cpf} onChange={event => setCpf(event.target.value)} onKeyPress={cpfPress} onBlur={cpfBlur} />
+                                            <input type="text" maxLength="14" name="cpf" id="cpf" value={cpf} onChange={event => setCpf(event.target.value)} onKeyPress={cpfPress} onBlur={cpfBlur} />
                                         </div>
                                         <div className="formshdivs">
-                                            <label htmlFor="telefone"> Celular:</label>
-                                            <input type="text" name="telefone" id="telefone" value={telefone} onChange={event => setTelefone(event.target.value)} />
+                                            <label htmlFor="telefone"> Telefone:</label>
+                                            <input type="text" name="telefone" id="telefone" maxLength="15" value={telefone} onChange={event => setTelefone(event.target.value)} onKeyPress={formatoPress}/>
                                         </div>
                                         <div className="formshdivs">
                                             <label htmlFor="repetirsenha"> Repetir a Senha:</label>
@@ -311,7 +335,7 @@ export default function PageCadastroCliente() {
                             <h2>Dados Bancários</h2>
                             <div className="formshdivs">
                                 <label htmlFor="numcartao"> Número do Cartão:</label>
-                                <input type="text" maxLength="20" name="numcartao" id="numcartao" className="size3" value={numCartao} onChange={event => setNumCartao(event.target.value)} />
+                                <input type="text" maxLength="20" name="numcartao" id="numcartao" className="size3" value={numCartao} onChange={event => setNumCartao(event.target.value)} onKeyPress={cartaoPress} />
                             </div>
                             <div className="formshdivs">
                                 <label htmlFor="nomecartao"> Nome do Cartão:</label>
@@ -338,4 +362,4 @@ export default function PageCadastroCliente() {
 
     )
 }
-
+}
