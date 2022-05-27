@@ -7,28 +7,84 @@ import { useState, useEffect } from "react"
 import axios from "axios"
 
 function MainPageContent(props) {
-    const [veiculoAndamento, setVeiculoAndamento] = useState([])
-    const [veiculosDisponiveis, setVeiculosDisponiveis] = useState("")
-    const [quantidadeVeiculo, setQuantidadeVeiculo] = useState("")
+    //Alugueis em Andamento
+    const [alugueisAndamento, setAlugueisAndamento] = useState(0)
+    //Carros Disponíveis
+    const [veiculosDisponiveis, setVeiculosDisponiveis] = useState(0)
+    const [quantidadeVeiculo, setQuantidadeVeiculo] = useState(0)
+    //Aluguel Mes
+    const [aluguelMes, setAluguelMes] = useState(0)
 
-    /*
-    Mudar as funções de Jsons para axios
-    */
-
+    //Handler
     useEffect(() => {
+        functionAlugueisAndamento()
+        functionCarrosDisponiveis()
+        functionAluguelMes()
+    }, [])
+
+    //Alugueis em Andamento
+    const functionAlugueisAndamento = () => {
+        const now = new Date()
+        axios.get('http://localhost:3030/reserva')
+            .then(res => res.data)
+            .then(res => {
+                res.forEach(key => {
+                    const data = new Date(key.data_entrega)
+                    if (data > now) {
+                        setAlugueisAndamento(alugueisAndamento + 1)
+                    }
+                })
+            })
+    }
+
+    //Alugueis no Mês ?
+    const functionAluguelMes = () => {
+        const now = new Date()
+        let mesAtual = now.getMonth() + 1
+        let anoAtual = now.getFullYear()
+        axios.get('http://localhost:3030/reserva')
+            .then(res => res.data)
+            .then(res => {
+                res.forEach(key => {
+                    const data = new Date(key.data_entrega)
+                    let anoEntrega = data.getFullYear()
+                    let mesEntrega = data.getMonth() + 1
+                    if (anoEntrega >= anoAtual) {
+                        if (mesEntrega > mesAtual) {
+                            setAluguelMes(aluguelMes + 1)
+                        }
+                    }
+                })
+            })
+    }
+
+    //Alugueis no Ano Atual
+
+    //Linha de codigo
+
+    //Carros Disponíveis
+    const functionCarrosDisponiveis = () => {
         setVeiculosDisponiveis(0)
         axios.get('http://localhost:3030/veiculo')
             .then(res => res.data)
             .then(res => {
                 setQuantidadeVeiculo(res.length)
-                for(const veiculo of res) {
-                    if(veiculo.fk_id_status_veiculo == 1){
-                        setVeiculosDisponiveis(veiculosDisponiveis+1)
+                res.forEach(veiculo => {
+                    if (veiculo.fk_id_status_veiculo == 1) {
+                        setVeiculosDisponiveis(veiculosDisponiveis + 1)
                     }
-                }
+                })
             })
-            console.log(veiculosDisponiveis +" / "+quantidadeVeiculo)
-        }, [])
+    }
+
+
+    //Faturamento do Mês Atual
+
+    //Linha de codigo
+
+    //Faturamento do Ano Atual
+
+    //Linha de codigo
 
 
 
@@ -65,11 +121,11 @@ function MainPageContent(props) {
                 <div className="ovlabels formsvdivs">
                     <div className="formshdivs">
                         <p> Alugueis em Andamento:</p>
-                        <p className="overview-info ">  {/* emAndt.length */}</p>
+                        <p className="overview-info ">  {alugueisAndamento}</p>
                     </div>
                     <div className="formshdivs">
                         <p> Alugueis no Mês:</p>
-                        <p className="overview-info "> {/* noMes.length */}</p>
+                        <p className="overview-info "> {aluguelMes}</p>
                     </div>
                     <div className="formshdivs">
                         <p> Alugueis no Ano Atual:</p>
@@ -77,7 +133,7 @@ function MainPageContent(props) {
                     </div>
                     <div className="formshdivs">
                         <p> Carros Disponíveis:</p>
-                        <p className="overview-info "> {veiculoAndamento}/{quantidadeVeiculo} </p>
+                        <p className="overview-info "> {veiculosDisponiveis}/{quantidadeVeiculo} </p>
                     </div>
                     <div className="formshdivs">
                         <p> Faturamento do Mês Atual:</p>

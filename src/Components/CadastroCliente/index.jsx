@@ -30,7 +30,7 @@ export default function PageCadastroCliente() {
     const [nomeCartao, setNomeCartao] = useState('')
     const [estado, setEstado] = useState('')
     const [holderEstado, setHolderEstado] = useState('Selecione seu Estado')
-    const [uf, setUf] = useState('')
+    const [uf, setUf] = useState({})
     const selectContent = value => { setUf(value) }
 
     //Select Estados
@@ -71,7 +71,7 @@ export default function PageCadastroCliente() {
     }
 
     const sendEndereco = async () => {
-        const usuarioEndereco = { cep: cep, logadouro: rua, cidade: cidade, estado: uf, complemento: complemento,fk_id_usuario : 2 }
+        const usuarioEndereco = { cep: cep, logadouro: rua, cidade: cidade, estado: uf, complemento: complemento, fk_id_usuario: 2 }
 
         try {
             const resposta = await axios.post("http://localhost:3030/endereco", usuarioEndereco)
@@ -166,13 +166,14 @@ export default function PageCadastroCliente() {
             alert("CEP Inválido!")
             setCep("")
         }
-        
-    axios.get(`https://viacep.com.br/ws/${cep}/json/`)
-        .then(res => res.data)
-        .then(data => {
-            setCidade(data.localidade)
-            setRua(data.logradouro)
-        })
+
+        axios.get(`https://viacep.com.br/ws/${cep}/json/`)
+            .then(res => res.data)
+            .then(data => {
+                setCidade(data.localidade)
+                setRua(data.logradouro)
+                setUf({ value: data.uf, label: data.uf })
+            })
     }
     //----------------------------------------------
 
@@ -279,14 +280,14 @@ export default function PageCadastroCliente() {
                                             theme={customTheme}
                                             onChange={selectContent}
                                             components={animatedComponents}
-                                            options={estado}styles={{
-                                                indicatorSeparator: () => {},
+                                            options={estado} styles={{
+                                                indicatorSeparator: () => { },
                                                 dropdownIndicator: defaultStyles => ({ display: 'none' })
                                             }}
                                             placeholder={holderEstado}
                                             isSearchable
                                             closeMenuOnSelect
-                                            
+
                                             required
                                         />
                                     </div>
