@@ -24,7 +24,7 @@ function HeaderLinks(props){
             <>
                 <li><NavigateButton nome="Contato" pagina="/contato"/></li>
                 <li><NavigateButton nome="Duvidas" pagina="/duvidas"/></li>
-                <li><NavigateButton nome="Minhas Reservas" pagina="/minhasreservas"/></li>
+                <li><NavigateButton nome="Minhas Reservas" pagina="/todasreservas"/></li>
             </>
         )
     }else{
