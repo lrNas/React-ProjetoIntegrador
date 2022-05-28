@@ -7,9 +7,9 @@ import { getCookie } from '../CookiesHandler';
 
 
 
-const animatedComponents = makeAnimated()
 
-export default function PageCadastroCliente() {
+const animatedComponents = makeAnimated()
+function PageCadastroCliente() {
     const [nome, setListName] = useState('')
     const [fkid, setFkid] = useState('')
     const [overlay, setOverlay] = useState(false)
@@ -31,7 +31,7 @@ export default function PageCadastroCliente() {
     const [nomeCartao, setNomeCartao] = useState('')
     const [estado, setEstado] = useState('')
     const [holderEstado, setHolderEstado] = useState('Selecione seu Estado')
-    const [uf, setUf] = useState('')
+    const [uf, setUf] = useState({})
     const selectContent = value => { setUf(value) }
 
     //Select Estados
@@ -43,6 +43,7 @@ export default function PageCadastroCliente() {
                 setEstado(response)
             })
     }, [])
+    
     const customTheme = (theme) => {
         return {
             ...theme,
@@ -58,7 +59,6 @@ export default function PageCadastroCliente() {
     //Axios
     const sendCartao = async () => {
         const usuarioCartao = { nome: nomeCartao, numero: numCartao, validade: dataValidade, cvc: cvc, fk_id_usuario: fkid }
-
         try {
             const resposta = await axios.post("http://localhost:3030/cartao", usuarioCartao)
             alert(resposta.data)
@@ -103,6 +103,7 @@ export default function PageCadastroCliente() {
             setCnh("")
             setValidade("")
             setFkid(resposta.data.id)
+            alert('Cadastro do Usuário realizado com Sucesso!')
         } catch (err) {
             console.log(err)
         }
@@ -154,6 +155,15 @@ export default function PageCadastroCliente() {
     }
     //----------------------------------------------
 
+    //  Formatação Cartão
+    const cartaoPress = () => {
+        let inputLenght = numCartao.length
+        if (inputLenght === 4 || inputLenght === 9 || inputLenght === 14) {
+            setNumCartao(numCartao + '-')
+        }
+    }
+    //----------------------------------------------
+    
     //  Validação && Formatação CEP
     const cepPress = () => {
         let inputLenght = cep.length
@@ -169,13 +179,28 @@ export default function PageCadastroCliente() {
             alert("CEP Inválido!")
             setCep("")
         }
-        
-    axios.get(`https://viacep.com.br/ws/${cep}/json/`)
-        .then(res => res.data)
-        .then(data => {
-            setCidade(data.localidade)
-            setRua(data.logradouro)
-        })
+
+        axios.get(`https://viacep.com.br/ws/${cep}/json/`)
+            .then(res => res.data)
+            .then(data => {
+                setCidade(data.localidade)
+                setRua(data.logradouro)
+                setUf({ value: data.uf, label: data.uf })
+            })
+    }
+    //----------------------------------------------
+
+    //Formatação && Validação de Telefone
+    let inputLenght = telefone.length
+    const formatoPress = () => {
+        console.log(inputLenght)
+        if (inputLenght === 0) {
+            setTelefone(telefone + '(')
+        } else if (inputLenght === 3) {
+            setTelefone(telefone + ') ')
+        } else if (inputLenght === 10) {
+            setTelefone(telefone + '-')
+        }
     }
     //----------------------------------------------
 
@@ -242,11 +267,11 @@ export default function PageCadastroCliente() {
                                     <div className="formsvdivs">
                                         <div className="formshdivs">
                                             <label htmlFor="cpf"> CPF:</label>
-                                            <input type="text" maxLength="14" name="cpf" id="cpf" onKeyUp={() => false/*mascaraCpf('###.###.###-##', this)*/} value={cpf} onChange={event => setCpf(event.target.value)} onKeyPress={cpfPress} onBlur={cpfBlur} />
+                                            <input type="text" maxLength="14" name="cpf" id="cpf" value={cpf} onChange={event => setCpf(event.target.value)} onKeyPress={cpfPress} onBlur={cpfBlur} />
                                         </div>
                                         <div className="formshdivs">
-                                            <label htmlFor="telefone"> Celular:</label>
-                                            <input type="text" name="telefone" id="telefone" value={telefone} onChange={event => setTelefone(event.target.value)} />
+                                            <label htmlFor="telefone"> Telefone:</label>
+                                            <input type="text" name="telefone" id="telefone" maxLength="15" value={telefone} onChange={event => setTelefone(event.target.value)} onKeyPress={formatoPress}/>
                                         </div>
                                         <div className="formshdivs">
                                             <label htmlFor="repetirsenha"> Repetir a Senha:</label>
@@ -282,14 +307,14 @@ export default function PageCadastroCliente() {
                                             theme={customTheme}
                                             onChange={selectContent}
                                             components={animatedComponents}
-                                            options={estado}styles={{
-                                                indicatorSeparator: () => {},
+                                            options={estado} styles={{
+                                                indicatorSeparator: () => { },
                                                 dropdownIndicator: defaultStyles => ({ display: 'none' })
                                             }}
                                             placeholder={holderEstado}
                                             isSearchable
                                             closeMenuOnSelect
-                                            
+
                                             required
                                         />
                                     </div>
@@ -310,7 +335,7 @@ export default function PageCadastroCliente() {
                             <h2>Dados Bancários</h2>
                             <div className="formshdivs">
                                 <label htmlFor="numcartao"> Número do Cartão:</label>
-                                <input type="text" maxLength="20" name="numcartao" id="numcartao" className="size3" value={numCartao} onChange={event => setNumCartao(event.target.value)} />
+                                <input type="text" maxLength="19" name="numcartao" id="numcartao" className="size3" value={numCartao} onChange={event => setNumCartao(event.target.value)} onKeyPress={cartaoPress} />
                             </div>
                             <div className="formshdivs">
                                 <label htmlFor="nomecartao"> Nome do Cartão:</label>
@@ -338,3 +363,5 @@ export default function PageCadastroCliente() {
     )
 }
 
+
+export default PageCadastroCliente;
