@@ -45,7 +45,7 @@ function DropContent(props){
             <ul className="menuLogado">
                 <li id="nomeUsuario" className="nomeUsuario">{getCookie("nomeusuario")}</li>
                 <li className="mlItens" id="EditarPerfil" onClick={()=>{window.location.assign("http://localhost:3000/atualizar")}}>Editar Perfil</li>
-                <li className="mlItens" id="historicoLocacoes">Histórico de locações</li>
+                <li className="mlItens" id="historicoLocacoes" onClick={()=>{window.location.assign("http://localhost:3000/historicoreservas")}}>Histórico de locações</li>
                 <li className="mlItens" id="logout"  onClick={()=>{deleteCookies(); window.location.assign("http://localhost:3000/")}} >Sair</li>
             </ul>
         </div>

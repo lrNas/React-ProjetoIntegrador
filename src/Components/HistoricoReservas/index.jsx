@@ -4,13 +4,13 @@ import axios from "axios";
 import "./style.css";
 import { getCookie } from "../CookiesHandler";
 
-export default function ReservasCliente() {
-    const[Id] = useState(getCookie("id"))
-    const meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul","Ago","Set","Out","Nov","Dez"];
+export default function ModuloReservas() {
+    const [Id] = useState(getCookie("id"))
+    const meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
     const [cards, setCard] = useState([])
     //const removeDoubleElements = (list) => [...list.filter((item, index) => list.indexOf(item) === index)];
 
-    useEffect(() => {        
+    useEffect(() => {
         getReservas()
     }, []);
 
@@ -23,21 +23,21 @@ export default function ReservasCliente() {
             const resposta = await axios.get(`http://localhost:3030/reserva/usuario/${Id}`)
             resposta.data.map(async (data) => {
                 let card = {
-                    "id":"",
-                    "modelo":"",
-                    "valor":"",
-                    "placa_veiculo":"",
-                    "ag_retirada":"",     
-                    "ag_destino":"",           
-                    "data_retirada":"",
-                    "data_devolucao":""
-                 };
+                    "id": "",
+                    "modelo": "",
+                    "valor": "",
+                    "placa_veiculo": "",
+                    "ag_retirada": "",
+                    "ag_destino": "",
+                    "data_retirada": "",
+                    "data_devolucao": ""
+                };
                 card.id = data.id
                 card.valor = data.valor
-                let data_retirada = new Date(data.data_retirada)                
-                let data_retirada1 = (data_retirada.getDate() + " " + meses[String(data_retirada.getMonth())] + " " + data_retirada.getFullYear() +" "+ (String(data_retirada.getHours() + 1).padStart(2, '0'))+":"+(String(data_retirada.getMinutes() + 1).padStart(2, '0')));
+                let data_retirada = new Date(data.data_retirada)
+                let data_retirada1 = (data_retirada.getDate() + " " + meses[String(data_retirada.getMonth())] + " " + data_retirada.getFullYear() + " " + (String(data_retirada.getHours() + 1).padStart(2, '0')) + ":" + (String(data_retirada.getMinutes() + 1).padStart(2, '0')));
                 let data_devolucao = new Date(data.data_entrega)
-                let data_devolucao1 = (data_devolucao.getDate() + " " + meses[(data_devolucao.getMonth())] + " " + data_devolucao.getFullYear() +" "+ (String(data_devolucao.getMinutes() + 1).padStart(2, '0'))+":"+(String(data_devolucao.getMinutes() + 1).padStart(2, '0')));
+                let data_devolucao1 = (data_devolucao.getDate() + " " + meses[(data_devolucao.getMonth())] + " " + data_devolucao.getFullYear() + " " + (String(data_devolucao.getMinutes() + 1).padStart(2, '0')) + ":" + (String(data_devolucao.getMinutes() + 1).padStart(2, '0')));
                 card.data_retirada = data_retirada1
                 card.data_devolucao = data_devolucao1
 
@@ -49,29 +49,30 @@ export default function ReservasCliente() {
 
                 const vei = await axios.get(`http://localhost:3030/veiculo/${data.fk_id_veiculo}`)
                 card.modelo = vei.data[0].modelo
-                card.placa_veiculo = vei.data[0].placa    
-                if(data_devolucao.getFullYear() > data1.getFullYear()){
-                    if((data_devolucao.getFullYear() == data1.getFullYear()) && (data_devolucao.getMonth() > data1.getMonth())){
-                        if((data_devolucao.getMonth() == data1.getMonth()) && (data_devolucao.getHours() > data1.getHours())){
-                            cardsaux.push(card)                
+                card.placa_veiculo = vei.data[0].placa
+                if (data_devolucao.getFullYear() < data1.getFullYear()) {
+                    if ((data_devolucao.getFullYear() == data1.getFullYear()) && (data_devolucao.getMonth() < data1.getMonth())) {
+                        if ((data_devolucao.getMonth() == data1.getMonth()) && (data_devolucao.getHours() < data1.getHours())) {
+                            cardsaux.push(card)
                             setCard([...cardsaux])
                         }
-                        cardsaux.push(card)                
-                        setCard([...cardsaux]) }
-                        cardsaux.push(card)                
-                        setCard([...cardsaux])  
-                }          
-            })            
-            
-            
+                        cardsaux.push(card)
+                        setCard([...cardsaux])
+                    }
+                    cardsaux.push(card)
+                    setCard([...cardsaux])
+                }
+            })
+
+
         } catch (err) {
             console.log(err)
         }
     }
 
     return (
-    <>
-        {cards.map((item) => {
+        <>
+            {cards.map((item) => {
                 return (
                     <li className="containers" id="reservaFutura" key={item.id}>
                         <div>
@@ -94,8 +95,8 @@ export default function ReservasCliente() {
                     </li>
                 )
             })
-        }
-    </>
+            }
+        </>
     )
 
 }

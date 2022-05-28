@@ -7,6 +7,8 @@ import Duvidas from "./views/Duvidas";
 import CadastroVeiculos from "./views/CadastroVeiculos";
 import TodasReservas from "./views/TodasReservas";
 import AtualizarPerfil from "./views/AtualizarPerfil";
+import Login from "./views/Login";
+import HistoricoReservasView from "./views/HistoricoReservasView";
 
 const AppRoutes = () => {
   return (
@@ -20,6 +22,8 @@ const AppRoutes = () => {
         <Route path="/cadastroveiculos" element={<CadastroVeiculos />} />
         <Route path="/duvidas" element={<Duvidas />} />
         <Route path="/todasreservas" element={<TodasReservas />} />
+        <Route path="/historicoreservas" element={<HistoricoReservasView />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
   );

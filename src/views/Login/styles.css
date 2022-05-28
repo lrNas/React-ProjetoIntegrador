@@ -1,0 +1,53 @@
+.nomeUsuario {
+    /*Revisado e sem defeitos conhecidos*/
+    background-color: #283477;
+    font-size: 1.2vmax;
+    padding: 1vmax;
+    margin: 0;
+    width: 100%;
+    margin-left: -7%;
+}
+#font{
+    font-size:x-large;
+    font-weight: bold;
+}
+
+.menuLogado {
+    /*Revisado e sem defeitos conhecidos*/
+    list-style-type: none;
+    font-size: 1vmax;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+.section {
+    padding-right: 12.5%;
+    padding-left: 12.5%;
+    margin-left: 0;
+    margin-right: 0;
+}
+.login{
+    background-color: #7986CB;
+    margin-top: 5vh;
+    padding: 1%;
+    border-radius: 10px;
+    color: aliceblue;
+}
+#font1{
+    font-size: medium;
+}
+.menuLogado li {
+    /*Revisado e sem defeitos conhecidos*/
+    margin-top: 1vmin;
+}
+
+.mlItens:hover {
+    /*Revisado e sem defeitos conhecidos*/
+    background-color: #7986CB;
+    width: 100%;
+    margin-left: -7%;
+    border-radius: 1vmin;
+    padding: 0;
+    padding-left: 1vmin;
+    margin: 1vmin;
+}

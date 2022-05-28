@@ -6,6 +6,7 @@ import bancoDeDados from "../../bancosjson/bdfull-teste.json";
 import axios from "axios";
 import "./style.css";
 import ReservasCliente from "../../Components/ReservasCliente";
+import HistoricoReservas from "../../Components/HistoricoReservas";
 import ModuloReservas from "../../Components/ModuloReservas";
 import {getCookie} from "../../Components/CookiesHandler";
 

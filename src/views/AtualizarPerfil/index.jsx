@@ -28,13 +28,56 @@ function AtualizarPerfil() {
     const [nomeCartao, setNomeCartao] = useState('')
     const [estado, setEstado] = useState(null)
     const [uf, setUf] = useState('')
-    const [token, setToken] = useState('')
+    const [token, setToken] = useState(getCookie('auth'))
+    const [id] = useState(getCookie('id'))
+    const [auth, setAuth] = useState(token)
     const selectContent = value => { setUf(value) }
 
+    const getUsuario = async () => {
+        try {
+            const resposta = await axios.post(`http://localhost:3030/usuario/${id}`, {token:auth})
+            setListName(resposta.data.nome_completo)
+            setEmail(resposta.data.email)
+            setListsenha(resposta.data.senha)
+            setCpf(resposta.data.cpf)
+            setTelefone(resposta.data.telefone)
+            setNascimento(resposta.data.data_nascimento)
+            setCnh(resposta.data.cnh)
+            setValidade(resposta.data.validade_cnh)
+        } catch (err) {
+            console.log(err)
+        }
+    }
+    const getCartao = async () => {
 
-    
+        try {
+            const resposta = await axios.post(`http://localhost:3030/cartao/usuario/${id}`, {token:auth})
+            setNomeCartao(resposta.data[0].nome)
+            setNumCartao(resposta.data[0].numero)
+            setDataValidade(resposta.data[0].validade)
+            setCvc(resposta.data.cvc)
+        } catch (err) {
+            console.log(err)
+        }
+    }
+    const getEndereco = async () => {
+        try {
+            const resposta = await axios.get(`http://localhost:3030/endereco/user/${id}`)
+            setCep(resposta.data[0].cep)
+            setRua(resposta.data[0].logadouro)
+            setCidade(resposta.data[0].cidade)
+            setUf(resposta.data[0].estado)
+            setComplemento(resposta.data[0].complemento)
+            
+        }catch (err) {
+            console.log(err)
+        }
+    }
     //Select Estados
     useEffect(() => {
+        getCartao()
+        getUsuario()
+        getEndereco()
         setToken(getCookie("auth"))
         axios.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados/')
             .then(response => response.data)
