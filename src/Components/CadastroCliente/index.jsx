@@ -7,9 +7,9 @@ import { getCookie } from '../CookiesHandler';
 
 
 
-const animatedComponents = makeAnimated()
 
-export default function PageCadastroCliente() {
+const animatedComponents = makeAnimated()
+function PageCadastroCliente() {
     const [nome, setListName] = useState('')
     const [fkid, setFkid] = useState('')
     const [overlay, setOverlay] = useState(false)
@@ -43,6 +43,7 @@ export default function PageCadastroCliente() {
                 setEstado(response)
             })
     }, [])
+    
     const customTheme = (theme) => {
         return {
             ...theme,
@@ -58,7 +59,6 @@ export default function PageCadastroCliente() {
     //Axios
     const sendCartao = async () => {
         const usuarioCartao = { nome: nomeCartao, numero: numCartao, validade: dataValidade, cvc: cvc, fk_id_usuario: fkid }
-
         try {
             const resposta = await axios.post("http://localhost:3030/cartao", usuarioCartao)
             alert(resposta.data)
@@ -162,6 +162,7 @@ export default function PageCadastroCliente() {
         else {
             setCep("")
         }
+    }
     //----------------------------------------------
     
     //  Validação && Formatação CEP
@@ -362,4 +363,6 @@ export default function PageCadastroCliente() {
 
     )
 }
-}
+
+
+export default PageCadastroCliente;

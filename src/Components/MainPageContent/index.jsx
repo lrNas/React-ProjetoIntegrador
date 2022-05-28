@@ -169,7 +169,7 @@ function MainPageContent(props) {
                         <p className="overview-info "> {aluguelAno}</p>
                     </div>
                     <div className="formshdivs">
-                        <p> Carros Disponíveis:</p>
+                        <p> Carros Ociosos:</p>
                         <p className="overview-info "> {veiculosDisponiveis}/{quantidadeVeiculo} </p>
                     </div>
                     <div className="formshdivs">

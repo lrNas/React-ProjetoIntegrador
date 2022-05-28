@@ -57,14 +57,14 @@ function Searchbar() {
                     <div className="searchbar-h">
                         <div className="searchbar-v">
 
-                            <input className="searchbar-item size3" type="text" name="localRetirada" value={localRetirada} onChange={local => setLocalRetirada(local.target.value)} id="localRetirada" placeholder="Digite aqui o local de retirada" />
-                            <input className="searchbar-item size2" type="date" name="diaRetirada" value={dataRetirada} onChange={data => setDataRetirada(data.target.value)} id="diaRetirada" placeholder="Dia da retirada" />
-                            <input className="searchbar-item size1" type="time" name="horarioRetirada" value={horarioRetirada} onChange={horario => setHorarioRetirada(horario.target.value)} id="horarioRetirada" placeholder="Horário da retirada" />
+                            <input className="searchbar-item size3" type="text" name="localRetirada" step={60} value={localRetirada} onChange={local => setLocalRetirada(local.target.value)} id="localRetirada" placeholder="Digite aqui o local de retirada" />
+                            <input className="searchbar-item size2" type="date" name="diaRetirada" step={60} value={dataRetirada} onChange={data => setDataRetirada(data.target.value)} id="diaRetirada" placeholder="Dia da retirada" />
+                            <input className="searchbar-item size1" type="time" name="horarioRetirada" step={60} value={horarioRetirada} onChange={horario => setHorarioRetirada(horario.target.value)} id="horarioRetirada" placeholder="Horário da retirada" />
                         </div>
                         <div className="searchbar-v">
-                            <input className="searchbar-item size3" type="text" name="localEntrega" value={localEntrega} onChange={local => setLocalEntrega(local.target.value)} id="localEntrega" placeholder="Digite aqui o local de entrega" />
-                            <input className="searchbar-item size2" type="date" name="diaEntrega" value={dataEntrega} onChange={data => setDataEntrega(data.target.value)} id="diaEntrega" placeholder="Dia da devolução" />
-                            <input className="searchbar-item size1" type="time" name="horarioEntrega" value={horarioEntrega} onChange={horario => setHorarioEntrega(horario.target.value)} id="horarioEntrega" placeholder="Horário da retirada" />
+                            <input className="searchbar-item size3" type="text" name="localEntrega" step={60} value={localEntrega} onChange={local => setLocalEntrega(local.target.value)} id="localEntrega" placeholder="Digite aqui o local de entrega" />
+                            <input className="searchbar-item size2" type="date" name="diaEntrega" step={60} value={dataEntrega} onChange={data => setDataEntrega(data.target.value)} id="diaEntrega" placeholder="Dia da devolução" />
+                            <input className="searchbar-item size1" type="time" name="horarioEntrega" step={60} value={horarioEntrega} onChange={horario => setHorarioEntrega(horario.target.value)} id="horarioEntrega" placeholder="Horário da retirada" />
                         </div>
                     </div>
                     {/*LINK ABAIXO SOMENTE PARA DEMONSTRAÇÃO, O BOTÃO BUSCAR NÂO FUNCIONARA POR A HREF !!!!*/}
