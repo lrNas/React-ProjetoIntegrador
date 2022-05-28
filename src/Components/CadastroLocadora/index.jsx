@@ -27,6 +27,7 @@ function PageCadastroLocadora() {
             setEmail("")
             setCnpj("")
             setTelefone("")
+            alert('Cadastro da Locadora realizado com Sucesso!')
         } catch (err) {
             console.log(err)
         }

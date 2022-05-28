@@ -9,17 +9,27 @@ import axios from "axios"
 function MainPageContent(props) {
     //Alugueis em Andamento
     const [alugueisAndamento, setAlugueisAndamento] = useState(0)
+    //-------
     //Carros Disponíveis
     const [veiculosDisponiveis, setVeiculosDisponiveis] = useState(0)
     const [quantidadeVeiculo, setQuantidadeVeiculo] = useState(0)
+    //-------
     //Aluguel Mes
     const [aluguelMes, setAluguelMes] = useState(0)
+    //-------
     //Aluguel Ano
     const [aluguelAno, setAluguelAno] = useState(0)
+    //-------
     //Total Mes
     const [valorTotalMes, setValorTotalMes] = useState(0)
+    //-------
     //Total Ano
     const [valorTotalAno, setValorTotalAno] = useState(0)
+    //-------
+    //auxiliar de Rank Agencia
+    const [rankAgencias, setRankAgencias] = useState('')
+    //Rank Agencia
+    const [topRankAgencia, setTopRankAgencia] = useState('')
 
     //Handler
     useEffect(() => {
@@ -116,15 +126,25 @@ function MainPageContent(props) {
                 for (let i = 1; i < totalReservas.length; i++) {
                     rank.push({ id: i, valor: totalReservas[i] })
                 }
-                rank.sort((a, b)=> {
-                    return  b.valor - a.valor;
-                  });
+                rank.sort((a, b) => {
+                    return b.valor - a.valor;
+                })
+                setRankAgencias(rank)
             })
-            
-
-            console.log(rank)
+        let top5Agencia = []
+        for (let key of rankAgencias) {
+            axios.get(`http://localhost:3030/locadora/${key.id}`)
+                .then(res => res.data)
+                .then(res => {
+                    console.log(res)
+                    /* for (let item of res) {
+                        console.log(item.nome)
+                    } */
+                })
+        }
+        setTopRankAgencia(top5Agencia)
+        //console.log(topRankAgencia)
     }
-
 
     const index =
         <main className="section">
@@ -184,11 +204,11 @@ function MainPageContent(props) {
                 <div className="overview-div" >
                     <div><h2>Top 5 Agências</h2>
                         <ol className="overview-list ">
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
+                            <li>{topRankAgencia[0]}</li>
+                            <li>{topRankAgencia[1]}</li>
+                            <li>{topRankAgencia[2]}</li>
+                            <li>{topRankAgencia[3]}</li>
+                            <li>{topRankAgencia[4]}</li>
                         </ol>
                     </div>
                     <div> <h2>Top 5 Veículos</h2>

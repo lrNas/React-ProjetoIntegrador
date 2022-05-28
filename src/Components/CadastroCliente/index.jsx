@@ -103,6 +103,7 @@ function PageCadastroCliente() {
             setCnh("")
             setValidade("")
             setFkid(resposta.data.id)
+            alert('Cadastro do Usuário realizado com Sucesso!')
         } catch (err) {
             console.log(err)
         }
@@ -156,11 +157,9 @@ function PageCadastroCliente() {
 
     //  Formatação Cartão
     const cartaoPress = () => {
-        let validarRegExCartao = /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/
-        if (numCartao.match(validarRegExCartao)) {
-        } else if (numCartao === "") { }
-        else {
-            setCep("")
+        let inputLenght = numCartao.length
+        if (inputLenght === 4 || inputLenght === 9 || inputLenght === 14) {
+            setNumCartao(numCartao + '-')
         }
     }
     //----------------------------------------------
@@ -336,7 +335,7 @@ function PageCadastroCliente() {
                             <h2>Dados Bancários</h2>
                             <div className="formshdivs">
                                 <label htmlFor="numcartao"> Número do Cartão:</label>
-                                <input type="text" maxLength="20" name="numcartao" id="numcartao" className="size3" value={numCartao} onChange={event => setNumCartao(event.target.value)} onKeyPress={cartaoPress} />
+                                <input type="text" maxLength="19" name="numcartao" id="numcartao" className="size3" value={numCartao} onChange={event => setNumCartao(event.target.value)} onKeyPress={cartaoPress} />
                             </div>
                             <div className="formshdivs">
                                 <label htmlFor="nomecartao"> Nome do Cartão:</label>

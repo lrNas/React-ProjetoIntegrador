@@ -66,10 +66,39 @@ function PageCadastroVeiculos() {
             setKmRodado("")
             setCustoDiaria("")
             setRenavam("")
+            alert('Cadastro do Veículo realizado com Sucesso!')
         } catch (err) {
             console.log(err)
         }
     }
+
+    //Formatação RENAM
+    const renavamPress = () => {
+        let inputLenght = renavam.length
+        if (inputLenght === 8) {
+            setRenavam(renavam + '-')
+        }
+    }
+    //----------------------------------------------
+
+    //Formatação Placa
+    const placaPress = () => {
+        let inputLenght = placa.length
+        if (inputLenght === 3) {
+            setPlaca(placa + '-')
+        }
+    }
+    //----------------------------------------------
+    //Formatação Diaria
+    const diariaPress = () => {
+        let inputLenght = custoDiaria.length
+        if(inputLenght === 0){
+            setCustoDiaria(custoDiaria + 'R$ ')
+        }else if (inputLenght === 4) {
+            setCustoDiaria(custoDiaria + ',')
+        }
+    }
+    //----------------------------------------------
 
     return (
         <>
@@ -97,11 +126,11 @@ function PageCadastroVeiculos() {
                                     </div>
                                     <div className="formshdivs">
                                         <label htmlFor="renavam"> RENAVAM:</label>
-                                        <input type="number" maxLength="11" name="renavam" id="renavam" value={renavam} onChange={event => setRenavam(event.target.value)} required />
+                                        <input type="text" maxLength="10" name="renavam" id="renavam" value={renavam} onChange={event => setRenavam(event.target.value)} onKeyPress={renavamPress} required />
                                     </div>
                                     <div className="formshdivs">
                                         <label htmlFor="placa"> Placa:</label>
-                                        <input type="text" maxLength="7" name="placa" id="placa" value={placa} onChange={event => setPlaca(event.target.value)} required />
+                                        <input type="text" maxLength="8" name="placa" id="placa" value={placa} onChange={event => setPlaca(event.target.value)} onKeyPress={placaPress} required />
                                     </div>
                                     <div className="formshdivs">
                                         <label htmlFor="kmrodado"> KM Rodados:</label>
@@ -109,7 +138,7 @@ function PageCadastroVeiculos() {
                                     </div>
                                     <div className="formshdivs">
                                         <label htmlFor="custodiaria"> Custo da diária</label>
-                                        <input type="number" name="custodiaria" id="custodiaria" value={custoDiaria} onChange={event => setCustoDiaria(event.target.value)} required />
+                                        <input type="text" maxLength="10" name="custodiaria" id="custodiaria" value={custoDiaria} onChange={event => setCustoDiaria(event.target.value)} onKeyPress={diariaPress} required />
                                     </div>
                                     <div className="formshdivs">
                                         <label htmlFor="status"> Status: </label>
