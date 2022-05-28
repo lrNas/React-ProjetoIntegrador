@@ -14,11 +14,10 @@ async function login(userName, senha) {
         document.cookie = `tipousuario=${resposta.data.tipo}`
         document.cookie = `nomeusuario=${resposta.data.nomeusuario}`
 
-
     } catch (err) {
         console.log(err)
     }
-    window.location.reload();
+    window.location.replace("/");
 }
 
 function getCookie(cname) {
