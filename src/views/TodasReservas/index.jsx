@@ -14,11 +14,14 @@ export default function TodasReservas() {
 
   useEffect(() => {
     getUser()
+    Filtrar()
   }, [])
   function getUser() {
     return getCookie("tipousuario") == null ? 0 : getCookie("tipousuario")
   }
+  function Filtrar(){
 
+  }
   const bookingStatus = () => {
     let data = new Date();
     let date = data.toLocaleDateString("pt-br");
@@ -79,11 +82,9 @@ export default function TodasReservas() {
                   </div>
                 </div>
                 <div className="botaoContainer">
-                  <input type="checkbox" name="ocultarencerradas" id="ocultarencerradas" />
-                  <label htmlFor="ocultarencerradas">
-                    Ocultar Reservas Encerradas
-                  </label>
-                  <button>Buscar</button>
+                  <label for="ocultar">Ocultar Reservas Encerradas</label>
+                  <input type="checkbox" id="ocultar" name="ocultar" value="1" />
+                  <button id="">Buscar</button>
                 </div>
               </div>
             </div>

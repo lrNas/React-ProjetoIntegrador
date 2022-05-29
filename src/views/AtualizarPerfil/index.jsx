@@ -41,14 +41,18 @@ function AtualizarPerfil() {
             setListsenha(resposta.data.senha)
             setCpf(resposta.data.cpf)
             setTelefone(resposta.data.telefone)
-            setNascimento(resposta.data.data_nascimento)
+            let data_nascimento = new Date(resposta.data.data_nascimento)                
+            data_nascimento = (data_nascimento.getFullYear()+"-"+String(data_nascimento.getMonth()+1)+"-"+String(data_nascimento.getDate()+1))
+            setNascimento(data_nascimento)
             setCnh(resposta.data.cnh)
-            setValidade(resposta.data.validade_cnh)
+            let validade_cnh = new Date(resposta.data.validade_cnh)                
+            validade_cnh = (validade_cnh.getFullYear()+"-"+String(String(validade_cnh.getMonth()+1).padStart(2, '0'))+"-"+String(validade_cnh.getDate()+1));
+            setValidade(validade_cnh)
         } catch (err) {
             console.log(err)
         }
     }
-    const getCartao = async () => {
+/*     const getCartao = async () => {
 
         try {
             const resposta = await axios.post(`http://localhost:3030/cartao/usuario/${id}`, {token:auth})
@@ -59,7 +63,7 @@ function AtualizarPerfil() {
         } catch (err) {
             console.log(err)
         }
-    }
+    } */
     const getEndereco = async () => {
         try {
             const resposta = await axios.get(`http://localhost:3030/endereco/user/${id}`)
@@ -75,7 +79,7 @@ function AtualizarPerfil() {
     }
     //Select Estados
     useEffect(() => {
-        getCartao()
+        //getCartao()
         getUsuario()
         getEndereco()
         setToken(getCookie("auth"))
@@ -132,10 +136,10 @@ function AtualizarPerfil() {
     }
     
     const sendUsuario = async () => {
-        const usuarioCliente = {token: token,id: getCookie('id'), nome_completo: nome, email: email, senha: senha, cpf: cpf, telefone: telefone, data_nascimento: nascimento, cnh: cnh, validade_cnh: validade, fk_id_tipo_usuario: 2 }
-        console.log(token)
+        const usuarioCliente = {token: auth, id: id, nome_completo: nome, email: email, senha: senha, cpf: cpf, telefone: telefone, data_nascimento: nascimento, cnh: cnh, validade_cnh: validade, fk_id_tipo_usuario: 2 }
+        console.log(auth)
         try {
-            const resposta = await axios.put("http://localhost:3030/usuario", usuarioCliente)
+            const resposta = await axios.put("http://localhost:3030/usuario", usuarioCliente, {token:auth})
             alert(resposta.data)
             setListName("")
             setEmail("")
@@ -345,7 +349,7 @@ function AtualizarPerfil() {
                         </div>
                         <div className="formsbuttons">
                             <button>Cancelar</button>
-                            <button onClick={() => [sendCartao(), sendEndereco(), sendUsuario()]}>Salvar</button>
+                            <button onClick={() => {sendCartao(); sendEndereco(); sendUsuario()}}>Salvar</button>
                         </div>
                     </form>
 

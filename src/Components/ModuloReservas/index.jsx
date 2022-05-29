@@ -31,12 +31,12 @@ export default function ModuloReservas() {
                  };
                 card.id = data.id
                 card.valor = data.valor
-                let data_retirada = new Date(data.data_retirada)                
-                data_retirada = (data_retirada.getDate() + " " + meses[(data_retirada.getMonth())] + " " + data_retirada.getFullYear() +" "+ data_retirada.getHours()+":"+data_retirada.getMinutes()+0);
+                let data_retirada = new Date(data.data_retirada)
+                let data_retirada1 = (data_retirada.getDate() + " " + meses[data_retirada.getMonth()] + " " + data_retirada.getFullYear() + " " + (String(data_retirada.getHours()).padStart(2, '0')) + ":" + (String(data_retirada.getMinutes()).padStart(2, '0')));
                 let data_devolucao = new Date(data.data_entrega)
-                data_devolucao = ((data_devolucao.getDate() + " " + meses[(data_devolucao.getMonth())] + " " + data_devolucao.getFullYear() +" "+ data_devolucao.getHours()+":"+data_devolucao.getMinutes()+0));
-                card.data_retirada = data_retirada
-                card.data_devolucao = data_devolucao
+                let data_devolucao1 = (data_devolucao.getDate() + " " + meses[data_devolucao.getMonth()] + " " + data_devolucao.getFullYear() + " " + (String(data_devolucao.getMinutes()).padStart(2, '0')) + ":" + (String(data_devolucao.getMinutes()).padStart(2, '0')));
+                card.data_retirada = data_retirada1
+                card.data_devolucao = data_devolucao1
 
                 const localretirada = await axios.get(`http://localhost:3030/locadora/${data.fk_id_local_retirada}`)
                 card.ag_retirada = localretirada.data[0].nome

@@ -34,10 +34,10 @@ export default function ReservasCliente() {
                  };
                 card.id = data.id
                 card.valor = data.valor
-                let data_retirada = new Date(data.data_retirada)                
-                let data_retirada1 = (data_retirada.getDate() + " " + meses[String(data_retirada.getMonth())] + " " + data_retirada.getFullYear() +" "+ (String(data_retirada.getHours() + 1).padStart(2, '0'))+":"+(String(data_retirada.getMinutes() + 1).padStart(2, '0')));
+                let data_retirada = new Date(data.data_retirada)
+                let data_retirada1 = (data_retirada.getDate() + " " + meses[data_retirada.getMonth()] + " " + data_retirada.getFullYear() + " " + (String(data_retirada.getHours()).padStart(2, '0')) + ":" + (String(data_retirada.getMinutes()).padStart(2, '0')));
                 let data_devolucao = new Date(data.data_entrega)
-                let data_devolucao1 = (data_devolucao.getDate() + " " + meses[(data_devolucao.getMonth())] + " " + data_devolucao.getFullYear() +" "+ (String(data_devolucao.getMinutes() + 1).padStart(2, '0'))+":"+(String(data_devolucao.getMinutes() + 1).padStart(2, '0')));
+                let data_devolucao1 = (data_devolucao.getDate() + " " + meses[data_devolucao.getMonth()] + " " + data_devolucao.getFullYear() + " " + (String(data_devolucao.getMinutes()).padStart(2, '0')) + ":" + (String(data_devolucao.getMinutes()).padStart(2, '0')));
                 card.data_retirada = data_retirada1
                 card.data_devolucao = data_devolucao1
 
