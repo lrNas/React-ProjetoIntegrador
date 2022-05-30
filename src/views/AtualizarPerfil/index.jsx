@@ -52,18 +52,20 @@ function AtualizarPerfil() {
             console.log(err)
         }
     }
-/*     const getCartao = async () => {
+     const getCartao = async () => {
 
         try {
             const resposta = await axios.post(`http://localhost:3030/cartao/usuario/${id}`, {token:auth})
             setNomeCartao(resposta.data[0].nome)
             setNumCartao(resposta.data[0].numero)
-            setDataValidade(resposta.data[0].validade)
-            setCvc(resposta.data.cvc)
+            let validade = new Date(resposta.data[0].validade)                
+            validade = (validade.getFullYear()+"-"+String(String(validade.getMonth()+1).padStart(2, '0'))+"-"+String(validade.getDate()+1));
+            setDataValidade(validade)
+            setCvc("")
         } catch (err) {
             console.log(err)
         }
-    } */
+    } 
     const getEndereco = async () => {
         try {
             const resposta = await axios.get(`http://localhost:3030/endereco/user/${id}`)
@@ -79,7 +81,7 @@ function AtualizarPerfil() {
     }
     //Select Estados
     useEffect(() => {
-        //getCartao()
+        getCartao()
         getUsuario()
         getEndereco()
         setToken(getCookie("auth"))
