@@ -17,7 +17,7 @@ function Login() {
                     <input autoComplete="off" type="email" name="usuario" id="email" value={userName} onChange={usuario => setUsername(usuario.target.value)} placeholder="Digite seu E-mail!" />
                     <label autoComplete="off" htmlFor="senha">Senha</label>
                     <input type="password" value={senha} name="senha" id="senha" placeholder="Digite sua Senha!" onChange={senha => setSenha(senha.target.value)} />
-                    <button type="submit" id="logon" onClick={() => { login(userName, senha); window.location.assign("http://localhost:3000/") }}>Entrar</button>
+                    <button type="submit" id="logon" onClick={() => { login(userName, senha)}}>Entrar</button>
                     <p id='font1'>Problemas para logar? <a href="contato" id='font1'>Clique aqui!</a></p>
                     <p id='font1'>Ainda não é usuário? <a href="cadastrocliente" id='font1'>Cadastre-se!</a></p>
                 </div>
