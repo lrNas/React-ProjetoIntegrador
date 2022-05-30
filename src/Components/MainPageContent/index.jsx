@@ -29,7 +29,7 @@ function MainPageContent(props) {
     //auxiliar de Rank Agencia
     const [rankAgencias, setRankAgencias] = useState('')
     //Rank Agencia
-    const [topRankAgencia, setTopRankAgencia] = useState('')
+    const [topRankAgencia, setTopRankAgencia] = useState([])
 
     //Handler
     useEffect(() => {
@@ -37,6 +37,7 @@ function MainPageContent(props) {
         functionCarrosDisponiveis()
         functionAluguelMesAno()
         functionTopAgencia()
+        functionTopCarros()
     }, [])
 
     //Alugueis em Andamento
@@ -87,12 +88,6 @@ function MainPageContent(props) {
             })
     }
 
-
-
-
-    //Alugueis no Mês && Ano
-
-
     //Carros Disponíveis
     const functionCarrosDisponiveis = () => {
         setVeiculosDisponiveis(0)
@@ -109,8 +104,8 @@ function MainPageContent(props) {
                 setVeiculosDisponiveis(auxDisponiveis)
             })
     }
-    //Top Agencias
 
+    //Top Agencias
     const functionTopAgencia = () => {
         let totalReservas = []
         let rank = []
@@ -129,21 +124,42 @@ function MainPageContent(props) {
                 rank.sort((a, b) => {
                     return b.valor - a.valor;
                 })
-                setRankAgencias(rank)
             })
+        setRankAgencias(rank)
+        //rankAgencias = valor filtrado / id em ordem de valor
+
         let top5Agencia = []
         for (let key of rankAgencias) {
+            console.log(key.id)
             axios.get(`http://localhost:3030/locadora/${key.id}`)
                 .then(res => res.data)
                 .then(res => {
-                    console.log(res)
-                    /* for (let item of res) {
-                        console.log(item.nome)
-                    } */
                 })
         }
-        setTopRankAgencia(top5Agencia)
+        //setTopRankAgencia(top5Agencia)
         //console.log(topRankAgencia)
+    }
+
+    //Top Veiculos
+    const functionTopCarros = () => {
+        /* let totalReservas = []
+        let rank = []
+        axios.get('http://localhost:3030/reserva')
+            .then(res => res.data)
+            .then(res => {
+                for (let reserva of res) {
+                    totalReservas[parseInt(reserva.fk_id_local_retirada)] = 0
+                }
+                for (let reserva of res) {
+                    totalReservas[parseInt(reserva.fk_id_local_retirada)] += parseFloat(reserva.valor)
+                }
+                for (let i = 1; i < totalReservas.length; i++) {
+                    rank.push({ id: i, valor: totalReservas[i] })
+                }
+                rank.sort((a, b) => {
+                    return b.valor - a.valor;
+                })
+            }) */
     }
 
     const index =
@@ -204,11 +220,11 @@ function MainPageContent(props) {
                 <div className="overview-div" >
                     <div><h2>Top 5 Agências</h2>
                         <ol className="overview-list ">
-                            <li>{topRankAgencia[0]}</li>
-                            <li>{topRankAgencia[1]}</li>
-                            <li>{topRankAgencia[2]}</li>
-                            <li>{topRankAgencia[3]}</li>
-                            <li>{topRankAgencia[4]}</li>
+                            <li>{ }</li>
+                            <li>{ }</li>
+                            <li>{ }</li>
+                            <li>{ }</li>
+                            <li>{ }</li>
                         </ol>
                     </div>
                     <div> <h2>Top 5 Veículos</h2>

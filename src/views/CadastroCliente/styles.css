@@ -18,9 +18,16 @@ input[type=date] {
 
 /* TAMANHOS PARA INPUTS, TENTEM REUTILIZAR!*/
 .select{
-    width: 14em;
     font-size:1em;
-
+    margin-right: 1vmin;
+    margin-left: 1vmin;
+    margin-top: 0.5vmin;
+    margin-bottom: 0.5vmin;
+    padding: 0;
+    border-radius: 1vmin;
+    max-width: 10vmin;
+    min-height: 2.5vmin;
+    max-height: 10vmin;
 }
 
 /* Todos revisados e Sem defeitos conhecidos*/

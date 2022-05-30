@@ -44,6 +44,11 @@ function PageCadastroCliente() {
             })
     }, [])
     
+    const styleSelect = {
+        indicatorSeparator: () => { },
+        dropdownIndicator: defaultStyles => ({ display: 'none' })
+    }
+
     const customTheme = (theme) => {
         return {
             ...theme,
@@ -307,10 +312,7 @@ function PageCadastroCliente() {
                                             theme={customTheme}
                                             onChange={selectContent}
                                             components={animatedComponents}
-                                            options={estado} styles={{
-                                                indicatorSeparator: () => { },
-                                                dropdownIndicator: defaultStyles => ({ display: 'none' })
-                                            }}
+                                            options={estado} styles={styleSelect}
                                             placeholder={holderEstado}
                                             isSearchable
                                             closeMenuOnSelect
