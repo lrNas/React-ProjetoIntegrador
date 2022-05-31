@@ -26,25 +26,36 @@ function MainPageContent(props) {
     //Total Ano
     const [valorTotalAno, setValorTotalAno] = useState(0)
     //-------
-    //auxiliar de Rank Agencia
-    const [rankAgencias, setRankAgencias] = useState('')
     //Rank Agencia
-    const [topRankAgencia, setTopRankAgencia] = useState([])
+    const [topRankAg, setTopRankAg] = useState([])
+    //Rank Veiculo
+    const [topRankVeiculo, setTopRankVeiculo] = useState([])
+      //Rank Veiculo
+      const [loading, setLoading] = useState(true)
+    
 
     //Handler
-    useEffect(() => {
-        functionAlugueisAndamento()
-        functionCarrosDisponiveis()
-        functionAluguelMesAno()
-        functionTopAgencia()
-        functionTopCarros()
+    useEffect(()=> {
+        async function load(){
+            await functionTopAgencia()
+            await functionTopCarros()
+            await functionAlugueisAndamento()
+            await functionCarrosDisponiveis()
+            await functionAluguelMesAno()
+            await setLoading(!loading)
+        }
+        load();
     }, [])
 
+    useEffect(()=>{
+        // Fazer um loading
+    },[loading])
+
     //Alugueis em Andamento
-    const functionAlugueisAndamento = () => {
+    const functionAlugueisAndamento = async()=> {
         const now = new Date()
         let aux = 0
-        axios.get('http://localhost:3030/reserva')
+        await axios.get('http://localhost:3030/reserva')
             .then(res => res.data)
             .then(res => {
                 for (let reserva of res) {
@@ -56,8 +67,10 @@ function MainPageContent(props) {
             })
     }
 
+
+
     //Alugueis no Mês && Ano
-    const functionAluguelMesAno = () => {
+    const functionAluguelMesAno = async()=> {
         const now = new Date()
         let auxMes = 0
         let auxAno = 0
@@ -65,7 +78,7 @@ function MainPageContent(props) {
         let totalAno = 0
         let mesAtual = now.getMonth() + 1
         let anoAtual = now.getFullYear()
-        axios.get('http://localhost:3030/reserva')
+        await axios.get('http://localhost:3030/reserva')
             .then(res => res.data)
             .then(res => {
                 for (let reserva of res) {
@@ -89,10 +102,10 @@ function MainPageContent(props) {
     }
 
     //Carros Disponíveis
-    const functionCarrosDisponiveis = () => {
+    const functionCarrosDisponiveis = async()=> {
         setVeiculosDisponiveis(0)
         let auxDisponiveis = 0
-        axios.get('http://localhost:3030/veiculo')
+        await axios.get('http://localhost:3030/veiculo')
             .then(res => res.data)
             .then(res => {
                 setQuantidadeVeiculo(res.length)
@@ -106,10 +119,10 @@ function MainPageContent(props) {
     }
 
     //Top Agencias
-    const functionTopAgencia = () => {
-        let totalReservas = []
+    const functionTopAgencia = async()=> {
         let rank = []
-        axios.get('http://localhost:3030/reserva')
+        let totalReservas = []
+        await axios.get('http://localhost:3030/reserva')
             .then(res => res.data)
             .then(res => {
                 for (let reserva of res) {
@@ -119,39 +132,46 @@ function MainPageContent(props) {
                     totalReservas[parseInt(reserva.fk_id_local_retirada)] += parseFloat(reserva.valor)
                 }
                 for (let i = 1; i < totalReservas.length; i++) {
-                    rank.push({ id: i, valor: totalReservas[i] })
+                    rank.push({ id: i, valor: totalReservas[i]})
                 }
-                rank.sort((a, b) => {
-                    return b.valor - a.valor;
-                })
-            })
-        setRankAgencias(rank)
-        //rankAgencias = valor filtrado / id em ordem de valor
 
-        let top5Agencia = []
-        for (let key of rankAgencias) {
-            console.log(key.id)
-            axios.get(`http://localhost:3030/locadora/${key.id}`)
-                .then(res => res.data)
-                .then(res => {
+                rank.sort((a, b) => {
+                    return a.valor - b.valor;
                 })
-        }
-        //setTopRankAgencia(top5Agencia)
-        //console.log(topRankAgencia)
+                return rank
+              })
+              .then(res=>{
+              let top5Agencia = []
+              for (let agencia of rank) {
+                  axios.get(`http://localhost:3030/locadora/${agencia.id}`)
+                              .then(res => {
+                                  return res.data})
+                              .then(res => {
+                                  return res[0]
+                              })
+                              .then(item=>item.nome)
+                              .then(nome=>{
+              top5Agencia.push(nome)
+            })
+                          }
+                          setTopRankAg(top5Agencia);
+                          /**Tá bugado, arrumar depois  */
+            })
+        
     }
 
     //Top Veiculos
-    const functionTopCarros = () => {
-        /* let totalReservas = []
+    const functionTopCarros = async()=> {
+        let totalReservas = []
         let rank = []
-        axios.get('http://localhost:3030/reserva')
+        await axios.get('http://localhost:3030/reserva')
             .then(res => res.data)
             .then(res => {
                 for (let reserva of res) {
-                    totalReservas[parseInt(reserva.fk_id_local_retirada)] = 0
+                    totalReservas[parseInt(reserva.fk_id_veiculo)] = 0
                 }
                 for (let reserva of res) {
-                    totalReservas[parseInt(reserva.fk_id_local_retirada)] += parseFloat(reserva.valor)
+                    totalReservas[parseInt(reserva.fk_id_veiculo)] += parseFloat(reserva.valor)
                 }
                 for (let i = 1; i < totalReservas.length; i++) {
                     rank.push({ id: i, valor: totalReservas[i] })
@@ -159,7 +179,26 @@ function MainPageContent(props) {
                 rank.sort((a, b) => {
                     return b.valor - a.valor;
                 })
-            }) */
+                return rank;
+            })
+            .then(res=>{
+                let top5Veiculos = []
+                for (let veiculo of res) {
+                    axios.get(`http://localhost:3030/veiculo/${veiculo.id}`)
+                                .then(res => {
+                                    return res.data})
+                                .then(res => {
+                                    return res[0]
+                                })
+                                .then(item=>item.modelo)
+                                .then(nome=>{
+                top5Veiculos.push(nome)
+              })
+                            }
+                            console.log(top5Veiculos)
+                            setTopRankVeiculo(top5Veiculos);
+                            /**Tá bugado, arrumar depois  */
+              })
     }
 
     const index =
@@ -220,20 +259,20 @@ function MainPageContent(props) {
                 <div className="overview-div" >
                     <div><h2>Top 5 Agências</h2>
                         <ol className="overview-list ">
-                            <li>{ }</li>
-                            <li>{ }</li>
-                            <li>{ }</li>
-                            <li>{ }</li>
-                            <li>{ }</li>
+                            <li>{topRankAg[0] }</li>
+                            <li>{topRankAg[1] }</li>
+                            <li>{ topRankAg[2]}</li>
+                            <li>{ topRankAg[3]}</li>
+                            <li>{topRankAg[4] }</li>
                         </ol>
                     </div>
                     <div> <h2>Top 5 Veículos</h2>
                         <ol className="overview-list ">
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
+                            <li>{topRankVeiculo[0]}</li>
+                            <li>{topRankVeiculo[1]}</li>
+                            <li>{topRankVeiculo[2]}</li>
+                            <li>{topRankVeiculo[3]}</li>
+                            <li>{topRankVeiculo[4]}</li>
                         </ol>
                     </div>
                 </div>

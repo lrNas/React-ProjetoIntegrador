@@ -32,6 +32,7 @@ function PageCadastroCliente() {
     const [estado, setEstado] = useState('')
     const [holderEstado, setHolderEstado] = useState('Selecione seu Estado')
     const [uf, setUf] = useState({})
+    const [erro, setErro] = useState(null)
     const selectContent = value => { setUf(value) }
 
     //Select Estados
@@ -43,6 +44,14 @@ function PageCadastroCliente() {
                 setEstado(response)
             })
     }, [])
+
+    useEffect(()=>{
+    },[overlay])
+
+function showOverlay(){
+    setOverlay(true);
+
+}
     
     const styleSelect = {
         indicatorSeparator: () => { },
@@ -55,7 +64,7 @@ function PageCadastroCliente() {
             colors: {
                 ...theme.colors,
                 primary25: '#7986CB',
-                primary: 'black'
+                primary: 'black',
             }
         }
     }
@@ -66,14 +75,13 @@ function PageCadastroCliente() {
         const usuarioCartao = { nome: nomeCartao, numero: numCartao, validade: dataValidade, cvc: cvc, fk_id_usuario: fkid }
         try {
             const resposta = await axios.post("http://localhost:3030/cartao", usuarioCartao)
-            alert(resposta.data)
             setNomeCartao("")
             setNumCartao("")
             setDataValidade("")
             setCvc("")
             
         } catch (err) {
-            console.log(err)
+            setErro(err)
         }
     }
 
@@ -82,14 +90,13 @@ function PageCadastroCliente() {
 
         try {
             const resposta = await axios.post("http://localhost:3030/endereco", usuarioEndereco)
-            alert(resposta.data)
             setCep("")
             setRua("")
             setCidade("")
             setUf("")
             setComplemento("")
         } catch (err) {
-            console.log(err)
+            setErro(err)
         }
     }
 
@@ -98,7 +105,6 @@ function PageCadastroCliente() {
 
         try {
             const resposta = await axios.post("http://localhost:3030/usuario", usuarioCliente)
-            alert(resposta.data)
             setListName("")
             setEmail("")
             setListsenha("")
@@ -108,9 +114,8 @@ function PageCadastroCliente() {
             setCnh("")
             setValidade("")
             setFkid(resposta.data.id)
-            alert('Cadastro do Usuário realizado com Sucesso!')
         } catch (err) {
-            console.log(err)
+            setErro(err)
         }
     }
     //----------------------------------------------
@@ -129,12 +134,12 @@ function PageCadastroCliente() {
         let diferencaAno = anoAtual - anoNascimento
         if (mesAtual >= mesNascimento && diaAtual >= diaNascimento) {
             if (diferencaAno <= 18) {
-                alert("Data de Nascimento inválida.")
+                setErro("Data de Nascimento inválida.")
             }
         } else {
             diferencaAno--
             if (diferencaAno <= 18) {
-                alert("Data de Nascimento inválida.")
+                setErro("Data de Nascimento inválida.")
             }
         }
     }
@@ -155,7 +160,7 @@ function PageCadastroCliente() {
         if (cpf.match(validarRegExCpf)) {
         } else if (cpf === "") { }
         else {
-            alert("CPF Inválido!")
+            setErro("CPF Inválido!")
         }
     }
     //----------------------------------------------
@@ -181,7 +186,7 @@ function PageCadastroCliente() {
         if (cep.match(validarRegExCep)) {
         } else if (cep === "") { }
         else {
-            alert("CEP Inválido!")
+            setErro("CEP Inválido!")
             setCep("")
         }
 
@@ -211,34 +216,18 @@ function PageCadastroCliente() {
 
 
 
-    // VALIDAÇÃO DE CNH 
-    /* funcaoValidade.addEventListener('blur', () => {
-        const validade = document.getElementById('validade').value
-        const data = new Date()
-        let anoAtual = data.getFullYear()
-        let arrayValidade = validade.split('-')
-        let anoValidade = arrayValidade[0]
-        if (anoValidade > anoAtual) {
-            alert("Data inválida")
-        }
-    }
-    ) */
-    //----------------------------------------------
-
 
     return (
         <>
             <div className="App">
                 <main className="section">
-                    {
-                        overlay ? <div id="overlay">
+                  <div id="overlay" style={{display:overlay ? 'flex' : 'none' }}>
                             <div className="message">
-                                <h2 className="corCadastro"> Cadastro realizado com sucesso!</h2>
-                                <button onClick={setOverlay(false)}> Ok</button>
+                                <h2 className="corCadastro" > {erro? "Houve algum erro, tente novamente.": "Cadastro realizado com sucesso!"}</h2>
+                                <button onClick={()=>setOverlay(false)}> Ok</button>
                             </div>
                         </div>
-                            : ""
-                    }
+                    
                     <form name="dadosCliente">
                         <h1>
                             Cadastro de Cliente
@@ -354,7 +343,7 @@ function PageCadastroCliente() {
                         </div>
                         <div className="formsbuttons">
                             <button>Cancelar</button>
-                            <button onClick={() => [sendCartao(), sendEndereco(), sendUsuario()]}>Salvar</button>
+                            <button type={"button"} onClick={() => [sendCartao(), sendEndereco(), sendUsuario(),showOverlay()]}>Salvar</button>
                         </div>
                     </form>
 

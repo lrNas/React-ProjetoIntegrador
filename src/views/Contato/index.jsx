@@ -8,31 +8,37 @@ function Contatos() {
     const [nome,setNome]= useState("")
     const [email,setEmail]= useState("")
     const [mensagem,setMensagem]= useState("")
-    const content = <div id="overlay">
+    const [erro,setErro] = useState(false)
+    const content = <div id="overlay" style={{display:'flex'}}>
     <div className="message">
-        <h2> Mensagem enviada com sucesso!</h2>
+        <h2 className="corCadastro" > {erro? "Houve algum erro, tente novamente.": "Mensagem enviada com sucesso!"}</h2>
         <button onClick={()=>setOverview("")}> Ok</button>
     </div>
-    </div>
+</div>
 
     //  Incompleto pois vou verificar com o grupo sobre o BD
     const sendContatos = async () => {
         const contatos = {nome_completo:nome, email: email, conteudo: mensagem}
         try {
             const resposta = await axios.post("http://localhost:3030/mensagem", contatos)
-            alert(resposta.data)
+            // alert(resposta.data)
             setNome("")
             setEmail("")
             setMensagem("")
         } catch (err) {
-            console.log(err)
+            setErro(err)
         }
     }
 
     return (
         
         <PageConstructor >
-            {overview}
+            <div id="overlay" style={{display:overview ? 'flex' : 'none' }}>
+    <div className="message">
+        <h2 className="corCadastro" > {erro? "Houve algum erro, tente novamente.": "Mensagem enviada com sucesso!"}</h2>
+        <button onClick={()=>setOverview(false)}> Ok</button>
+    </div>
+    </div>
         <div className="App">
         <main className="section">
             
@@ -62,7 +68,7 @@ function Contatos() {
                 </div>
                 <div className="formsbuttons">
                     <button>Cancelar</button>
-                    <button onClick={()=>[setOverview(content), sendContatos()]}>Enviar</button>
+                    <button onClick={()=>[setOverview(true), sendContatos()]}>Enviar</button>
                 </div>
                 
             </form>

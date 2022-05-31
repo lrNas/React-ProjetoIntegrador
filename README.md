@@ -20,6 +20,8 @@
 
 Atribuições: Marcos: 7-> Falta carregar dados do cliente logado como value - FEITO 6->Filtro de cores -NAO CONSEGUI, sumiu o "Ocultar reservas Encerradas" - COLOQUEI4->Não é uma página com login, e sim a página cadastro cliente. O ideal é colocar uma página de login com a informação: "Você não está logado, faça login" e um link "Cadastre-se" que leve de à página de cadastro -FEITO
 
-Arthur: 10-> Só falta só CNPJ, Cartão (6012-5124-1325-1251), renavam (59xxxxxx-x), placa, custo diaria (R$ xxxxxxxxxx,xx), telefone na cad locadora, cep cad locadora 5->Ranking das agências e de carros, 3-> Ajustar tamanho dos input
+Arthur: 10-> Só falta só CNPJ, Cartão (6012-5124-1325-1251), renavam (59xxxxxx-x), placa, custo diaria (R$ xxxxxxxxxx,xx), telefone na cad locadora, cep cad locadora 
+5->Ajustar bugs de exibição 
+3-> Ajustar tamanho dos input
 
 Lucas: 9->Aguardando o fim da tarefa 10, 8->Pendente da 10, 2->Alerts não existem ainda, aguardando fim dos ajustes em forms (tarefa 10)

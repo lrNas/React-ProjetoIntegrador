@@ -21,6 +21,15 @@ function PageCadastroVeiculos() {
     const selectContentStatus = value => { setStatus(value) }
     const selectContentAtual = value => { setLocadoraAtual(value) }
     const selectContentProp = value => { setLocadoraProprietaria(value) }
+    const [erro, setErro] = useState(null)
+
+    useEffect(()=>{
+    },[overlay])
+
+function showOverlay(){
+    setOverlay(true);
+
+}
 
     //Select Status
     useEffect(() => {
@@ -68,7 +77,7 @@ function PageCadastroVeiculos() {
             setRenavam("")
             alert('Cadastro do Veículo realizado com Sucesso!')
         } catch (err) {
-            console.log(err)
+            setErro(err)
         }
     }
 
@@ -104,15 +113,12 @@ function PageCadastroVeiculos() {
         <>
                 <div className="App">
                     <main className="section">
-                        {
-                            overlay ? <div id="overlay">
-                                <div className="message">
-                                    <h2 className="corCadastro"> Cadastro realizado com sucesso!</h2>
-                                    <button onClick={setOverlay(false)}> Ok</button>
-                                </div>
+                    <div id="overlay" style={{display:overlay ? 'flex' : 'none' }}>
+                            <div className="message">
+                                <h2 className="corCadastro" > {erro? "Houve algum erro, tente novamente.": "Cadastro realizado com sucesso!"}</h2>
+                                <button onClick={()=>setOverlay(false)}> Ok</button>
                             </div>
-                                : ""
-                        }
+                        </div>
                         <h1>
                             Cadastro de Veiculos
                         </h1>
@@ -197,7 +203,7 @@ function PageCadastroVeiculos() {
                                 </div>
                             </div>
                             <div className="formsbuttons">
-                                <button>Cancelar</button><button onClick={()=>{sendVeiculos()}}>Salvar</button>
+                                <button type="button">Cancelar</button><button type="button" onClick={()=>{sendVeiculos();showOverlay()}}>Salvar</button>
                             </div>
                         </form>
                     </main>

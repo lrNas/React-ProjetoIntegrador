@@ -1,6 +1,6 @@
 import axios from 'axios';
 import makeAnimated from "react-select/animated" 
-import React, { useState} from "react";
+import React, { useState, useEffect} from "react";
 import SelectEstados from '../SelectEstados'
 
 const animatedComponents = makeAnimated()
@@ -15,7 +15,15 @@ function PageCadastroLocadora() {
     const [rua, setRua] = useState('')
     const [complemento, setComplemento] = useState('')
     const [overlay, setOverlay] = useState(false)
+    const [erro, setErro] = useState(null)
 
+    useEffect(()=>{
+    },[overlay])
+
+function showOverlay(){
+    setOverlay(true);
+
+}
 
 
     const sendLocadora = async () => {
@@ -29,7 +37,7 @@ function PageCadastroLocadora() {
             setTelefone("")
             alert('Cadastro da Locadora realizado com Sucesso!')
         } catch (err) {
-            console.log(err)
+            setErro(err)
         }
     }
 
@@ -54,7 +62,7 @@ function PageCadastroLocadora() {
         if (telefone.match(validarRegExTel)) {
         } else if (telefone === "") { }
         else {
-            alert("Formato de telefone Inválido")
+            setErro("Formato de telefone Inválido")
         }
     }
     //----------------------------------------------
@@ -75,7 +83,7 @@ function PageCadastroLocadora() {
         if (cnpj.match(validarRegExCnpj)) {
         } else if (cnpj === "") { }
         else {
-            alert("CNPJ Inválido!")
+            setErro("CNPJ Inválido!")
         }
     }
 
@@ -84,15 +92,12 @@ function PageCadastroLocadora() {
         <>
             <div className="App">
                 <main className="section">
-                    {
-                        overlay ? <div id="overlay">
+                    <div id="overlay" style={{display:overlay ? 'flex' : 'none' }}>
                             <div className="message">
-                                <h2 className="corCadastro"> Cadastro realizado com sucesso!</h2>
-                                <button onClick={setOverlay(false)}> Ok</button>
+                                <h2 className="corCadastro"> {erro? "Houve algum erro, tente novamente.": "Cadastro realizado com sucesso!"}</h2>
+                                <button onClick={()=>setOverlay(false)}> Ok</button>
                             </div>
                         </div>
-                            : ""
-                    }
                     <h1>
                         Cadastro do Locadora
                     </h1>
@@ -147,7 +152,7 @@ function PageCadastroLocadora() {
                             </div>
                         </div>
                         <div className="formsbuttons">
-                            <button>Cancelar</button><button onClick={() => sendLocadora()}>Salvar</button>
+                            <button>Cancelar</button><button onClick={() => {sendLocadora();showOverlay()}}>Salvar</button>
                         </div>
                     </form>
                 </main>
