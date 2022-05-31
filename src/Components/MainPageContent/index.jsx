@@ -134,6 +134,7 @@ function MainPageContent(props) {
             axios.get(`http://localhost:3030/locadora/${key.id}`)
                 .then(res => res.data)
                 .then(res => {
+                    console.log(res)
                 })
         }
         //setTopRankAgencia(top5Agencia)

@@ -30,3 +30,7 @@ Afazeres:
 
 -Fazer o dropdown menu ficar parado quando um campo qualquer estiver selecionado
 
+-Terminar a formatação dos Select, deixar parecido com os input
+
+-Terminar o Top 5 agencias e Top 5 veiculos
+
