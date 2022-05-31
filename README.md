@@ -4,21 +4,21 @@
 
 8-Fazer o botão "Reservar!" dos resultados de busca realizar o post da reserva e informar se foi feito ou não.
 
-7-Criar uma página Atualizar perfil (É uma cópia do Cadastro Cliente, porém com outro título, e carregada com dados do usuário logado). Impedir que o Administrador (admin@email.com) mude os dados, deixando a opção indisponível para ele.
+7-Criar uma página Atualizar perfil (É uma cópia do Cadastro Cliente, porém com outro título, e carregada com dados do usuário logado). Impedir que o Administrador (admin@email.com) mude os dados, deixando a opção indisponível para ele. FEITO
 
-6-Fazer a página todas as reservas.
+6-Fazer a página todas as reservas. FEITO com ressalvas da busca
 
 5-Linkar dados com a página Overview
 
-4-Fazer a Página minhas reservas, e detectar se logado ou não. Se não logado, enviar para uma página de login com opção de criar cadastro(ainda não existe). Na página minhas reservas, só aparecerão as que estão ativas ou futuras, nenhuma passada. As passadas ficarão no histórico de locação, acessível pelo dropdown menu.
+4-Fazer a Página minhas reservas, e detectar se logado ou não. Se não logado, enviar para uma página de login com opção de criar cadastro(ainda não existe). Na página minhas reservas, só aparecerão as que estão ativas ou futuras, nenhuma passada. As passadas ficarão no histórico de locação, acessível pelo dropdown menu. FEITO 
 
 3-Redimensionar react selects (O tamanho não está batendo com os Inputs e não está responsivo.)
 
 2-Mudar os alerts para os modais que construimos (aquelas divs com overlay, que estão hidden)
 
-1-Se deslogar, levar para o Index.
+1-Se deslogar, levar para o Index. FEITO
 
-Atribuições: Marcos: 7-> Falta carregar dados do cliente logado como value, 6->Filtro de cores, sumiu o "Ocultar reservas Encerradas" 4->Não é uma página com login, e sim a página cadastro cliente. O ideal é colocar uma página de login com a informação: "Você não está logado, faça login" e um link "Cadastre-se" que leve de à página de cadastro
+Atribuições: Marcos: 7-> Falta carregar dados do cliente logado como value - FEITO 6->Filtro de cores -NAO CONSEGUI, sumiu o "Ocultar reservas Encerradas" - COLOQUEI4->Não é uma página com login, e sim a página cadastro cliente. O ideal é colocar uma página de login com a informação: "Você não está logado, faça login" e um link "Cadastre-se" que leve de à página de cadastro -FEITO
 
 Arthur: 10-> Só falta só CNPJ, Cartão (6012-5124-1325-1251), renavam (59xxxxxx-x), placa, custo diaria (R$ xxxxxxxxxx,xx), telefone na cad locadora, cep cad locadora 5->Ranking das agências e de carros, 3-> Ajustar tamanho dos input
 
