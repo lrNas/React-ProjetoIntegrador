@@ -25,9 +25,11 @@ input[type=date] {
     margin-bottom: 0.5vmin;
     padding: 0;
     border-radius: 1vmin;
-    max-width: 10vmin;
+    max-width: 30vmin;
     min-width: 2.5vmin;
+    min-height: 2.5vmin;
     max-height: 10vmin;
+    width: 100vmin;
 }
 
 /* Todos revisados e Sem defeitos conhecidos*/
